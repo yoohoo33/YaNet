@@ -67,40 +67,46 @@ const regionOptions = {
   excludeHighPercentage: true,
   regions: [
     {
-      name: 'AQ南极洲',
-      regex: /南极|🇦🇶|aq|Antarctica/i,
+      name: '自动选择',
+      regex: /.*/i,
       ratioLimit: 2,
-      icon: 'https://en.wikipedia.org/wiki/List_of_Antarctic_flags#/media/File:Proposed_flag_of_Antarctica_(Graham_Bartram).svg'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Auto.png'
+    },
+    {
+      name: 'AQ南极洲',
+      regex: /南极|🇦🇶|aq|antarctica/i,
+      ratioLimit: 2,
+      icon: 'https://www.flaticon.com/free-icon/antartica_9098230'
     },
     {
       name: 'AU澳大利亚',
-      regex: /澳大利亚|🇦🇺|au|Australia/i,
+      regex: /澳大利亚|🇦🇺|au|australia/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Australia.png'
     },
     {
       name: 'BR巴西',
-      regex: /巴西|🇧🇷|br|Brazil/i,
+      regex: /巴西|🇧🇷|br|brazil/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Brazil.png'
     },
     {
       name: 'CA加拿大',
-      regex: /加拿大|🇨🇦|ca|Canada/i,
+      regex: /加拿大|🇨🇦|ca|canada/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Canada.png'
     },
     {
       name: 'CL智利',
-      regex: /智利|🇨🇱|cl|Chile/i,
+      regex: /智利|🇨🇱|cl|chile/i,
       ratioLimit: 2,
-      icon: 'https://en.wikipedia.org/wiki/Chile#/media/File:Flag_of_Chile.svg'
+      icon: 'https://www.flaticon.com/free-icon/chile_330554'
     },
     {
       name: 'CN中国大陆',
-      regex: /中国|🇨🇳|cn|china/i,
+      regex: /中国|大陆|内地|🇨🇳|cn|china/i,
       ratioLimit: 2,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China_Map.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China.png'
     },
     {
       name: 'DE德国',
@@ -110,13 +116,13 @@ const regionOptions = {
     },
     {
       name: 'ES西班牙',
-      regex: /西班牙|🇪🇸|es|Spain/i,
+      regex: /西班牙|🇪🇸|es|spain/i,
       ratioLimit: 2,
-      icon: 'https://en.wikipedia.org/wiki/Spain#/media/File:Flag_of_Spain.svg'
+      icon: 'https://www.flaticon.com/free-icon/spain_330557'
     },
     {
       name: 'FR法国',
-      regex: /法国|🇫🇷|fr|France/i,
+      regex: /法国|🇫🇷|fr|france/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/France.png'
     },
@@ -134,7 +140,7 @@ const regionOptions = {
     },
     {
       name: 'IN印度',
-      regex: /印度|🇮🇳|in|India/i,
+      regex: /印度|🇮🇳|in|india/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/India.png'
     },
@@ -146,19 +152,19 @@ const regionOptions = {
     },
     {
       name: 'KP朝鲜',
-      regex: /朝鲜|🇰🇵|kp|North Korea/i,
+      regex: /朝鲜|🇰🇵|kp|north korea/i,
       ratioLimit: 2,
-      icon: 'https://en.wikipedia.org/wiki/North_Korea#/media/File:Flag_of_North_Korea.svg'
+      icon: 'https://www.flaticon.com/free-icon/north-korea_330655'
     },
     {
       name: 'KR韩国',
-      regex: /韩|🇰🇷|kr|korea|South Korea/i,
+      regex: /韩|🇰🇷|kr|korea|south korea/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png'
     },
     {
       name: 'MO澳门',
-      regex: /澳门|🇲🇴|mo|Macao|Macau/i,
+      regex: /澳门|🇲🇴|mo|macao|macau/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Macao.png'
     },
@@ -170,27 +176,27 @@ const regionOptions = {
     },
     {
       name: 'NL荷兰',
-      regex: /荷兰|🇳🇱|nl|Netherlands/i,
+      regex: /荷兰|🇳🇱|nl|netherlands/i,
       ratioLimit: 2,
-      icon: 'https://en.wikipedia.org/wiki/Netherlands#/media/File:Flag_of_the_Netherlands.svg'
+      icon: 'https://www.flaticon.com/free-icon/netherlands_330448'
     },
     {
       name: 'RU俄罗斯',
-      regex: /俄罗斯|🇷🇺|ru|Russia/i,
+      regex: /俄罗斯|🇷🇺|ru|russia/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Russia.png'
     },
     {
       name: 'SA沙特阿拉伯',
-      regex: /沙特阿拉伯|🇸🇦|sa|Saudi Arabia/i,
+      regex: /沙特阿拉伯|🇸🇦|sa|saudi arabia/i,
       ratioLimit: 2,
-      icon: 'https://en.wikipedia.org/wiki/Saudi_Arabia#/media/File:Flag_of_Saudi_Arabia.svg'
+      icon: 'https://www.flaticon.com/free-icon/saudi-arabia_330552'
     },
     {
       name: 'SE瑞典',
-      regex: /瑞典|🇸🇪|se|Sweden/i,
+      regex: /瑞典|🇸🇪|se|sweden/i,
       ratioLimit: 2,
-      icon: 'https://en.wikipedia.org/wiki/Sweden#/media/File:Flag_of_Sweden.svg'
+      icon: 'https://www.flaticon.com/free-icon/sweden_330501'
     },
     {
       name: 'SG新加坡',
@@ -208,7 +214,7 @@ const regionOptions = {
       name: 'TW台湾省',
       regex: /台湾|🇹🇼|tw|taiwan|tai wan/i,
       ratioLimit: 2,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Taiwan.png'
     },
     {
       name: 'US美国',
