@@ -76,7 +76,7 @@ const regionOptions = {
       name: 'AQ南极洲',
       regex: /南极|🇦🇶|aq|antarctica/i,
       ratioLimit: 2,
-      icon: 'https://www.flaticon.com/free-icon/antartica_9098230'
+      icon: 'https://cdn-icons-png.flaticon.com/128/9098/9098207.png'
     },
     {
       name: 'AU澳大利亚',
@@ -100,7 +100,7 @@ const regionOptions = {
       name: 'CL智利',
       regex: /智利|🇨🇱|cl|chile/i,
       ratioLimit: 2,
-      icon: 'https://www.flaticon.com/free-icon/chile_330554'
+      icon: 'https://cdn-icons-png.flaticon.com/128/330/330554.png'
     },
     {
       name: 'CN中国大陆',
@@ -110,7 +110,7 @@ const regionOptions = {
     },
     {
       name: 'DE德国',
-      regex: /德国|🇩🇪|de|germany/i,
+      regex: /德|🇩🇪|de|germany/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png'
     },
@@ -118,11 +118,11 @@ const regionOptions = {
       name: 'ES西班牙',
       regex: /西班牙|🇪🇸|es|spain/i,
       ratioLimit: 2,
-      icon: 'https://www.flaticon.com/free-icon/spain_330557'
+      icon: 'https://cdn-icons-png.flaticon.com/128/330/330557.png'
     },
     {
       name: 'FR法国',
-      regex: /法国|🇫🇷|fr|france/i,
+      regex: /法|🇫🇷|fr|france/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/France.png'
     },
@@ -154,7 +154,7 @@ const regionOptions = {
       name: 'KP朝鲜',
       regex: /朝鲜|🇰🇵|kp|north korea/i,
       ratioLimit: 2,
-      icon: 'https://www.flaticon.com/free-icon/north-korea_330655'
+      icon: 'https://cdn-icons-png.flaticon.com/128/330/330655.png'
     },
     {
       name: 'KR韩国',
@@ -178,25 +178,25 @@ const regionOptions = {
       name: 'NL荷兰',
       regex: /荷兰|🇳🇱|nl|netherlands/i,
       ratioLimit: 2,
-      icon: 'https://www.flaticon.com/free-icon/netherlands_330448'
+      icon: 'https://cdn-icons-png.flaticon.com/128/330/330448.png'
     },
     {
       name: 'RU俄罗斯',
-      regex: /俄罗斯|🇷🇺|ru|russia/i,
+      regex: /俄|🇷🇺|ru|russia/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Russia.png'
     },
     {
       name: 'SA沙特阿拉伯',
-      regex: /沙特阿拉伯|🇸🇦|sa|saudi arabia/i,
+      regex: /沙特|🇸🇦|sa|saudi arabia/i,
       ratioLimit: 2,
-      icon: 'https://www.flaticon.com/free-icon/saudi-arabia_330552'
+      icon: 'https://cdn-icons-png.flaticon.com/128/330/330552.png'
     },
     {
       name: 'SE瑞典',
       regex: /瑞典|🇸🇪|se|sweden/i,
       ratioLimit: 2,
-      icon: 'https://www.flaticon.com/free-icon/sweden_330501'
+      icon: 'https://cdn0.iconfinder.com/data/icons/195-flat-flag-psd-icons/70/Sweden.png'
     },
     {
       name: 'SG新加坡',
