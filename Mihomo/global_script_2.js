@@ -18,6 +18,7 @@ const enable = true
  */
 const ruleOptions = {
   cloudflare: true, //Cloudflare服务
+  github: true, //Github
   apple: true, // 苹果服务
   google: true, // Google服务
   microsoft: true, // 微软服务
@@ -506,7 +507,7 @@ function main(config) {
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       url: 'https://www.mihoyo.com/',
-      icon: 'https://bbs-static.miyoushe.com/upload/op_manual_upload/fe/game_list/game_icons/1715415394283dby-logo-v2.png',
+      icon: 'https://bbs-static.miyoushe.com/upload/op_manual_upload/fe/game_list/game_icons/1715415394283dby-logo-v2.png'
     })
   }
 
@@ -905,7 +906,7 @@ function main(config) {
     rules.push(
       'GEOSITE,meta,Facebook',
       'GEOSITE,facebook,Facebook',
-      'GEOSITE,instagram,Facebook',
+      'GEOSITE,instagram,Facebook'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -1029,6 +1030,18 @@ function main(config) {
       proxies: ['默认节点', ...proxyGroupsRegionNames, '直连'],
       url: 'http://cp.cloudflare.com/',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Cloudflare.png'
+    })
+  }
+
+  if (ruleOptions.github) {
+    rules.push('GEOSITE,github,Github')
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: 'Github',
+      type: 'select',
+      proxies: ['默认节点', ...proxyGroupsRegionNames, '直连'],
+      url: 'https://github.com/robots.txt',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/GitHub.png',
     })
   }
 
