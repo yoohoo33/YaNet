@@ -67,34 +67,34 @@ const regionOptions = {
   excludeHighPercentage: true,
   regions: [
     {
-      name: 'HK香港',
-      regex: /港|🇭🇰|hk|hongkong|hong kong/i,
+      name: 'AQ南极洲',
+      regex: /南极|🇦🇶|aq|Antarctica/i,
       ratioLimit: 2,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png'
+      icon: 'https://en.wikipedia.org/wiki/List_of_Antarctic_flags#/media/File:Proposed_flag_of_Antarctica_(Graham_Bartram).svg'
     },
     {
-      name: 'US美国',
-      regex: /美|🇺🇸|us|united state|america/i,
+      name: 'AU澳大利亚',
+      regex: /澳大利亚|🇦🇺|au|Australia/i,
       ratioLimit: 2,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Australia.png'
     },
     {
-      name: 'JP日本',
-      regex: /日本|🇯🇵|jp|japan/i,
+      name: 'BR巴西',
+      regex: /巴西|🇧🇷|br|Brazil/i,
       ratioLimit: 2,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Brazil.png'
     },
     {
-      name: 'KR韩国',
-      regex: /韩|🇰🇷|kr|korea/i,
+      name: 'CA加拿大',
+      regex: /加拿大|🇨🇦|ca|Canada/i,
       ratioLimit: 2,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Canada.png'
     },
     {
-      name: 'SG新加坡',
-      regex: /新加坡|🇸🇬|sg|singapore/i,
+      name: 'CL智利',
+      regex: /智利|🇨🇱|cl|Chile/i,
       ratioLimit: 2,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png'
+      icon: 'https://en.wikipedia.org/wiki/Chile#/media/File:Flag_of_Chile.svg'
     },
     {
       name: 'CN中国大陆',
@@ -103,10 +103,22 @@ const regionOptions = {
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China_Map.png'
     },
     {
-      name: 'TW台湾省',
-      regex: /台湾|🇹🇼|tw|taiwan|tai wan/i,
+      name: 'DE德国',
+      regex: /德国|🇩🇪|de|germany/i,
       ratioLimit: 2,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png'
+    },
+    {
+      name: 'ES西班牙',
+      regex: /西班牙|🇪🇸|es|Spain/i,
+      ratioLimit: 2,
+      icon: 'https://en.wikipedia.org/wiki/Spain#/media/File:Flag_of_Spain.svg'
+    },
+    {
+      name: 'FR法国',
+      regex: /法国|🇫🇷|fr|France/i,
+      ratioLimit: 2,
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/France.png'
     },
     {
       name: 'GB英国',
@@ -115,10 +127,40 @@ const regionOptions = {
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_Kingdom.png'
     },
     {
-      name: 'DE德国',
-      regex: /德国|🇩🇪|de|germany/i,
+      name: 'HK香港',
+      regex: /港|🇭🇰|hk|hongkong|hong kong/i,
       ratioLimit: 2,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png'
+    },
+    {
+      name: 'IN印度',
+      regex: /印度|🇮🇳|in|India/i,
+      ratioLimit: 2,
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/India.png'
+    },
+    {
+      name: 'JP日本',
+      regex: /日本|🇯🇵|jp|japan/i,
+      ratioLimit: 2,
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png'
+    },
+    {
+      name: 'KP朝鲜',
+      regex: /朝鲜|🇰🇵|kp|North Korea/i,
+      ratioLimit: 2,
+      icon: 'https://en.wikipedia.org/wiki/North_Korea#/media/File:Flag_of_North_Korea.svg'
+    },
+    {
+      name: 'KR韩国',
+      regex: /韩|🇰🇷|kr|korea|South Korea/i,
+      ratioLimit: 2,
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png'
+    },
+    {
+      name: 'MO澳门',
+      regex: /澳门|🇲🇴|mo|Macao|Macau/i,
+      ratioLimit: 2,
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Macao.png'
     },
     {
       name: 'MY马来西亚',
@@ -127,10 +169,52 @@ const regionOptions = {
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png'
     },
     {
+      name: 'NL荷兰',
+      regex: /荷兰|🇳🇱|nl|Netherlands/i,
+      ratioLimit: 2,
+      icon: 'https://en.wikipedia.org/wiki/Netherlands#/media/File:Flag_of_the_Netherlands.svg'
+    },
+    {
+      name: 'RU俄罗斯',
+      regex: /俄罗斯|🇷🇺|ru|Russia/i,
+      ratioLimit: 2,
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Russia.png'
+    },
+    {
+      name: 'SA沙特阿拉伯',
+      regex: /沙特阿拉伯|🇸🇦|sa|Saudi Arabia/i,
+      ratioLimit: 2,
+      icon: 'https://en.wikipedia.org/wiki/Saudi_Arabia#/media/File:Flag_of_Saudi_Arabia.svg'
+    },
+    {
+      name: 'SE瑞典',
+      regex: /瑞典|🇸🇪|se|Sweden/i,
+      ratioLimit: 2,
+      icon: 'https://en.wikipedia.org/wiki/Sweden#/media/File:Flag_of_Sweden.svg'
+    },
+    {
+      name: 'SG新加坡',
+      regex: /新加坡|🇸🇬|sg|singapore/i,
+      ratioLimit: 2,
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png'
+    },
+    {
       name: 'TK土耳其',
       regex: /土耳其|🇹🇷|tk|turkey/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png'
+    },
+    {
+      name: 'TW台湾省',
+      regex: /台湾|🇹🇼|tw|taiwan|tai wan/i,
+      ratioLimit: 2,
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China.png'
+    },
+    {
+      name: 'US美国',
+      regex: /美|🇺🇸|us|united state|america/i,
+      ratioLimit: 2,
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png'
     },
   ],
 }
@@ -524,7 +608,7 @@ function main(config) {
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       url: 'https://steampipe.akamaized.net',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Steam.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Steam.png'
     })
   }
 
@@ -558,7 +642,7 @@ function main(config) {
       type: 'select',
       proxies: ['默认节点', ...proxyGroupsRegionNames, '直连'],
       url: 'https://store.steampowered.com/',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Steam.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Steam.png'
     })
   }
 
@@ -581,7 +665,7 @@ function main(config) {
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       url: 'https://store.epicgames.com/',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Epic_Games.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Epic_Games.png'
     })
   }
 
@@ -599,7 +683,7 @@ function main(config) {
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       url: 'https://store.epicgames.com/',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Epic_Games.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Epic_Games.png'
     })
   }
 
@@ -682,7 +766,7 @@ function main(config) {
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       url: 'https://www.bilibili.com/',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/bilibili.png'
     })
   }
 
@@ -694,7 +778,7 @@ function main(config) {
       type: 'select',
       proxies: ['默认节点', ...proxyGroupsRegionNames, '直连'],
       url: 'https://www.nicovideo.jp/',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/niconico_1.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/niconico_1.png'
     })
   }
 
@@ -807,7 +891,7 @@ function main(config) {
       type: 'select',
       proxies: ['默认节点', ...proxyGroupsRegionNames, '直连'],
       url: 'https://x.com/',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/X.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/X.png'
     })
   }
 
@@ -823,7 +907,7 @@ function main(config) {
       type: 'select',
       proxies: ['默认节点', ...proxyGroupsRegionNames, '直连'],
       url: 'https://www.facebook.com/',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Facebook.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Facebook.png'
     })
   }
 
@@ -835,7 +919,7 @@ function main(config) {
       type: 'select',
       proxies: ['默认节点', ...proxyGroupsRegionNames, '直连'],
       url: 'https://discord.com/',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Discord.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Discord.png'
     })
   }
 
@@ -885,7 +969,7 @@ function main(config) {
       name: '国服游戏',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/China_Map.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China_Map.png'
     })
   }
 
@@ -938,7 +1022,7 @@ function main(config) {
       type: 'select',
       proxies: ['默认节点', ...proxyGroupsRegionNames, '直连'],
       url: 'http://cp.cloudflare.com/',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Cloudflare.png'
     })
   }
 
