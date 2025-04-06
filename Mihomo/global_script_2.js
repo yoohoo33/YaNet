@@ -35,6 +35,7 @@ const ruleOptions = {
   spotifyplay: true, // Spotify 播放
   spotify: true, // Spotify
   youtube: true, // YouTube
+  twitch: true, // Twitch
   tiktok: true, // 国际版抖音
   biliintl: true, // 哔哩哔哩 东南亚
   bilibili: true, // 哔哩哔哩
