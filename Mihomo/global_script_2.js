@@ -1149,6 +1149,8 @@ function main(config) {
     'GEOSITE,private,DIRECT',
     'GEOIP,private,DIRECT,no-resolve',
     'RULE-SET,gfw,GFW列表',
+    'GEOSITE,gfw,GFW列表',
+    'GEOSITE,greatfire,GFW列表',
     'GEOSITE,cn,国内网站',
     'GEOIP,cn,国内网站,no-resolve',
     'GEOSITE,geolocation-!cn,境外网站',
@@ -1157,7 +1159,7 @@ function main(config) {
   )
   ruleProviders.set('gfw', {
   ...ruleProviderCommon,
-  behavior: 'classical',
+  behavior: 'domain',
   format: 'text',
   url: 'https://fastly.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/gfw.txt',
   path: './ruleset/Loyalsoldier/gfw.txt'
