@@ -548,6 +548,7 @@ function main(config) {
 
   if (ruleOptions.mihoyo) {
     rules.push(
+      'GEOSITE,mihoyo,miHoYo',
       'GEOSITE,mihoyo-cn,miHoYo',
     )
     config['proxy-groups'].push({
