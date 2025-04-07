@@ -1146,6 +1146,7 @@ function main(config) {
   }
 
   rules.push(
+    'DOMAIN-SUFFIX,ipwho.is,默认节点',
     'GEOSITE,private,DIRECT',
     'GEOIP,private,DIRECT,no-resolve',
     'RULE-SET,gfw,GFW列表',
