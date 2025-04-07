@@ -490,16 +490,15 @@ function main(config) {
 
   if (ruleOptions.mihoyodl) {
     rules.push(
-      'DOMAIN-REGEX,autopatch.*\.bh3,miHoYo 下载',
-      'DOMAIN-REGEX,autopatch.*\.honkaiimpact3,miHoYo 下载',
-      'DOMAIN-REGEX,autopatch.*\.yuanshen,miHoYo 下载',
-      'DOMAIN-REGEX,autopatch.*\.bhsr.com,miHoYo 下载',
-      'DOMAIN-REGEX,autopatch.*\.starrails,miHoYo 下载',
-      'DOMAIN-REGEX,autopatch.*\.juequling,miHoYo 下载',
-      'DOMAIN-REGEX,autopatch.*\.zenlesszonezero,miHoYo 下载',
-      'DOMAIN-REGEX,autopatch.*\.juequling,miHoYo 下载',
-      'DOMAIN-REGEX,.*downloader\-api.mihoyo.com,miHoYo 下载',
-      'DOMAIN-REGEX,.*downloader\-api.hoyoverse.com,miHoYo 下载',
+      'DOMAIN-REGEX,autopatch.*\.bh3\.com,miHoYo 下载',
+      'DOMAIN-REGEX,autopatch.*\.honkaiimpact3\.com,miHoYo 下载',
+      'DOMAIN-REGEX,autopatch.*\.yuanshen\.com,miHoYo 下载',
+      'DOMAIN-REGEX,autopatch.*\.bhsr\.com,miHoYo 下载',
+      'DOMAIN-REGEX,autopatch.*\.starrails\.com,miHoYo 下载',
+      'DOMAIN-REGEX,autopatch.*\.juequling\.com,miHoYo 下载',
+      'DOMAIN-REGEX,autopatch.*\.zenlesszonezero\.com,miHoYo 下载',
+      'DOMAIN-REGEX,.*downloader\-api\.mihoyo\.com,miHoYo 下载',
+      'DOMAIN-REGEX,.*downloader\-api\.hoyoverse\.com,miHoYo 下载',
       'DOMAIN-REGEX,.*hyp\-api\.mihoyo\.com,miHoYo 下载',
       'DOMAIN-REGEX,.*hyp\-api\.hoyoverse\.com,miHoYo 下载'
     )
@@ -518,9 +517,14 @@ function main(config) {
       'DOMAIN-SUFFIX,hoyolab.com,HoYoverse 社区/登录',
       'DOMAIN-SUFFIX,hoyo.link,HoYoverse 社区/登录',
       'DOMAIN-SUFFIX,account.HoYoverse.com,HoYoverse 社区/登录',
-      'DOMAIN-REGEX,.*dispatch.*\.yuanshen,HoYoverse 社区/登录',
-      'DOMAIN-REGEX,.*prod.*\.starrails,HoYoverse 社区/登录',
-      'DOMAIN-REGEX,.*prod.*\.zenlesszonezero,HoYoverse 社区/登录'
+      'DOMAIN-REGEX,dispatchos.*\.honkaiimpact3\.com,HoYoverse 社区/登录',
+      'DOMAIN-REGEX,os.*dispatch\.honkaiimpact3\.com,HoYoverse 社区/登录',
+      'DOMAIN-REGEX,dispatchos.*\.yuanshen\.com,HoYoverse 社区/登录',
+      'DOMAIN-REGEX,os.*dispatch\.yuanshen\.com,HoYoverse 社区/登录',
+      'DOMAIN-REGEX,globaldp.*\.starrails\.com,HoYoverse 社区/登录',
+      'DOMAIN-REGEX,.*prod.*\.starrails\.com,HoYoverse 社区/登录',
+      'DOMAIN-REGEX,globaldp.*\.zenlesszonezero\.com,HoYoverse 社区/登录',
+      'DOMAIN-REGEX,.*prod.*\.zenlesszonezero\.com,HoYoverse 社区/登录'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
