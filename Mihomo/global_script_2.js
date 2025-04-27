@@ -453,7 +453,7 @@ function main(config) {
       ...groupBaseOption,
       name: '默认节点',
       type: 'select',
-      proxies: [...proxyGroupsRegionNames, '直连'],
+      proxies: [...proxyGroupsRegionNames, '直连', 'REJECT'],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Proxy.png'
     },
   ]
@@ -996,7 +996,7 @@ function main(config) {
       ...groupBaseOption,
       name: '国服游戏',
       type: 'select',
-      proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
+      proxies: ['直连', '默认节点', ...proxyGroupsRegionNames, 'REJECT'],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China_Map.png'
     })
   }
@@ -1007,7 +1007,7 @@ function main(config) {
       ...groupBaseOption,
       name: '外服游戏',
       type: 'select',
-      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames, 'REJECT'],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Game.png'
     })
   }
@@ -1026,7 +1026,7 @@ function main(config) {
   if (ruleOptions.ads) {
     rules.push(
       'GEOSITE,category-ads-all,广告过滤',
-      'DOMAIN-REGEX,.*ads\d+\-\w+\-\w{2}\.\w*(bd|byte|dou|douyin|zj|zijie)\w*\.\w{3},广告过滤'
+      'DOMAIN-REGEX,.*ads[0-9]*.*(bd|byte|dou|zj|zijie).*,广告过滤'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -1192,7 +1192,8 @@ function main(config) {
         '默认节点',
         '境外网站',
         ...proxyGroupsRegionNames,
-        '直连'
+        '直连',
+        'REJECT'
       ],
       icon: 'https://cdn-icons-png.flaticon.com/128/14251/14251400.png'
     },
@@ -1203,7 +1204,8 @@ function main(config) {
       proxies: [
         '直连',
         '默认节点',
-        ...proxyGroupsRegionNames
+        ...proxyGroupsRegionNames,
+        'REJECT'
       ],
       url: 'http://wifi.vivo.com.cn/generate_204',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/StreamingCN.png'
@@ -1215,7 +1217,8 @@ function main(config) {
       proxies: [
         '直连',
         '默认节点',
-        ...proxyGroupsRegionNames
+        ...proxyGroupsRegionNames,
+        'REJECT'
       ],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Streaming!CN.png'
     },
@@ -1228,7 +1231,8 @@ function main(config) {
         '默认节点',
         '国内网站',
         '境外网站',
-        ...proxyGroupsRegionNames
+        ...proxyGroupsRegionNames,
+        'REJECT'
       ],
       icon: 'https://cdn-icons-png.flaticon.com/128/10507/10507711.png'
     }
