@@ -304,12 +304,6 @@ ruleProviders.set('applications', {
   path: './ruleset/DustinWin/applications.list',
 })
 
-const rules = [
-  'RULE-SET,applications,下载软件',
-  'PROCESS-NAME,SunloginClient,DIRECT',
-  'PROCESS-NAME,SunloginClient.exe,DIRECT',
-]
-
 // 程序入口
 function main(config) {
   const proxyCount = config?.proxies?.length ?? 0
