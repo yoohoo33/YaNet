@@ -1151,6 +1151,9 @@ function main(config) {
   }
 
   rules.push(
+    'DOMAIN-SUFFIX,api.ip.sb,默认节点',
+    'DOMAIN-SUFFIX,ipapi.co,默认节点',
+    'DOMAIN-SUFFIX,ipinfo.io,默认节点',
     'DOMAIN-SUFFIX,ipwho.is,默认节点',
     'GEOSITE,private,DIRECT',
     'GEOIP,private,DIRECT,no-resolve',
