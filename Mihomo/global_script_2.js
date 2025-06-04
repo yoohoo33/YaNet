@@ -61,6 +61,18 @@ const ruleOptions = {
 }
 
 /**
+ * 前置规则
+ * 如果有需要前置的自定义规则，可以自行修改
+ */
+const rules = [
+  'RULE-SET,applications,下载软件',
+  'PROCESS-NAME,SunloginClient,DIRECT',
+  'PROCESS-NAME,SunloginClient.exe,DIRECT',
+  'PROCESS-NAME,AnyDesk,DIRECT',
+  'PROCESS-NAME,AnyDesk.exe,DIRECT',
+]
+
+/**
  * 地区配置，通过regex匹配代理节点名称
  * regex会有一定概率误判，自己调整一下吧
  * excludeHighPercentage是排除高倍率节点的开关，只对地区分组有效
@@ -358,8 +370,8 @@ function main(config) {
   config['sniffer'] = {
     enable: true,
     'force-dns-mapping': true,
-    'parse-pure-ip': true,
-    'override-destination': false,
+    'parse-pure-ip': false,
+    'override-destination': true,
     sniff: {
       TLS: {
         ports: [443, 8443],
@@ -372,6 +384,22 @@ function main(config) {
       }
     },
     'force-domain': [],
+    'skip-src-address': [
+      '127.0.0.0/8',
+      '192.168.0.0/16',
+      '10.0.0.0/8',
+      '172.16.0.0/12',
+    ],
+    'force-domain': [
+      '+.google.com',
+      '+.googleapis.com',
+      '+.googleusercontent.com',
+      '+.youtube.com',
+      '+.facebook.com',
+      '+.messenger.com',
+      '+.fbcdn.net',
+      'fbcdn-a.akamaihd.net',
+    ],
     'skip-domain': ['Mijia Cloud', '+.oray.com'],
   }
 
