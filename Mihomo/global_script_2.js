@@ -476,7 +476,7 @@ function main(config) {
       ...groupBaseOption,
       name: '默认节点',
       type: 'select',
-      proxies: [...proxyGroupsRegionNames, '直连', 'REJECT'],
+      proxies: [...proxyGroupsRegionNames, '直连', '屏蔽'],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Proxy.png'
     },
   ]
@@ -485,7 +485,11 @@ function main(config) {
   config.proxies.push({
     name: '直连',
     type: 'direct',
-    udp: true,
+    udp: true
+  })
+  config.proxies.push({
+    name: '屏蔽',
+    type: 'reject'
   })
 
   if (ruleOptions.openai) {
@@ -1019,7 +1023,7 @@ function main(config) {
       ...groupBaseOption,
       name: '国服游戏',
       type: 'select',
-      proxies: ['直连', '默认节点', ...proxyGroupsRegionNames, 'REJECT'],
+      proxies: ['直连', '默认节点', ...proxyGroupsRegionNames, '屏蔽'],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China_Map.png'
     })
   }
@@ -1030,7 +1034,7 @@ function main(config) {
       ...groupBaseOption,
       name: '外服游戏',
       type: 'select',
-      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames, 'REJECT'],
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames, '屏蔽'],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Game.png'
     })
   }
@@ -1041,7 +1045,7 @@ function main(config) {
       ...groupBaseOption,
       name: '跟踪分析',
       type: 'select',
-      proxies: ['REJECT', '直连', '默认节点'],
+      proxies: ['屏蔽', '直连', '默认节点'],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Reject.png'
     })
   }
@@ -1057,7 +1061,7 @@ function main(config) {
       ...groupBaseOption,
       name: '广告过滤',
       type: 'select',
-      proxies: ['REJECT', '直连', '默认节点'],
+      proxies: ['屏蔽', '直连', '默认节点'],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Advertising.png'
     })
   }
@@ -1205,7 +1209,7 @@ function main(config) {
       type: 'select',
       proxies: [
         '直连',
-        'REJECT',
+        '屏蔽',
         '默认节点',
         '国内网站',
         ...proxyGroupsRegionNames
@@ -1221,7 +1225,7 @@ function main(config) {
         '境外网站',
         ...proxyGroupsRegionNames,
         '直连',
-        'REJECT'
+        '屏蔽'
       ],
       icon: 'https://cdn-icons-png.flaticon.com/128/14251/14251400.png'
     },
@@ -1233,7 +1237,7 @@ function main(config) {
         '直连',
         '默认节点',
         ...proxyGroupsRegionNames,
-        'REJECT'
+        '屏蔽'
       ],
       url: 'http://wifi.vivo.com.cn/generate_204',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/StreamingCN.png'
@@ -1246,7 +1250,7 @@ function main(config) {
         '直连',
         '默认节点',
         ...proxyGroupsRegionNames,
-        'REJECT'
+        '屏蔽'
       ],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Streaming!CN.png'
     },
@@ -1260,7 +1264,7 @@ function main(config) {
         '国内网站',
         '境外网站',
         ...proxyGroupsRegionNames,
-        'REJECT'
+        '屏蔽'
       ],
       icon: 'https://cdn-icons-png.flaticon.com/128/10507/10507711.png'
     }
