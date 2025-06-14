@@ -66,10 +66,11 @@ const ruleOptions = {
  */
 const rules = [
   'RULE-SET,applications,下载软件',
+  'PROCESS-NAME,Motrix.exe,DIRECT',
   'PROCESS-NAME,SunloginClient,DIRECT',
   'PROCESS-NAME,SunloginClient.exe,DIRECT',
   'PROCESS-NAME,AnyDesk,DIRECT',
-  'PROCESS-NAME,AnyDesk.exe,DIRECT',
+  'PROCESS-NAME,AnyDesk.exe,DIRECT'
 ]
 
 /**
@@ -1048,7 +1049,9 @@ function main(config) {
   if (ruleOptions.ads) {
     rules.push(
       'GEOSITE,category-ads-all,广告过滤',
-      'DOMAIN-REGEX,.*ads[0-9]*.*(bd|byte|dou|zj|zijie).*,广告过滤'
+      'DOMAIN-REGEX,.*ads[0-9]*.*(bd|byte|dou|zj|zijie).*,广告过滤',
+      'DOMAIN-SUFFIX,store-api.mumu.163.com,广告过滤',
+      'DOMAIN-SUFFIX,mumu.nie.netease.com,广告过滤'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -1173,7 +1176,7 @@ function main(config) {
   }
 
   rules.push(
-    'DOMAIN-SUFFIX,api.ip.sb,默认节点',
+    'DOMAIN-SUFFIX,ip.sb,默认节点',
     'DOMAIN-SUFFIX,ipapi.co,默认节点',
     'DOMAIN-SUFFIX,ipinfo.io,默认节点',
     'DOMAIN-SUFFIX,ipwho.is,默认节点',
