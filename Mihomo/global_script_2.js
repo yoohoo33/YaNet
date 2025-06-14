@@ -83,157 +83,157 @@ const regionOptions = {
   excludeHighPercentage: true,
   regions: [
     {
-      name: '自动选择',
+      name: '♻️自动选择',
       regex: /.*/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Auto.png'
     },
     {
-      name: 'AQ南极洲',
+      name: '🇦🇶南极洲',
       regex: /南极|🇦🇶|aq|antarctica/i,
       ratioLimit: 2,
       icon: 'https://cdn-icons-png.flaticon.com/128/9098/9098207.png'
     },
     {
-      name: 'AU澳大利亚',
+      name: '🇦🇺澳大利亚',
       regex: /澳大利亚|🇦🇺|au|australia/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Australia.png'
     },
     {
-      name: 'BR巴西',
+      name: '🇧🇷巴西',
       regex: /巴西|🇧🇷|br|brazil/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Brazil.png'
     },
     {
-      name: 'CA加拿大',
+      name: '🇨🇦加拿大',
       regex: /加拿大|🇨🇦|ca|canada/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Canada.png'
     },
     {
-      name: 'CL智利',
+      name: '🇨🇱智利',
       regex: /智利|🇨🇱|cl|chile/i,
       ratioLimit: 2,
       icon: 'https://cdn-icons-png.flaticon.com/128/330/330554.png'
     },
     {
-      name: 'CN中国大陆',
+      name: '🇨🇳中国大陆',
       regex: /中国|大陆|内地|🇨🇳|cn|china/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China.png'
     },
     {
-      name: 'DE德国',
+      name: '🇩🇪德国',
       regex: /德|🇩🇪|de|germany/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png'
     },
     {
-      name: 'ES西班牙',
+      name: '🇪🇸西班牙',
       regex: /西班牙|🇪🇸|es|spain/i,
       ratioLimit: 2,
       icon: 'https://cdn-icons-png.flaticon.com/128/330/330557.png'
     },
     {
-      name: 'FR法国',
+      name: '🇫🇷法国',
       regex: /法|🇫🇷|fr|france/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/France.png'
     },
     {
-      name: 'GB英国',
+      name: '🇬🇧英国',
       regex: /英|🇬🇧|uk|united kingdom|great britain/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_Kingdom.png'
     },
     {
-      name: 'HK香港',
+      name: '🇭🇰香港',
       regex: /港|🇭🇰|hk|hongkong|hong kong/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png'
     },
     {
-      name: 'IN印度',
+      name: '🇮🇳印度',
       regex: /印度|🇮🇳|in|india/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/India.png'
     },
     {
-      name: 'JP日本',
+      name: '🇯🇵日本',
       regex: /日本|🇯🇵|jp|japan/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png'
     },
     {
-      name: 'KP朝鲜',
+      name: '🇰🇵朝鲜',
       regex: /朝鲜|🇰🇵|kp|north korea/i,
       ratioLimit: 2,
       icon: 'https://cdn-icons-png.flaticon.com/128/330/330655.png'
     },
     {
-      name: 'KR韩国',
+      name: '🇰🇷韩国',
       regex: /韩|🇰🇷|kr|korea|south korea/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png'
     },
     {
-      name: 'MO澳门',
+      name: '🇲🇴澳门',
       regex: /澳门|🇲🇴|mo|macao|macau/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Macao.png'
     },
     {
-      name: 'MY马来西亚',
-      regex: /马来|🇩🇪|my|malaysia/i,
+      name: '🇲🇾马来西亚',
+      regex: /马来|🇲🇾|my|malaysia/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png'
     },
     {
-      name: 'NL荷兰',
+      name: '🇳🇱荷兰',
       regex: /荷兰|🇳🇱|nl|netherlands/i,
       ratioLimit: 2,
       icon: 'https://cdn-icons-png.flaticon.com/128/330/330448.png'
     },
     {
-      name: 'RU俄罗斯',
+      name: '🇷🇺俄罗斯',
       regex: /俄|🇷🇺|ru|russia/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Russia.png'
     },
     {
-      name: 'SA沙特阿拉伯',
+      name: '🇸🇦沙特阿拉伯',
       regex: /沙特|🇸🇦|sa|saudi arabia/i,
       ratioLimit: 2,
       icon: 'https://cdn-icons-png.flaticon.com/128/330/330552.png'
     },
     {
-      name: 'SE瑞典',
+      name: '🇸🇪瑞典',
       regex: /瑞典|🇸🇪|se|sweden/i,
       ratioLimit: 2,
       icon: 'https://cdn0.iconfinder.com/data/icons/195-flat-flag-psd-icons/70/Sweden.png'
     },
     {
-      name: 'SG新加坡',
+      name: '🇸🇬新加坡',
       regex: /新加坡|🇸🇬|sg|singapore/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png'
     },
     {
-      name: 'TK土耳其',
+      name: '🇹🇷土耳其',
       regex: /土耳其|🇹🇷|tk|turkey/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png'
     },
     {
-      name: 'TW台湾省',
+      name: '🇹🇼台湾省',
       regex: /台湾|🇹🇼|tw|taiwan|tai wan/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Taiwan.png'
     },
     {
-      name: 'US美国',
+      name: '🇺🇸美国',
       regex: /美|🇺🇸|us|united state|america/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png'
