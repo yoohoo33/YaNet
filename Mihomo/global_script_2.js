@@ -1125,14 +1125,14 @@ function main(config) {
 
   if (ruleOptions.google) {
     rules.push(
-      'DOMAIN-SUFFIX,google.cn,国内网站',
-      'DOMAIN-SUFFIX,googleapis.cn,国内网站',
       'DOMAIN-REGEX,.*(2x3|ni5|j5o).*\.xn--ngstr-lra8j\.com,下载软件',
       'DOMAIN-REGEX,.*(2x3|ni5|j5o).*\.xn--ngstr-cn-8za9o\.com,下载软件',
-      'GEOSITE,google@cn,谷歌服务',
-      'GEOSITE,google-cn,谷歌服务',
-      'GEOIP,google,谷歌服务',
-      'GEOSITE,google,谷歌服务'
+      'DOMAIN-SUFFIX,google.cn,国内网站',
+      'DOMAIN-SUFFIX,googleapis.cn,国内网站',
+      'GEOSITE,google@cn,国内网站',
+      'GEOSITE,google-cn,国内网站',
+      'GEOSITE,google,谷歌服务',
+      'GEOIP,google,谷歌服务'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
