@@ -126,7 +126,7 @@ const regionOptions = {
     },
     {
       name: '🇩🇪德国',
-      regex: /德|🇩🇪|de|germany/i,
+      regex: /德国|🇩🇪|de|germany/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png'
     },
@@ -138,15 +138,9 @@ const regionOptions = {
     },
     {
       name: '🇫🇷法国',
-      regex: /法|🇫🇷|fr|france/i,
+      regex: /法国|🇫🇷|fr|france/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/France.png'
-    },
-    {
-      name: '🇬🇧英国',
-      regex: /英|🇬🇧|uk|united kingdom|great britain/i,
-      ratioLimit: 2,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_Kingdom.png'
     },
     {
       name: '🇭🇰香港',
@@ -198,7 +192,7 @@ const regionOptions = {
     },
     {
       name: '🇷🇺俄罗斯',
-      regex: /俄|🇷🇺|ru|russia/i,
+      regex: /俄罗斯|🇷🇺|ru|russia/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Russia.png'
     },
@@ -233,8 +227,14 @@ const regionOptions = {
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Taiwan.png'
     },
     {
+      name: '🇬🇧英国',
+      regex: /英国|🇬🇧|uk|gb|united kingdom|great britain/i,
+      ratioLimit: 2,
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_Kingdom.png'
+    },
+    {
       name: '🇺🇸美国',
-      regex: /美|🇺🇸|us|united state|america/i,
+      regex: /美国|🇺🇸|us|united state|america/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png'
     },
@@ -517,10 +517,10 @@ function main(config) {
 
   if (ruleOptions.mihoyodl) {
     rules.push(
-      'DOMAIN-REGEX,.*downloader\-api\.mihoyo\.com,miHoYo 下载',
-      'DOMAIN-REGEX,.*downloader\-api\.hoyoverse\.com,miHoYo 下载',
-      'DOMAIN-REGEX,.*hyp\-api\.mihoyo\.com,miHoYo 下载',
-      'DOMAIN-REGEX,.*hyp\-api\.hoyoverse\.com,miHoYo 下载',
+      'DOMAIN-REGEX,.*downloader-api\.mihoyo\.com,miHoYo 下载',
+      'DOMAIN-REGEX,.*downloader-api\.hoyoverse\.com,miHoYo 下载',
+      'DOMAIN-REGEX,.*hyp-api\.mihoyo\.com,miHoYo 下载',
+      'DOMAIN-REGEX,.*hyp-api\.hoyoverse\.com,miHoYo 下载',
       'DOMAIN-REGEX,autopatch.*\.bh3\.com,miHoYo 下载',
       'DOMAIN-REGEX,autopatch.*\.honkaiimpact3\.com,miHoYo 下载',
       'DOMAIN-REGEX,autopatch.*\.yuanshen\.com,miHoYo 下载',
@@ -543,7 +543,7 @@ function main(config) {
     rules.push(
       'DOMAIN-SUFFIX,hoyolab.com,HoYoverse 社区/登录',
       'DOMAIN-SUFFIX,hoyo.link,HoYoverse 社区/登录',
-      'DOMAIN-SUFFIX,account.HoYoverse.com,HoYoverse 社区/登录',
+      'DOMAIN-SUFFIX,account.hoyoverse.com,HoYoverse 社区/登录',
       'DOMAIN-REGEX,dispatchos.*\.yuanshen\.com,HoYoverse 社区/登录',
       'DOMAIN-REGEX,os.*dispatch\.yuanshen\.com,HoYoverse 社区/登录',
       'DOMAIN-REGEX,globaldp.*\.starrails\.com,HoYoverse 社区/登录',
@@ -1053,7 +1053,7 @@ function main(config) {
   if (ruleOptions.ads) {
     rules.push(
       'GEOSITE,category-ads-all,广告过滤',
-      'DOMAIN-REGEX,.*ads[0-9]*.*(bd|byte|dou|zj|zijie).*,广告过滤',
+      'DOMAIN-REGEX,ads[0-9]*.*(bd|byte|dou|zj|zijie).*\.com,广告过滤',
       'DOMAIN-SUFFIX,store-api.mumu.163.com,广告过滤',
       'DOMAIN-SUFFIX,mumu.nie.netease.com,广告过滤'
     )
@@ -1125,12 +1125,14 @@ function main(config) {
 
   if (ruleOptions.google) {
     rules.push(
-      'GEOIP,google,谷歌服务',
-      'GEOSITE,google,谷歌服务',
+      'DOMAIN-SUFFIX,google.cn,国内网站',
+      'DOMAIN-SUFFIX,googleapis.cn,国内网站',
+      'DOMAIN-REGEX,.*(2x3|ni5|j5o).*\.xn--ngstr-lra8j\.com,下载软件',
+      'DOMAIN-REGEX,.*(2x3|ni5|j5o).*\.xn--ngstr-cn-8za9o\.com,下载软件',
       'GEOSITE,google@cn,谷歌服务',
       'GEOSITE,google-cn,谷歌服务',
-      'DOMAIN-SUFFIX,google.cn,谷歌服务',
-      'DOMAIN-SUFFIX,googleapis.cn,谷歌服务'
+      'GEOIP,google,谷歌服务',
+      'GEOSITE,google,谷歌服务',
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
