@@ -237,8 +237,8 @@ const regionOptions = {
       regex: /美国|🇺🇸|us|united state|america/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png'
-    },
-  ],
+    }
+  ]
 }
 
 /**
@@ -1132,7 +1132,7 @@ function main(config) {
       'GEOSITE,google@cn,谷歌服务',
       'GEOSITE,google-cn,谷歌服务',
       'GEOIP,google,谷歌服务',
-      'GEOSITE,google,谷歌服务',
+      'GEOSITE,google,谷歌服务'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
