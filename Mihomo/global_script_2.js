@@ -1068,10 +1068,10 @@ function main(config) {
 
   if (ruleOptions.cloudflare) {
     rules.push(
+      'GEOSITE,cloudflare@cn,国内网站',
+      'GEOSITE,cloudflare-cn,国内网站',
       'GEOIP,cloudflare,Cloudflare',
-      'GEOSITE,cloudflare,Cloudflare',
-      'GEOSITE,cloudflare@cn,Cloudflare',
-      'GEOSITE,cloudflare-cn,Cloudflare'
+      'GEOSITE,cloudflare,Cloudflare'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -1109,9 +1109,9 @@ function main(config) {
 
   if (ruleOptions.apple) {
     rules.push(
-      'GEOSITE,apple,苹果服务',
-      'GEOSITE,apple@cn,苹果服务',
-      'GEOSITE,apple-cn,苹果服务'
+      'GEOSITE,apple@cn,国内网站',
+      'GEOSITE,apple-cn,国内网站',
+      'GEOSITE,apple,苹果服务'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
