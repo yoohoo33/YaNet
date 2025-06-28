@@ -1193,8 +1193,6 @@ function main(config) {
     'GEOSITE,greatfire,GFW列表',
     'GEOSITE,cn,国内网站',
     'GEOIP,cn,国内网站,no-resolve',
-    'GEOSITE,geolocation-!cn,境外网站',
-    'GEOIP,!cn,境外网站,no-resolve',
     'MATCH,漏网之鱼'
   )
   ruleProviders.set('gfw', {
@@ -1224,7 +1222,6 @@ function main(config) {
       type: 'select',
       proxies: [
         '默认节点',
-        '境外网站',
         ...proxyGroupsRegionNames,
         '直连',
         '屏蔽'
@@ -1246,25 +1243,12 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      name: '境外网站',
-      type: 'select',
-      proxies: [
-        '直连',
-        '默认节点',
-        ...proxyGroupsRegionNames,
-        '屏蔽'
-      ],
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Streaming!CN.png'
-    },
-    {
-      ...groupBaseOption,
       name: '漏网之鱼',
       type: 'select',
       proxies: [
         '直连',
         '默认节点',
         '国内网站',
-        '境外网站',
         ...proxyGroupsRegionNames,
         '屏蔽'
       ],
