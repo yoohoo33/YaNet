@@ -939,7 +939,7 @@ function main(config) {
       'DOMAIN-SUFFIX,X.com,X',
       'DOMAIN-SUFFIX,grok.com,X',
       'DOMAIN-SUFFIX,featureassets.org,X',
-      'GEOIP,twitter',
+      'GEOIP,twitter,X',
       'GEOSITE,twitter,X',
       'GEOSITE,x,X',
       'GEOSITE,xai,X'
