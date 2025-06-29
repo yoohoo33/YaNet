@@ -71,7 +71,7 @@ const rules = [
   'GEOSITE,win-spy,跟踪分析',
   'GEOSITE,win-extra,跟踪分析',
   'GEOSITE,category-ads-all,广告过滤',
-  'DOMAIN-REGEX,ads[0-9]*.*(bd|byte|dou|zj|zijie).*\.com,广告过滤',
+  'DOMAIN-REGEX,ads\d+.*(bd|byte|dou|zj|zijie).*\.com,广告过滤',
   'DOMAIN-SUFFIX,store-api.mumu.163.com,广告过滤',
   'DOMAIN-SUFFIX,mumu.nie.netease.com,广告过滤',
   'DOMAIN-SUFFIX,ip.sb,默认节点',
