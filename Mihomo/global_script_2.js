@@ -17,47 +17,49 @@ const enable = true
  * false = 禁用
  */
 const ruleOptions = {
-  cloudflare: true, //Cloudflare
+  cloudflare: true, //科赋锐
   github: true, //Github
   amazon: true, //亚马逊
-  apple: true, // 苹果服务
-  google: true, // Google服务
-  microsoft: true, // 微软服务
-  openai: true, // 国外AI和GPT
+  apple: true, //苹果服务
+  google: true, //谷歌服务
+  googlecn: true, //谷歌下载/登录
+  microsoft: true, //微软服务
+  openai: true, //国外AI
   mihoyodl: true, //miHoYo下载
   mihoyo: true, //miHoYo
-  hoyolab: true, //miHoYo海外社区/登录
-  hoyoverse: true, //miHoYo海外
-  steamdl: true, // Steam下载
+  hoyolab: true, //miHoYo国际社区/登录
+  hoyoverse: true, //miHoYo国际
+  steamdl: true, //Steam下载/登录
   steam: true, //Steam商店/社区
-  epicgamesdl: true, // Epic Games下载
+  epicgamesdl: true, //Epic Games下载
   epicgames: true, //Epic Games商店
-  spotifyplay: true, // Spotify 播放
-  spotify: true, // Spotify
-  youtube: true, // YouTube
-  twitch: true, // Twitch
-  tiktok: true, // 国际版抖音
-  biliintl: true, // 哔哩哔哩 东南亚
-  bilibili: true, // 哔哩哔哩
+  spotifydl: true, //Spotify播放
+  spotify: true, //Spotify登录
+  youtube: true, //油管
+  twitch: true, //Twitch
+  tiktok: true, //抖音国际
+  douyin: true, //抖音
+  biliintl: true, //哔哩哔哩东南亚
+  bilibili: true, //哔哩哔哩
   niconico: true, //niconico
-  bahamut: true, // 巴哈姆特/动画疯
-  netflix: true, // Netflix网飞
-  primevideo: true, // 亚马逊prime video
-  hulu: true, // Hulu
-  disney: true, // 迪士尼
-  pixiv: true, // Pixiv
-  hbo: true, // HBO
-  tvb: true, // TVB
-  twitter: true, // Twitter
-  facebook: true, // Facebook
-  discord: true, // Discord通讯软件
-  telegram: true, // Telegram通讯软件
-  whatsapp: true, // Whatsapp通讯软件
-  line: true, // Line通讯软件
-  games: true, // 游戏策略组
-  japan: true, // 日本网站策略组
-  tracker: true, // 网络分析和跟踪服务
-  ads: true // 常见的网络广告
+  bahamut: true, //巴哈姆特/动画疯
+  netflix: false, //网飞
+  primevideo: false, //亚马逊prime video
+  hulu: false, //Hulu
+  disney: false, //迪士尼
+  pixiv: true, //Pixiv
+  hbo: false, //HBO
+  tvb: false, //TVB
+  x: true, //推特
+  facebook: true, //脸书
+  discord: true, //Discord
+  telegram: true, //电报
+  whatsapp: true, //Whatsapp
+  line: false, //Line
+  games: true, //游戏策略组
+  japan: false, //日本网站策略组
+  tracker: true, //网络分析和跟踪服务
+  ads: true //常见网络广告
 }
 
 /**
@@ -65,6 +67,17 @@ const ruleOptions = {
  * 如果有需要前置的自定义规则，可以自行修改
  */
 const rules = [
+  'GEOSITE,tracker,跟踪分析',
+  'GEOSITE,win-spy,跟踪分析',
+  'GEOSITE,win-extra,跟踪分析',
+  'GEOSITE,category-ads-all,广告过滤',
+  'DOMAIN-REGEX,ads[0-9]*.*(bd|byte|dou|zj|zijie).*\.com,广告过滤',
+  'DOMAIN-SUFFIX,store-api.mumu.163.com,广告过滤',
+  'DOMAIN-SUFFIX,mumu.nie.netease.com,广告过滤',
+  'DOMAIN-SUFFIX,ip.sb,默认节点',
+  'DOMAIN-SUFFIX,ipapi.co,默认节点',
+  'DOMAIN-SUFFIX,ipinfo.io,默认节点',
+  'DOMAIN-SUFFIX,ipwho.is,默认节点',
   'RULE-SET,applications,下载软件',
   'PROCESS-NAME,Motrix.exe,DIRECT',
   'PROCESS-NAME,SunloginClient,DIRECT',
@@ -82,12 +95,6 @@ const rules = [
 const regionOptions = {
   excludeHighPercentage: true,
   regions: [
-    {
-      name: '♻️自动选择',
-      regex: /.*/i,
-      ratioLimit: 2,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Auto.png'
-    },
     {
       name: '🇦🇶南极洲',
       regex: /南极|🇦🇶|aq|antarctica/i,
@@ -119,7 +126,7 @@ const regionOptions = {
       icon: 'https://cdn-icons-png.flaticon.com/128/330/330554.png'
     },
     {
-      name: '🇨🇳中国大陆',
+      name: '🇨🇳大陆',
       regex: /中国|大陆|内地|🇨🇳|cn|china/i,
       ratioLimit: 2,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China.png'
@@ -246,11 +253,11 @@ const regionOptions = {
  * defaultDNS是用来解析DNS的，必须为IP
  * DNS最好不要超过两个，从业界某知名APP的文档里学的
  */
-const defaultDNS = ['tls://223.5.5.5']
+const defaultDNS = ['tls://9.9.9.11']
 
 const chinaDNS = ['119.29.29.29', '223.5.5.5']
 
-const foreignDNS = ['https://120.53.53.53/dns-query', 'https://223.5.5.5/dns-query']
+const foreignDNS = ['9.9.9.11', '1.1.1.1']
 
 /**
  * DNS相关配置
@@ -342,7 +349,7 @@ function main(config) {
   /**
    * 这个值设置大点能省电，笔记本和手机需要关注一下
    */
-  config['keep-alive-interval'] = 1800
+  config['keep-alive-interval'] = 3600
 
   config['find-process-mode'] = 'strict'
 
@@ -366,7 +373,7 @@ function main(config) {
     enable: true,
     'force-dns-mapping': true,
     'parse-pure-ip': false,
-    'override-destination': true,
+    'override-destination': false,
     sniff: {
       TLS: {
         ports: [443, 8443],
@@ -383,7 +390,7 @@ function main(config) {
       '127.0.0.0/8',
       '192.168.0.0/16',
       '10.0.0.0/8',
-      '172.16.0.0/12',
+      '172.16.0.0/12'
     ],
     'force-domain': [
       '+.google.com',
@@ -393,7 +400,7 @@ function main(config) {
       '+.facebook.com',
       '+.messenger.com',
       '+.fbcdn.net',
-      'fbcdn-a.akamaihd.net',
+      'fbcdn-a.akamaihd.net'
     ],
     'skip-domain': ['Mijia Cloud', '+.oray.com'],
   }
@@ -409,11 +416,11 @@ function main(config) {
 
   config['geox-url'] = {
     geoip:
-      'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat',
+      'https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat',
     geosite:
-      'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat',
-    mmdb: 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb',
-    asn: 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb',
+      'https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat',
+    mmdb: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb',
+    asn: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb',
   }
 
   /**
@@ -496,9 +503,9 @@ function main(config) {
     rules.push(
       'DOMAIN-SUFFIX,grazie.ai,国外AI',
       'DOMAIN-SUFFIX,grazie.aws.intellij.net,国外AI',
-      'RULE-SET,ai,国外AI'
+      'RULE-SET,foreignai,国外AI'
     )
-    ruleProviders.set('ai', {
+    ruleProviders.set('foreignai', {
       ...ruleProviderCommon,
       behavior: 'classical',
       format: 'text',
@@ -515,23 +522,35 @@ function main(config) {
     })
   }
 
+  if (ruleOptions.github) {
+    rules.push('GEOSITE,github,Github')
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: 'Github',
+      type: 'select',
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
+      url: 'https://github.com/robots.txt',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/GitHub.png'
+    })
+  }
+
   if (ruleOptions.mihoyodl) {
     rules.push(
-      'DOMAIN-REGEX,.*downloader-api\.mihoyo\.com,miHoYo 下载',
-      'DOMAIN-REGEX,.*downloader-api\.hoyoverse\.com,miHoYo 下载',
-      'DOMAIN-REGEX,.*hyp-api\.mihoyo\.com,miHoYo 下载',
-      'DOMAIN-REGEX,.*hyp-api\.hoyoverse\.com,miHoYo 下载',
-      'DOMAIN-REGEX,autopatch.*\.bh3\.com,miHoYo 下载',
-      'DOMAIN-REGEX,autopatch.*\.honkaiimpact3\.com,miHoYo 下载',
-      'DOMAIN-REGEX,autopatch.*\.yuanshen\.com,miHoYo 下载',
-      'DOMAIN-SUFFIX,autopatchcn.bhsr.com,miHoYo 下载',
-      'DOMAIN-SUFFIX,autopatchos.starrails.com,miHoYo 下载',
-      'DOMAIN-SUFFIX,autopatchcn.juequling.com,miHoYo 下载',
-      'DOMAIN-SUFFIX,autopatchos.zenlesszonezero.com,miHoYo 下载'
+      'DOMAIN-REGEX,.*downloader-api\.mihoyo\.com,miHoYo下载',
+      'DOMAIN-REGEX,.*downloader-api\.hoyoverse\.com,miHoYo下载',
+      'DOMAIN-REGEX,.*hyp-api\.mihoyo\.com,miHoYo下载',
+      'DOMAIN-REGEX,.*hyp-api\.hoyoverse\.com,miHoYo下载',
+      'DOMAIN-REGEX,autopatch.*\.bh3\.com,miHoYo下载',
+      'DOMAIN-REGEX,autopatch.*\.honkaiimpact3\.com,miHoYo下载',
+      'DOMAIN-REGEX,autopatch.*\.yuanshen\.com,miHoYo下载',
+      'DOMAIN-SUFFIX,autopatchcn.bhsr.com,miHoYo下载',
+      'DOMAIN-SUFFIX,autopatchos.starrails.com,miHoYo下载',
+      'DOMAIN-SUFFIX,autopatchcn.juequling.com,miHoYo下载',
+      'DOMAIN-SUFFIX,autopatchos.zenlesszonezero.com,miHoYo下载'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'miHoYo 下载',
+      name: 'miHoYo下载',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       url: 'https://www.mihoyo.com',
@@ -541,19 +560,19 @@ function main(config) {
 
   if (ruleOptions.hoyolab) {
     rules.push(
-      'DOMAIN-SUFFIX,hoyolab.com,HoYoverse 社区/登录',
-      'DOMAIN-SUFFIX,hoyo.link,HoYoverse 社区/登录',
-      'DOMAIN-SUFFIX,account.hoyoverse.com,HoYoverse 社区/登录',
-      'DOMAIN-REGEX,dispatchos.*\.yuanshen\.com,HoYoverse 社区/登录',
-      'DOMAIN-REGEX,os.*dispatch\.yuanshen\.com,HoYoverse 社区/登录',
-      'DOMAIN-REGEX,globaldp.*\.starrails\.com,HoYoverse 社区/登录',
-      'DOMAIN-REGEX,prod.*\.starrails\.com,HoYoverse 社区/登录',
-      'DOMAIN-REGEX,globaldp.*\.zenlesszonezero\.com,HoYoverse 社区/登录',
-      'DOMAIN-REGEX,prod.*\.zenlesszonezero\.com,HoYoverse 社区/登录'
+      'DOMAIN-SUFFIX,hoyolab.com,HoYoverse社区/登录',
+      'DOMAIN-SUFFIX,hoyo.link,HoYoverse社区/登录',
+      'DOMAIN-SUFFIX,account.hoyoverse.com,HoYoverse社区/登录',
+      'DOMAIN-REGEX,dispatchos.*\.yuanshen\.com,HoYoverse社区/登录',
+      'DOMAIN-REGEX,os.*dispatch\.yuanshen\.com,HoYoverse社区/登录',
+      'DOMAIN-REGEX,globaldp.*\.starrails\.com,HoYoverse社区/登录',
+      'DOMAIN-REGEX,prod.*\.starrails\.com,HoYoverse社区/登录',
+      'DOMAIN-REGEX,globaldp.*\.zenlesszonezero\.com,HoYoverse社区/登录',
+      'DOMAIN-REGEX,prod.*\.zenlesszonezero\.com,HoYoverse社区/登录'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'HoYoverse 社区/登录',
+      name: 'HoYoverse社区/登录',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://www.hoyolab.com',
@@ -576,7 +595,7 @@ function main(config) {
   if (ruleOptions.mihoyo) {
     rules.push(
       'GEOSITE,mihoyo,miHoYo',
-      'GEOSITE,mihoyo-cn,miHoYo',
+      'GEOSITE,mihoyo-cn,miHoYo'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -590,62 +609,36 @@ function main(config) {
 
   if (ruleOptions.steamdl) {
     rules.push(
-      'GEOSITE,steam@cn,Steam 下载',
-      'DOMAIN-SUFFIX,steamserver.net,Steam 下载',
-      'DOMAIN-SUFFIX,cm.steampowered.com,Steam 下载',
-      'DOMAIN-KEYWORD,steampipe,Steam 下载',
-      'DOMAIN-KEYWORD,steamcontent,Steam 下载',
-      'DOMAIN,steamcdn-a.akamaihd.net,Steam 下载',
-      'DOMAIN-SUFFIX,steampipe-kr.akamaized.net,Steam 下载',
-      'DOMAIN-SUFFIX,steampipe-partner.akamaized.net,Steam 下载',
-      'DOMAIN-SUFFIX,steampipe.akamaized.net,Steam 下载',
-      'DOMAIN,fastly.cdn.steampipe.steamcontent.com,Steam 下载',
-      'DOMAIN-SUFFIX,steamcontent.com,Steam 下载',
-      'DOMAIN-SUFFIX,steamusercontent.com,Steam 下载',
-      'DOMAIN-SUFFIX,csgo.wmsj.cn,Steam 下载',
-      'DOMAIN-SUFFIX,dota2.wmsj.cn,Steam 下载',
-      'DOMAIN-SUFFIX,wmsjsteam.com,Steam 下载',
-      'DOMAIN-SUFFIX,dl.steam.clngaa.com,Steam 下载',
-      'DOMAIN-SUFFIX,dl.steam.ksyna.com,Steam 下载',
-      'DOMAIN-SUFFIX,st.dl.bscstorage.net,Steam 下载',
-      'DOMAIN-SUFFIX,st.dl.eccdnx.com,Steam 下载',
-      'DOMAIN-SUFFIX,st.dl.pinyuncloud.com,Steam 下载',
-      'DOMAIN-SUFFIX,steampipe.steamcontent.tnkjmec.com,Steam 下载',
-      'DOMAIN-SUFFIX,steampowered.com.8686c.com,Steam 下载',
-      'DOMAIN-SUFFIX,steamstatic.com.8686c.com,Steam 下载',
-      'DOMAIN,cdn.fastly.steamstatic.com,Steam 下载',
-      'DOMAIN-SUFFIX,fastly.steamstatic.com,Steam 下载',
-      'DOMAIN-SUFFIX,steamchina.com,Steam 下载',
-      'DOMAIN-SUFFIX,qtlglb.com,Steam 下载',
-      'DOMAIN-SUFFIX,queniuqe.com,Steam 下载',
-      'DOMAIN,xz.pphimalayanrt,Steam 下载',
-      'IP-CIDR,45.121.184.0/24,DIRECT',
-      'IP-CIDR,103.10.124.0/23,DIRECT',
-      'IP-CIDR,103.28.54.0/24,DIRECT',
-      'IP-CIDR,146.66.152.0/24,DIRECT',
-      'IP-CIDR,146.66.155.0/24,DIRECT',
-      'IP-CIDR,153.254.86.0/24,DIRECT',
-      'IP-CIDR,155.133.224.0/22,DIRECT',
-      'IP-CIDR,155.133.230.0/24,DIRECT',
-      'IP-CIDR,155.133.232.0/23,DIRECT',
-      'IP-CIDR,155.133.234.0/24,DIRECT',
-      'IP-CIDR,155.133.236.0/22,DIRECT',
-      'IP-CIDR,155.133.240.0/23,DIRECT',
-      'IP-CIDR,155.133.244.0/23,DIRECT',
-      'IP-CIDR,155.133.246.0/24,DIRECT',
-      'IP-CIDR,155.133.248.0/21,DIRECT',
-      'IP-CIDR,162.254.192.0/21,DIRECT',
-      'IP-CIDR,185.25.182.0/23,DIRECT',
-      'IP-CIDR,190.217.32.0/22,DIRECT',
-      'IP-CIDR,192.69.96.0/22,DIRECT',
-      'IP-CIDR,205.196.6.0/24,DIRECT',
-      'IP-CIDR,208.64.200.0/22,DIRECT',
-      'IP-CIDR,208.78.164.0/22,DIRECT',
-      'IP-CIDR,205.185.194.0/24,DIRECT'
+      'GEOSITE,steam@cn,Steam下载/登录',
+      'DOMAIN-SUFFIX,steamchina.com,Steam下载/登录',
+      'DOMAIN-SUFFIX,cm.steampowered.com,Steam下载/登录',
+      'DOMAIN-SUFFIX,steampowered.com.8686c.com,Steam下载/登录',
+      'DOMAIN-SUFFIX,steamserver.net,Steam下载/登录',
+      'DOMAIN-SUFFIX,steamstatic.com.8686c.com,Steam下载/登录',
+      'DOMAIN-SUFFIX,fastly.steamstatic.com,Steam下载/登录',
+      'DOMAIN,steamcdn-a.akamaihd.net,Steam下载/登录',
+      'DOMAIN-SUFFIX,steampipe.akamaized.net,Steam下载/登录',
+      'DOMAIN-SUFFIX,steampipe-kr.akamaized.net,Steam下载/登录',
+      'DOMAIN-SUFFIX,steampipe-partner.akamaized.net,Steam下载/登录',
+      'DOMAIN-SUFFIX,steampipe.steamcontent.tnkjmec.com,Steam下载/登录',
+      'DOMAIN-SUFFIX,steamcontent.com,Steam下载/登录',
+      'DOMAIN-SUFFIX,steamusercontent.com,Steam下载/登录',
+      'DOMAIN-SUFFIX,dl.steam.clngaa.com,Steam下载/登录',
+      'DOMAIN-SUFFIX,dl.steam.ksyna.com,Steam下载/登录',
+      'DOMAIN-SUFFIX,st.dl.bscstorage.net,Steam下载/登录',
+      'DOMAIN-SUFFIX,st.dl.eccdnx.com,Steam下载/登录',
+      'DOMAIN-SUFFIX,st.dl.pinyuncloud.com,Steam下载/登录',
+      'DOMAIN,xz.pphimalayanrt,Steam下载/登录',
+      'DOMAIN-SUFFIX,wmsjsteam.com,Steam下载/登录',
+      'DOMAIN-SUFFIX,csgo.wmsj.cn,Steam下载/登录',
+      'DOMAIN-SUFFIX,dota2.wmsj.cn,Steam下载/登录',
+      'DOMAIN-SUFFIX,qtlglb.com,Steam下载/登录',
+      'DOMAIN-SUFFIX,queniuqe.com,Steam下载/登录',
+      'IP-ASN,32590,Steam下载/登录'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'Steam 下载',
+      name: 'Steam下载/登录',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       url: 'https://steampipe.akamaized.net',
@@ -655,31 +648,28 @@ function main(config) {
 
   if (ruleOptions.steam) {
     rules.push(
-      'GEOSITE,steam,Steam 商店/社区',
-      'GEOSITE,steamunlocked,Steam 商店/社区',
-      'DOMAIN,steambroadcast.akamaized.net,Steam 商店/社区',
-      'DOMAIN,steamcdn-a.akamaihd.net,Steam 商店/社区',
-      'DOMAIN,steamcommunity-a.akamaihd.net,Steam 商店/社区',
-      'DOMAIN,steampipe.akamaized.net,Steam 商店/社区',
-      'DOMAIN,steamstore-a.akamaihd.net,Steam 商店/社区',
-      'DOMAIN,steamusercontent-a.akamaihd.net,Steam 商店/社区',
-      'DOMAIN,steamuserimages-a.akamaihd.net,Steam 商店/社区',
-      'DOMAIN-SUFFIX,fanatical.com,Steam 商店/社区',
-      'DOMAIN-SUFFIX,humblebundle.com,Steam 商店/社区',
-      'DOMAIN-SUFFIX,playartifact.com,Steam 商店/社区',
-      'DOMAIN-SUFFIX,steam-chat.com,Steam 商店/社区',
-      'DOMAIN-SUFFIX,steamcommunity.com,Steam 商店/社区',
-      'DOMAIN-SUFFIX,steamgames.com,Steam 商店/社区',
-      'DOMAIN-SUFFIX,steampowered.com,Steam 商店/社区',
-      'DOMAIN-SUFFIX,steamstat.us,Steam 商店/社区',
-      'DOMAIN-SUFFIX,steamstatic.com,Steam 商店/社区',
-      'DOMAIN-SUFFIX,underlords.com,Steam 商店/社区',
-      'DOMAIN-SUFFIX,valvesoftware.com,Steam 商店/社区',
-      'DOMAIN-SUFFIX,steamusercontent.com,Steam 商店/社区'
+      'GEOSITE,steam,Steam商店/社区',
+      'GEOSITE,steamunlocked,Steam商店/社区',
+      'DOMAIN,steambroadcast.akamaized.net,Steam商店/社区',
+      'DOMAIN,steamcommunity-a.akamaihd.net,Steam商店/社区',
+      'DOMAIN,steamstore-a.akamaihd.net,Steam商店/社区',
+      'DOMAIN,steamusercontent-a.akamaihd.net,Steam商店/社区',
+      'DOMAIN,steamuserimages-a.akamaihd.net,Steam商店/社区',
+      'DOMAIN-SUFFIX,fanatical.com,Steam商店/社区',
+      'DOMAIN-SUFFIX,humblebundle.com,Steam商店/社区',
+      'DOMAIN-SUFFIX,playartifact.com,Steam商店/社区',
+      'DOMAIN-SUFFIX,steam-chat.com,Steam商店/社区',
+      'DOMAIN-SUFFIX,steamcommunity.com,Steam商店/社区',
+      'DOMAIN-SUFFIX,steamgames.com,Steam商店/社区',
+      'DOMAIN-SUFFIX,steampowered.com,Steam商店/社区',
+      'DOMAIN-SUFFIX,steamstat.us,Steam商店/社区',
+      'DOMAIN-SUFFIX,steamstatic.com,Steam商店/社区',
+      'DOMAIN-SUFFIX,underlords.com,Steam商店/社区',
+      'DOMAIN-SUFFIX,valvesoftware.com,Steam商店/社区'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'Steam 商店/社区',
+      name: 'Steam商店/社区',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://store.steampowered.com',
@@ -688,21 +678,10 @@ function main(config) {
   }
 
   if (ruleOptions.epicgamesdl) {
-    rules.push(
-      'DOMAIN,epicgames-download1.akamaized.net,EpicGames 下载',
-      'DOMAIN,epicgames-download0.akamaized.net,EpicGames 下载',
-      'DOMAIN,epicgames-download2.akamaized.net,EpicGames 下载',
-      'DOMAIN,epicgames-download3.akamaized.net,EpicGames 下载',
-      'DOMAIN,epicgames-download4.akamaized.net,EpicGames 下载',
-      'DOMAIN,epicgames-download5.akamaized.net,EpicGames 下载',
-      'DOMAIN,epicgames-download6.akamaized.net,EpicGames 下载',
-      'DOMAIN,epicgames-download7.akamaized.net,EpicGames 下载',
-      'DOMAIN,epicgames-download8.akamaized.net,EpicGames 下载',
-      'DOMAIN,epicgames-download9.akamaized.net,EpicGames 下载'
-    )
+    rules.push('DOMAIN-REGEX,epicgames-download\d+\.akamaized\.net,EpicGames下载')
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'EpicGames 下载',
+      name: 'EpicGames下载',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       url: 'https://store.epicgames.com',
@@ -712,15 +691,15 @@ function main(config) {
 
   if (ruleOptions.epicgames) {
     rules.push(
-      'GEOSITE,epicgames,EpicGames 商店',
-      'DOMAIN-SUFFIX,epicgames.com,EpicGames 商店',
-      'DOMAIN-SUFFIX,epicgames.dev,EpicGames 商店',
-      'DOMAIN-SUFFIX,ak.epicgames.com,EpicGames 商店',
-      'DOMAIN-SUFFIX,on.epicgames.com,EpicGames 商店'
+      'GEOSITE,epicgames,EpicGames商店',
+      'DOMAIN-SUFFIX,epicgames.com,EpicGames商店',
+      'DOMAIN-SUFFIX,epicgames.dev,EpicGames商店',
+      'DOMAIN-SUFFIX,ak.epicgames.com,EpicGames商店',
+      'DOMAIN-SUFFIX,on.epicgames.com,EpicGames商店'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'EpicGames 商店',
+      name: 'EpicGames商店',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       url: 'https://store.epicgames.com',
@@ -728,22 +707,22 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.spotifyplay) {
+  if (ruleOptions.spotifydl) {
     rules.push(
-      'DOMAIN-SUFFIX,spotifycdn.net,Spotify 播放',
-      'DOMAIN-KEYWORD,spotifycdn,Spotify 播放',
-      'DOMAIN-SUFFIX,spotifycdn.com,Spotify 播放',
-      'DOMAIN-SUFFIX,pscdn.co,Spotify 播放',
-      'DOMAIN-SUFFIX,scdn.co,Spotify 播放',
-      'DOMAIN-SUFFIX,audio-ak.spotifycdn.com,Spotify 播放',
-      'DOMAIN-SUFFIX,audio-akp-bbr-spotify-com.akamaized.net,Spotify 播放',
-      'DOMAIN-SUFFIX,audio4-ak-spotify-com.akamaized.net,Spotify 播放',
-      'DOMAIN-SUFFIX,audio-ak-spotify-com.akamaized.net,Spotify 播放',
-      'DOMAIN-SUFFIX,heads-ak-spotify-com.akamaized.net,Spotify 播放'
+      'DOMAIN-SUFFIX,pscdn.co,Spotify播放',
+      'DOMAIN-SUFFIX,scdn.co,Spotify播放',
+      'DOMAIN-KEYWORD,spotifycdn,Spotify播放',
+      'DOMAIN-SUFFIX,spotifycdn.net,Spotify播放',
+      'DOMAIN-SUFFIX,spotifycdn.com,Spotify播放',
+      'DOMAIN-SUFFIX,audio-ak.spotifycdn.com,Spotify播放',
+      'DOMAIN-SUFFIX,heads-ak-spotify-com.akamaized.net,Spotify播放',
+      'DOMAIN-SUFFIX,audio-ak-spotify-com.akamaized.net,Spotify播放',
+      'DOMAIN-SUFFIX,audio4-ak-spotify-com.akamaized.net,Spotify播放',
+      'DOMAIN-SUFFIX,audio-akp-bbr-spotify-com.akamaized.net,Spotify播放'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'Spotify 播放',
+      name: 'Spotify播放',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       url: 'http://spclient.wg.spotify.com/signup/public/v1/account',
@@ -752,10 +731,10 @@ function main(config) {
   }
 
   if (ruleOptions.spotify) {
-    rules.push('GEOSITE,spotify,Spotify')
+    rules.push('GEOSITE,spotify,Spotify登录')
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'Spotify',
+      name: 'Spotify登录',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'http://spclient.wg.spotify.com/signup/public/v1/account',
@@ -799,11 +778,32 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.biliintl) {
-    rules.push('GEOSITE,biliintl,哔哩哔哩 东南亚')
+  if (ruleOptions.douyin) {
+    rules.push(
+      'RULE-SET,douyin,抖音'
+    )
+    ruleProviders.set('douyin', {
+      ...ruleProviderCommon,
+      behavior: 'classical',
+      format: 'text',
+      url: 'https://cdn.jsdelivr.net/gh/karllee830/clash-block-tiktok-kwai-rules@master/tiktok.list',
+      path: './ruleset/dy/tiktok.list'
+    })
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: '哔哩哔哩 东南亚',
+      name: '抖音',
+      type: 'select',
+      proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
+      url: 'https://www.douyin.com',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/TikTok.png'
+    })
+  }
+
+  if (ruleOptions.biliintl) {
+    rules.push('GEOSITE,biliintl,哔哩哔哩东南亚')
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: '哔哩哔哩东南亚',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://www.bilibili.tv',
@@ -848,7 +848,10 @@ function main(config) {
   }
 
   if (ruleOptions.netflix) {
-    rules.push('GEOSITE,netflix,NETFLIX')
+    rules.push(
+      'GEOIP,netflix,NETFLIX',
+      'GEOSITE,netflix,NETFLIX'
+    )
     config['proxy-groups'].push({
       ...groupBaseOption,
       name: 'NETFLIX',
@@ -931,29 +934,31 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.twitter) {
+  if (ruleOptions.x) {
     rules.push(
-      'GEOSITE,x,X',
-      'GEOSITE,xai,X',
-      'GEOSITE,twitter,X',
       'DOMAIN-SUFFIX,X.com,X',
       'DOMAIN-SUFFIX,grok.com,X',
-      'DOMAIN-SUFFIX,featureassets.org,X'
+      'DOMAIN-SUFFIX,featureassets.org,X',
+      'GEOIP,twitter',
+      'GEOSITE,twitter,X',
+      'GEOSITE,x,X',
+      'GEOSITE,xai,X'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
       name: 'X',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://x.com',
+      url: 'https://x.com/favicon.ico',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/X.png'
     })
   }
 
   if (ruleOptions.facebook) {
     rules.push(
-      'GEOSITE,meta,Facebook',
+      'GEOIP,facebook,Facebook',
       'GEOSITE,facebook,Facebook',
+      'GEOSITE,meta,Facebook',
       'GEOSITE,instagram,Facebook'
     )
     config['proxy-groups'].push({
@@ -961,7 +966,7 @@ function main(config) {
       name: 'Facebook',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://www.facebook.com',
+      url: 'https://www.facebook.com/common/referer_frame.php',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Facebook.png'
     })
   }
@@ -1040,7 +1045,6 @@ function main(config) {
   }
 
   if (ruleOptions.tracker) {
-    rules.push('GEOSITE,tracker,跟踪分析')
     config['proxy-groups'].push({
       ...groupBaseOption,
       name: '跟踪分析',
@@ -1051,12 +1055,6 @@ function main(config) {
   }
 
   if (ruleOptions.ads) {
-    rules.push(
-      'GEOSITE,category-ads-all,广告过滤',
-      'DOMAIN-REGEX,ads[0-9]*.*(bd|byte|dou|zj|zijie).*\.com,广告过滤',
-      'DOMAIN-SUFFIX,store-api.mumu.163.com,广告过滤',
-      'DOMAIN-SUFFIX,mumu.nie.netease.com,广告过滤'
-    )
     config['proxy-groups'].push({
       ...groupBaseOption,
       name: '广告过滤',
@@ -1078,32 +1076,20 @@ function main(config) {
       name: 'Cloudflare',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'http://cp.cloudflare.com',
+      url: 'http://cp.cloudflare.com/generate_204',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Cloudflare.png'
     })
   }
 
   if (ruleOptions.amazon) {
-    rules.push('GEOSITE,amazon,Amazon')
+    rules.push('GEOSITE,amazon,亚马逊')
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'Amazon',
+      name: '亚马逊',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://aws-latency-test.com',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Amazon.png',
-    })
-  }
-
-  if (ruleOptions.github) {
-    rules.push('GEOSITE,github,Github')
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: 'Github',
-      type: 'select',
-      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://github.com/robots.txt',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/GitHub.png',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Amazon.png'
     })
   }
 
@@ -1123,16 +1109,28 @@ function main(config) {
     })
   }
 
+  if (ruleOptions.googlecn) {
+    rules.push(
+      'DOMAIN-REGEX,.*(2x3|ni5|j5o).*\.xn--ngstr-(lra8j|cn-8za9o)\.com,谷歌下载/登录',
+      'DOMAIN-SUFFIX,google.cn,谷歌下载/登录',
+      'DOMAIN-SUFFIX,googleapis.cn,谷歌下载/登录',
+      'GEOSITE,google@cn,谷歌下载/登录',
+      'GEOSITE,google-cn,谷歌下载/登录'
+    )
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: '谷歌下载/登录',
+      type: 'select',
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
+      url: 'http://www.gstatic.com/generate_204',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Google_Search.png'
+    })
+  }
+
   if (ruleOptions.google) {
     rules.push(
-      'DOMAIN-REGEX,.*(2x3|ni5|j5o).*\.xn--ngstr-lra8j\.com,下载软件',
-      'DOMAIN-REGEX,.*(2x3|ni5|j5o).*\.xn--ngstr-cn-8za9o\.com,下载软件',
-      'DOMAIN-SUFFIX,google.cn,国内网站',
-      'DOMAIN-SUFFIX,googleapis.cn,国内网站',
-      'GEOSITE,google@cn,国内网站',
-      'GEOSITE,google-cn,国内网站',
-      'GEOSITE,google,谷歌服务',
-      'GEOIP,google,谷歌服务'
+      'GEOIP,google,谷歌服务',
+      'GEOSITE,google,谷歌服务'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -1182,40 +1180,14 @@ function main(config) {
   }
 
   rules.push(
-    'DOMAIN-SUFFIX,ip.sb,默认节点',
-    'DOMAIN-SUFFIX,ipapi.co,默认节点',
-    'DOMAIN-SUFFIX,ipinfo.io,默认节点',
-    'DOMAIN-SUFFIX,ipwho.is,默认节点',
     'GEOSITE,private,DIRECT',
     'GEOIP,private,DIRECT,no-resolve',
-    'RULE-SET,gfw,GFW列表',
     'GEOSITE,gfw,GFW列表',
-    'GEOSITE,greatfire,GFW列表',
     'GEOSITE,cn,国内网站',
     'GEOIP,cn,国内网站,no-resolve',
     'MATCH,漏网之鱼'
   )
-  ruleProviders.set('gfw', {
-  ...ruleProviderCommon,
-  behavior: 'domain',
-  format: 'text',
-  url: 'https://fastly.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/gfw.txt',
-  path: './ruleset/Loyalsoldier/gfw.txt'
-  })
   config['proxy-groups'].push(
-    {
-      ...groupBaseOption,
-      name: '下载软件',
-      type: 'select',
-      proxies: [
-        '直连',
-        '屏蔽',
-        '默认节点',
-        '国内网站',
-        ...proxyGroupsRegionNames
-      ],
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Download.png'
-    },
     {
       ...groupBaseOption,
       name: 'GFW列表',
@@ -1227,6 +1199,18 @@ function main(config) {
         '屏蔽'
       ],
       icon: 'https://cdn-icons-png.flaticon.com/128/14251/14251400.png'
+    },
+    {
+      ...groupBaseOption,
+      name: '下载软件',
+      type: 'select',
+      proxies: [
+        '直连',
+        '默认节点',
+        ...proxyGroupsRegionNames,
+        '屏蔽'
+      ],
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Download.png'
     },
     {
       ...groupBaseOption,
@@ -1248,7 +1232,6 @@ function main(config) {
       proxies: [
         '直连',
         '默认节点',
-        '国内网站',
         ...proxyGroupsRegionNames,
         '屏蔽'
       ],
