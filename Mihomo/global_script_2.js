@@ -68,8 +68,6 @@ const ruleOptions = {
  */
 const rules = [
   'GEOSITE,tracker,跟踪分析',
-  'GEOSITE,win-spy,跟踪分析',
-  'GEOSITE,win-extra,跟踪分析',
   'GEOSITE,category-ads-all,广告过滤',
   'DOMAIN-REGEX,ads\d+.*(bd|byte|dou|zj|zijie).*\.com,广告过滤',
   'DOMAIN-SUFFIX,store-api.mumu.163.com,广告过滤',
@@ -253,11 +251,11 @@ const regionOptions = {
  * defaultDNS是用来解析DNS的，必须为IP
  * DNS最好不要超过两个，从业界某知名APP的文档里学的
  */
-const defaultDNS = ['tls://9.9.9.11']
+const defaultDNS = ['tls://8.8.8.8']
 
 const chinaDNS = ['119.29.29.29', '223.5.5.5']
 
-const foreignDNS = ['9.9.9.11', '1.1.1.1']
+const foreignDNS = ['8.8.8.8', '1.1.1.1']
 
 /**
  * DNS相关配置
@@ -282,15 +280,15 @@ const dnsConfig = {
    */
   'nameserver-policy': {
     'geosite:private': 'system',
-    'geosite:cn,steam@cn,category-games@cn,microsoft@cn,apple@cn': chinaDNS,
-  },
+    'geosite:cn,steam@cn,category-games@cn,microsoft@cn,apple@cn': chinaDNS
+  }
 }
 
 // 规则集通用配置
 const ruleProviderCommon = {
   type: 'http',
   format: 'yaml',
-  interval: 86400,
+  interval: 86400
 }
 
 // 代理组通用配置
@@ -300,7 +298,7 @@ const groupBaseOption = {
   url: 'http://cp.cloudflare.com/generate_204',
   lazy: true,
   'max-failed-times': 3,
-  hidden: false,
+  hidden: false
 }
 
 const ruleProviders = new Map()
@@ -309,7 +307,7 @@ ruleProviders.set('applications', {
   behavior: 'classical',
   format: 'text',
   url: 'https://fastly.jsdelivr.net/gh/DustinWin/ruleset_geodata@clash-ruleset/applications.list',
-  path: './ruleset/DustinWin/applications.list',
+  path: './ruleset/DustinWin/applications.list'
 })
 
 // 程序入口
@@ -339,7 +337,7 @@ function main(config) {
 
   config['profile'] = {
     'store-selected': true,
-    'store-fake-ip': true,
+    'store-fake-ip': true
   }
 
   config['unified-delay'] = true
@@ -376,13 +374,13 @@ function main(config) {
     'override-destination': false,
     sniff: {
       TLS: {
-        ports: [443, 8443],
+        ports: [443, 8443]
       },
       HTTP: {
-        ports: [80, '8080-8880'],
+        ports: [80, '8080-8880']
       },
       QUIC: {
-        ports: [443, 8443],
+        ports: [443, 8443]
       }
     },
     'force-domain': [],
@@ -402,7 +400,10 @@ function main(config) {
       '+.fbcdn.net',
       'fbcdn-a.akamaihd.net'
     ],
-    'skip-domain': ['Mijia Cloud', '+.oray.com'],
+    'skip-domain': [
+      'Mijia Cloud',
+      '+.oray.com'
+    ]
   }
 
   /**
@@ -411,7 +412,7 @@ function main(config) {
   config['ntp'] = {
     enable: true,
     'write-to-system': false,
-    server: 'cn.ntp.org.cn',
+    server: 'cn.ntp.org.cn'
   }
 
   config['geox-url'] = {
@@ -420,7 +421,7 @@ function main(config) {
     geosite:
       'https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat',
     mmdb: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb',
-    asn: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb',
+    asn: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb'
   }
 
   /**
@@ -463,7 +464,7 @@ function main(config) {
         type: 'url-test',
         tolerance: 50,
         icon: region.icon,
-        proxies: proxies,
+        proxies: proxies
       })
     }
 
@@ -503,9 +504,9 @@ function main(config) {
     rules.push(
       'DOMAIN-SUFFIX,grazie.ai,国外AI',
       'DOMAIN-SUFFIX,grazie.aws.intellij.net,国外AI',
-      'RULE-SET,foreignai,国外AI'
+      'RULE-SET,foreign-ai,国外AI'
     )
-    ruleProviders.set('foreignai', {
+    ruleProviders.set('foreign-ai', {
       ...ruleProviderCommon,
       behavior: 'classical',
       format: 'text',
@@ -779,10 +780,8 @@ function main(config) {
   }
 
   if (ruleOptions.douyin) {
-    rules.push(
-      'RULE-SET,douyin,抖音'
-    )
-    ruleProviders.set('douyin', {
+    rules.push('RULE-SET,tiktok-cn,抖音')
+    ruleProviders.set('tiktok-cn', {
       ...ruleProviderCommon,
       behavior: 'classical',
       format: 'text',
@@ -934,19 +933,19 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.x) {
+  if (ruleOptions.twitter) {
     rules.push(
-      'DOMAIN-SUFFIX,X.com,X',
-      'DOMAIN-SUFFIX,grok.com,X',
-      'DOMAIN-SUFFIX,featureassets.org,X',
-      'GEOIP,twitter,X',
-      'GEOSITE,twitter,X',
-      'GEOSITE,x,X',
-      'GEOSITE,xai,X'
+      'DOMAIN-SUFFIX,X.com,Twitter',
+      'DOMAIN-SUFFIX,grok.com,Twitter',
+      'DOMAIN-SUFFIX,featureassets.org,Twitter',
+      'GEOIP,twitter,Twitter',
+      'GEOSITE,twitter,Twitter',
+      'GEOSITE,x,Twitter',
+      'GEOSITE,xai,Twitter'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'X',
+      name: 'Twitter',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://x.com/favicon.ico',
@@ -1190,38 +1189,23 @@ function main(config) {
   config['proxy-groups'].push(
     {
       ...groupBaseOption,
-      name: 'GFW列表',
+      name: '下载软件',
       type: 'select',
-      proxies: [
-        '默认节点',
-        ...proxyGroupsRegionNames,
-        '直连',
-        '屏蔽'
-      ],
-      icon: 'https://cdn-icons-png.flaticon.com/128/14251/14251400.png'
+      proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Download.png'
     },
     {
       ...groupBaseOption,
-      name: '下载软件',
+      name: 'GFW列表',
       type: 'select',
-      proxies: [
-        '直连',
-        '默认节点',
-        ...proxyGroupsRegionNames,
-        '屏蔽'
-      ],
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Download.png'
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
+      icon: 'https://cdn-icons-png.flaticon.com/128/14251/14251400.png'
     },
     {
       ...groupBaseOption,
       name: '国内网站',
       type: 'select',
-      proxies: [
-        '直连',
-        '默认节点',
-        ...proxyGroupsRegionNames,
-        '屏蔽'
-      ],
+      proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       url: 'http://wifi.vivo.com.cn/generate_204',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/StreamingCN.png'
     },
@@ -1229,12 +1213,7 @@ function main(config) {
       ...groupBaseOption,
       name: '漏网之鱼',
       type: 'select',
-      proxies: [
-        '直连',
-        '默认节点',
-        ...proxyGroupsRegionNames,
-        '屏蔽'
-      ],
+      proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       icon: 'https://cdn-icons-png.flaticon.com/128/10507/10507711.png'
     }
   )
