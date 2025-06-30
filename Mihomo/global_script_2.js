@@ -780,6 +780,7 @@ function main(config) {
 
   if (ruleOptions.douyin) {
     rules.push(
+      'DOMAIN-SUFFIX,www.douyin.com,Tiktok',
       'DOMAIN-REGEX,api[0-9]+.*amemv\.com,Tiktok',
       'RULE-SET,tiktok-cn,抖音'
     )
