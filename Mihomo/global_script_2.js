@@ -803,6 +803,7 @@ function main(config) {
   if (ruleOptions.biliintl) {
     rules.push(
       'GEOSITE,biliintl,哔哩哔哩番剧解锁',
+      'DOMAIN-SUFFIX,api.bilibili.com,哔哩哔哩番剧解锁',
       'IP-CIDR,14.17.92.0/24,哔哩哔哩番剧解锁',
       'IP-CIDR,23.236.97.0/24,哔哩哔哩番剧解锁',
       'IP-CIDR,36.158.237.0/24,哔哩哔哩番剧解锁',
