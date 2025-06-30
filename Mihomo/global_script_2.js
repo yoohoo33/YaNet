@@ -39,7 +39,7 @@ const ruleOptions = {
   twitch: true, //Twitch
   tiktok: true, //抖音国际
   douyin: true, //抖音
-  biliintl: true, //哔哩哔哩东南亚
+  biliintl: true, //哔哩哔哩番剧解锁
   bilibili: true, //哔哩哔哩
   niconico: true, //niconico
   bahamut: true, //巴哈姆特/动画疯
@@ -69,7 +69,7 @@ const ruleOptions = {
 const rules = [
   'GEOSITE,tracker,跟踪分析',
   'GEOSITE,category-ads-all,广告过滤',
-  'DOMAIN-REGEX,ads\d+.*(bd|byte|dou|zj|zijie).*\.com,广告过滤',
+  'DOMAIN-REGEX,ads[0-9]+.*zijieapi\.com,广告过滤',
   'DOMAIN-SUFFIX,store-api.mumu.163.com,广告过滤',
   'DOMAIN-SUFFIX,mumu.nie.netease.com,广告过滤',
   'DOMAIN-SUFFIX,ip.sb,默认节点',
@@ -77,7 +77,6 @@ const rules = [
   'DOMAIN-SUFFIX,ipinfo.io,默认节点',
   'DOMAIN-SUFFIX,ipwho.is,默认节点',
   'RULE-SET,applications,下载软件',
-  'PROCESS-NAME,Motrix.exe,DIRECT',
   'PROCESS-NAME,SunloginClient,DIRECT',
   'PROCESS-NAME,SunloginClient.exe,DIRECT',
   'PROCESS-NAME,AnyDesk,DIRECT',
@@ -780,7 +779,10 @@ function main(config) {
   }
 
   if (ruleOptions.douyin) {
-    rules.push('RULE-SET,tiktok-cn,抖音')
+    rules.push(
+      'DOMAIN-REGEX,api[0-9]+.*amemv\.com,Tiktok',
+      'RULE-SET,tiktok-cn,抖音'
+    )
     ruleProviders.set('tiktok-cn', {
       ...ruleProviderCommon,
       behavior: 'classical',
@@ -799,10 +801,47 @@ function main(config) {
   }
 
   if (ruleOptions.biliintl) {
-    rules.push('GEOSITE,biliintl,哔哩哔哩东南亚')
+    rules.push(
+      'GEOSITE,biliintl,哔哩哔哩番剧解锁',
+      'IP-CIDR,14.17.92.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,23.236.97.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,36.158.237.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,59.36.228.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,61.240.206.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,103.151.151.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,111.6.167.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,111.19.247.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,111.31.33.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,111.225.214.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,112.13.92.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,112.45.122.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,112.83.140.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,114.230.222.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,117.21.179.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,117.23.60.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,117.169.96.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,119.84.174.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,120.192.82.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,120.240.224.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,123.234.3.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,148.153.34.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,148.153.45.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,148.153.56.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,157.148.134.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,164.52.28.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,164.52.47.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,175.4.62.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,183.131.147.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,183.232.239.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,218.60.18.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,221.15.71.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,221.178.63.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,221.204.56.0/24,哔哩哔哩番剧解锁',
+      'IP-CIDR,223.111.250.0/24,哔哩哔哩番剧解锁'
+    )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: '哔哩哔哩东南亚',
+      name: '哔哩哔哩番剧解锁',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://www.bilibili.tv',
@@ -823,10 +862,10 @@ function main(config) {
   }
 
   if (ruleOptions.niconico) {
-    rules.push('GEOSITE,niconico,niconico')
+    rules.push('GEOSITE,niconico,NicoNico')
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'niconico',
+      name: 'NicoNico',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://www.nicovideo.jp',
