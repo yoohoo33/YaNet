@@ -805,7 +805,7 @@ function main(config) {
     rules.push(
       'GEOSITE,biliintl,哔哩哔哩番剧解锁',
       'DOMAIN-SUFFIX,api.bilibili.com,哔哩哔哩番剧解锁',
-      'IP-ASN,4134,Steam,哔哩哔哩番剧解锁'
+      'IP-ASN,4134,哔哩哔哩番剧解锁'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
