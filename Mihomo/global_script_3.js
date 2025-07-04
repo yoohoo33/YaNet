@@ -144,7 +144,7 @@ const regionOptions = {
     },
     {
       name: '🇦🇸美属萨摩亚',
-      regex: /美属萨摩亚|🇦🇸|a.*samoa/i,
+      regex: /美属萨摩亚|🇦🇸|a.+samoa/i,
       ratioLimit: 2,
     },
     {
@@ -289,7 +289,7 @@ const regionOptions = {
     },
     {
       name: '🇨🇩刚果（金）',
-      regex: /刚果（金）|🇨🇩|congo.*k*/i,
+      regex: /刚果（金）|🇨🇩|congo.+k+/i,
       ratioLimit: 2,
     },
     {
@@ -299,7 +299,7 @@ const regionOptions = {
     },
     {
       name: '🇨🇬刚果（布）',
-      regex: /刚果（布）|🇨🇬|congo.*b*/i,
+      regex: /刚果（布）|🇨🇬|congo.+b+/i,
       ratioLimit: 2,
     },
     {
@@ -489,7 +489,7 @@ const regionOptions = {
     },
     {
       name: '🇬🇫法属圭亚那',
-      regex: /法属圭亚那|🇬🇫|f.*guiana/i,
+      regex: /法属圭亚那|🇬🇫|f.+guiana/i,
       ratioLimit: 2,
     },
     {
@@ -619,7 +619,7 @@ const regionOptions = {
     },
     {
       name: '🇮🇴英属印度洋领地',
-      regex: /英属印度洋领地|🇮🇴|b.*indian/i,
+      regex: /英属印度洋领地|🇮🇴|b.+indian/i,
       ratioLimit: 2,
     },
     {
@@ -694,7 +694,7 @@ const regionOptions = {
     },
     {
       name: '🇰🇵朝鲜',
-      regex: /朝鲜|🇰🇵|n.*korea/i,
+      regex: /朝鲜|🇰🇵|n.+korea/i,
       ratioLimit: 2,
     },
     {
@@ -809,7 +809,7 @@ const regionOptions = {
     },
     {
       name: '🇲🇰北马其顿',
-      regex: /北马其顿|🇲🇰|n.*macedonia/i,
+      regex: /北马其顿|🇲🇰|n.+macedonia/i,
       ratioLimit: 2,
     },
     {
@@ -894,7 +894,7 @@ const regionOptions = {
     },
     {
       name: '🇳🇨新喀里多尼亚',
-      regex: /新喀里多尼亚|🇳🇨|n.*caledonia/i,
+      regex: /新喀里多尼亚|🇳🇨|n.+caledonia/i,
       ratioLimit: 2,
     },
     {
@@ -944,7 +944,7 @@ const regionOptions = {
     },
     {
       name: '🇳🇿新西兰',
-      regex: /新西兰|🇳🇿|n.*zealand/i,
+      regex: /新西兰|🇳🇿|n.+zealand/i,
       ratioLimit: 2,
     },
     {
@@ -1249,7 +1249,7 @@ const regionOptions = {
     },
     {
       name: '🇺🇲美国本土外小岛屿',
-      regex: /美国本土外小岛屿|🇺🇲|us.*islands/i,
+      regex: /美国本土外小岛屿|🇺🇲|us.+islands/i,
       ratioLimit: 2,
     },
     {
@@ -1284,12 +1284,12 @@ const regionOptions = {
     },
     {
       name: '🇻🇬英属维尔京群岛',
-      regex: /英属维尔京群岛|🇻🇬|b.*virgin/i,
+      regex: /英属维尔京群岛|🇻🇬|b.+virgin/i,
       ratioLimit: 2,
     },
     {
       name: '🇻🇮美属维尔京群岛',
-      regex: /美属维尔京群岛|🇻🇮|u.*virgin/i,
+      regex: /美属维尔京群岛|🇻🇮|u.+virgin/i,
       ratioLimit: 2,
     },
     {
