@@ -25,15 +25,15 @@ const ruleOptions = {
   googlecn: true, //谷歌下载/登录
   microsoft: true, //微软服务
   openai: true, //国外AI
-  mihoyodl: true, //miHoYo下载
+  mihoyocdn: true, //miHoYo下载
   mihoyo: true, //miHoYo
   hoyolab: true, //miHoYo国际社区/登录
   hoyoverse: true, //miHoYo国际
-  steamdl: true, //Steam下载/登录
+  steamcdn: true, //Steam下载/登录
   steam: true, //Steam商店/社区
-  epicgamesdl: true, //Epic Games下载
+  epicgamescdn: true, //Epic Games下载
   epicgames: true, //Epic Games商店
-  spotifydl: true, //Spotify播放
+  spotifycdn: true, //Spotify播放
   spotify: true, //Spotify登录
   youtube: true, //油管
   twitch: true, //Twitch
@@ -68,7 +68,10 @@ const ruleOptions = {
  */
 const rules = [
   'GEOSITE,tracker,跟踪分析',
+  'DOMAIN-REGEX,bilibili\.com\/x\/resource\/ip,跟踪分析',
   'GEOSITE,category-ads-all,广告过滤',
+  'RULE-SET,adblock,广告过滤',
+  'DOMAIN-SUFFIX,adstudio-assets.scdn.co,广告过滤',
   'DOMAIN-REGEX,ads[0-9]+.*zijieapi\.com,广告过滤',
   'DOMAIN-SUFFIX,store-api.mumu.163.com,广告过滤',
   'DOMAIN-SUFFIX,mumu.nie.netease.com,广告过滤',
@@ -1374,7 +1377,8 @@ const dnsConfig = {
    */
   'nameserver-policy': {
     'geosite:private': 'system',
-    'geosite:cn,steam@cn,category-games@cn,microsoft@cn,apple@cn': chinaDNS
+    'geosite:cn,steam@cn,category-games@cn,microsoft@cn,apple@cn': chinaDNS,
+    'domain:upos-hz-mirrorakam.akamaized.net,upos-sz-mirroraliov.bilivideo.com': chinaDNS
   }
 }
 
@@ -1629,7 +1633,7 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.mihoyodl) {
+  if (ruleOptions.mihoyocdn) {
     rules.push(
       'DOMAIN-REGEX,.*downloader-api\.mihoyo\.com,miHoYo下载',
       'DOMAIN-REGEX,.*downloader-api\.hoyoverse\.com,miHoYo下载',
@@ -1702,7 +1706,7 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.steamdl) {
+  if (ruleOptions.steamcdn) {
     rules.push(
       'GEOSITE,steam@cn,Steam下载/登录',
       'DOMAIN-SUFFIX,steamchina.com,Steam下载/登录',
@@ -1772,7 +1776,7 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.epicgamesdl) {
+  if (ruleOptions.epicgamescdn) {
     rules.push('DOMAIN-REGEX,epicgames-download\d+\.akamaized\.net,EpicGames下载')
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -1802,18 +1806,15 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.spotifydl) {
+  if (ruleOptions.spotifycdn) {
     rules.push(
+      'GEOSITE,spotify@cn,Spotify播放',
       'DOMAIN-SUFFIX,pscdn.co,Spotify播放',
       'DOMAIN-SUFFIX,scdn.co,Spotify播放',
       'DOMAIN-KEYWORD,spotifycdn,Spotify播放',
       'DOMAIN-SUFFIX,spotifycdn.net,Spotify播放',
       'DOMAIN-SUFFIX,spotifycdn.com,Spotify播放',
-      'DOMAIN-SUFFIX,audio-ak.spotifycdn.com,Spotify播放',
-      'DOMAIN-SUFFIX,heads-ak-spotify-com.akamaized.net,Spotify播放',
-      'DOMAIN-SUFFIX,audio-ak-spotify-com.akamaized.net,Spotify播放',
-      'DOMAIN-SUFFIX,audio4-ak-spotify-com.akamaized.net,Spotify播放',
-      'DOMAIN-SUFFIX,audio-akp-bbr-spotify-com.akamaized.net,Spotify播放'
+      'DOMAIN-SUFFIX,spotify-com.akamaized.net,Spotify播放'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -2155,6 +2156,13 @@ function main(config) {
   }
 
   if (ruleOptions.ads) {
+    ruleProviders.set('adblock', {
+      ...ruleProviderCommon,
+      behavior: 'classical',
+      format: 'text',
+      url: 'https://cdn.jsdelivr.net/gh/Johnshall/Shadowrocket-ADBlock-Rules-Forever@refs/heads/release/sr_ad_only.conf',
+      path: './ruleset/Johnshall/sr_ad_only.conf'
+    })
     config['proxy-groups'].push({
       ...groupBaseOption,
       name: '广告过滤',
