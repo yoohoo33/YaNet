@@ -68,7 +68,6 @@ const ruleOptions = {
  */
 const rules = [
   'GEOSITE,tracker,跟踪分析',
-  'DOMAIN-REGEX,bilibili\.com\/x\/resource\/ip,跟踪分析',
   'GEOSITE,category-ads-all,广告过滤',
   'RULE-SET,adblock,广告过滤',
   'DOMAIN-SUFFIX,adstudio-assets.scdn.co,广告过滤',
