@@ -19,7 +19,7 @@ const enable = true
 const ruleOptions = {
   cloudflare: true, //科赋锐
   github: true, //Github
-  amazon: true, //亚马逊
+  amazon: false, //亚马逊
   apple: true, //苹果服务
   google: true, //谷歌服务
   googlecn: true, //谷歌下载/登录
@@ -35,26 +35,26 @@ const ruleOptions = {
   epicgames: true, //Epic Games商店
   spotifycdn: true, //Spotify播放
   spotify: true, //Spotify登录
-  youtube: true, //油管
-  twitch: true, //Twitch
+  youtube: false, //油管
+  twitch: false, //Twitch
   tiktok: true, //抖音国际
   douyin: true, //抖音
   biliintl: true, //哔哩哔哩番剧解锁
   bilibili: true, //哔哩哔哩
-  niconico: true, //niconico
-  bahamut: true, //巴哈姆特/动画疯
+  niconico: false, //niconico
+  bahamut: false, //巴哈姆特/动画疯
   netflix: false, //网飞
   primevideo: false, //亚马逊prime video
   hulu: false, //Hulu
   disney: false, //迪士尼
-  pixiv: true, //Pixiv
+  pixiv: false, //Pixiv
   hbo: false, //HBO
   tvb: false, //TVB
-  x: true, //推特
+  twitter: true, //推特
   facebook: true, //脸书
-  discord: true, //Discord
+  discord: false, //Discord
   telegram: true, //电报
-  whatsapp: true, //Whatsapp
+  whatsapp: false, //Whatsapp
   line: false, //Line
   games: true, //游戏策略组
   japan: false, //日本网站策略组
@@ -78,6 +78,10 @@ const rules = [
   'DOMAIN-SUFFIX,ipapi.co,默认节点',
   'DOMAIN-SUFFIX,ipinfo.io,默认节点',
   'DOMAIN-SUFFIX,ipwho.is,默认节点',
+  'DOMAIN-SUFFIX,google.cn,谷歌下载/登录',
+  'DOMAIN-SUFFIX,googleapis.cn,谷歌下载/登录',
+  'DOMAIN-REGEX,rr[0-9]---sn-(2x3|ni5|j5o).*\.xn--ngstr-(lra8j|cn-8za9o)\.com,谷歌下载/登录',
+  'DOMAIN-REGEX,rr[0-9]---sn-(2x3|ni5|j5o).*\.googlevideo.com,谷歌下载/登录',
   'RULE-SET,applications,下载软件',
   'PROCESS-NAME,SunloginClient,DIRECT',
   'PROCESS-NAME,SunloginClient.exe,DIRECT',
@@ -1597,6 +1601,33 @@ function main(config) {
     type: 'reject'
   })
 
+  if (ruleOptions.ads) {
+    ruleProviders.set('adblock', {
+      ...ruleProviderCommon,
+      behavior: 'classical',
+      format: 'text',
+      url: 'https://cdn.jsdelivr.net/gh/Johnshall/Shadowrocket-ADBlock-Rules-Forever@refs/heads/release/sr_ad_only.conf',
+      path: './ruleset/Johnshall/sr_ad_only.conf'
+    })
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: '广告过滤',
+      type: 'select',
+      proxies: ['屏蔽', '直连', '默认节点'],
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Advertising.png'
+    })
+  }
+
+  if (ruleOptions.tracker) {
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: '跟踪分析',
+      type: 'select',
+      proxies: ['屏蔽', '直连', '默认节点'],
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Reject.png'
+    })
+  }
+
   if (ruleOptions.openai) {
     rules.push(
       'DOMAIN-SUFFIX,grazie.ai,国外AI',
@@ -1621,18 +1652,6 @@ function main(config) {
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://chat.openai.com/cdn-cgi/trace',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/ChatGPT.png'
-    })
-  }
-
-  if (ruleOptions.github) {
-    rules.push('GEOSITE,github,Github')
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: 'Github',
-      type: 'select',
-      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://github.com/robots.txt',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/GitHub.png'
     })
   }
 
@@ -2148,50 +2167,6 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.tracker) {
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: '跟踪分析',
-      type: 'select',
-      proxies: ['屏蔽', '直连', '默认节点'],
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Reject.png'
-    })
-  }
-
-  if (ruleOptions.ads) {
-    ruleProviders.set('adblock', {
-      ...ruleProviderCommon,
-      behavior: 'classical',
-      format: 'text',
-      url: 'https://cdn.jsdelivr.net/gh/Johnshall/Shadowrocket-ADBlock-Rules-Forever@refs/heads/release/sr_ad_only.conf',
-      path: './ruleset/Johnshall/sr_ad_only.conf'
-    })
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: '广告过滤',
-      type: 'select',
-      proxies: ['屏蔽', '直连', '默认节点'],
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Advertising.png'
-    })
-  }
-
-  if (ruleOptions.cloudflare) {
-    rules.push(
-      'GEOSITE,cloudflare@cn,国内网站',
-      'GEOSITE,cloudflare-cn,国内网站',
-      'GEOIP,cloudflare,Cloudflare',
-      'GEOSITE,cloudflare,Cloudflare'
-    )
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: 'Cloudflare',
-      type: 'select',
-      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'http://cp.cloudflare.com/generate_204',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Cloudflare.png'
-    })
-  }
-
   if (ruleOptions.amazon) {
     rules.push('GEOSITE,amazon,亚马逊')
     config['proxy-groups'].push({
@@ -2220,11 +2195,37 @@ function main(config) {
     })
   }
 
+  if (ruleOptions.cloudflare) {
+    rules.push(
+      'GEOSITE,cloudflare@cn,国内网站',
+      'GEOSITE,cloudflare-cn,国内网站',
+      'GEOSITE,cloudflare,Cloudflare',
+      'GEOIP,cloudflare,Cloudflare'
+    )
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: 'Cloudflare',
+      type: 'select',
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
+      url: 'http://cp.cloudflare.com/generate_204',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Cloudflare.png'
+    })
+  }
+
+  if (ruleOptions.github) {
+    rules.push('GEOSITE,github,Github')
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: 'Github',
+      type: 'select',
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
+      url: 'https://github.com/robots.txt',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/GitHub.png'
+    })
+  }
+
   if (ruleOptions.googlecn) {
     rules.push(
-      'DOMAIN-REGEX,.*(2x3|ni5|j5o).*\.xn--ngstr-(lra8j|cn-8za9o)\.com,谷歌下载/登录',
-      'DOMAIN-SUFFIX,google.cn,谷歌下载/登录',
-      'DOMAIN-SUFFIX,googleapis.cn,谷歌下载/登录',
       'GEOSITE,google@cn,谷歌下载/登录',
       'GEOSITE,google-cn,谷歌下载/登录'
     )
