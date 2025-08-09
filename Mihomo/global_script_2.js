@@ -50,9 +50,10 @@ const ruleOptions = {
   facebook: true, //Meta
   discord: true, //Discord
   telegram: true, //TG
-  porn: true, //学习资料策略组
-  games: true, //游戏策略组
-  japan: false, //日本网站策略组
+  speedtest: true, //网速测试
+  porn: true, //学习资料
+  games: true, //游戏
+  japan: false, //日本网站
 }
 
 /**
@@ -1591,13 +1592,6 @@ function main(config) {
   config['proxy-groups'].push(
     {
       ...groupBaseOption,
-      name: '下载软件',
-      type: 'select',
-      proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Download.png'
-    },
-    {
-      ...groupBaseOption,
       name: '广告过滤',
       type: 'select',
       proxies: ['屏蔽', '直连', '默认节点'],
@@ -1609,8 +1603,27 @@ function main(config) {
       type: 'select',
       proxies: ['屏蔽', '直连', '默认节点'],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Reject.png'
+    },
+    {
+      ...groupBaseOption,
+      name: '下载软件',
+      type: 'select',
+      proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Download.png'
     }
   )
+
+  if (ruleOptions.speedtest) {
+    rules.push('GEOSITE,category-speedtest,网速测试')
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: '网速测试',
+      type: 'select',
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
+      url: 'https://www.speedtest.net',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Speedtest.png'
+    })
+  }
 
   if (ruleOptions.ai) {
     rules.push(
@@ -1764,10 +1777,10 @@ function main(config) {
   }
 
   if (ruleOptions.spotify) {
-    rules.push('GEOSITE,spotify,Spotify登录')
+    rules.push('GEOSITE,spotify,Spotify')
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'Spotify登录',
+      name: 'Spotify',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'http://spclient.wg.spotify.com/signup/public/v1/account',
@@ -2204,5 +2217,6 @@ function main(config) {
   // 返回修改后的配置
   return config
 }
+
 
 
