@@ -2102,18 +2102,6 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.porn) {
-    rules.push('GEOSITE,category-porn,学习资料')
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: '学习资料',
-      type: 'select',
-      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://www.pornhub.com',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Pornhub_1.png'
-    })
-  }
-
   if (ruleOptions.games) {
     rules.push(
       'GEOSITE,category-game-platforms-download@cn,下载软件',
@@ -2139,6 +2127,18 @@ function main(config) {
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames, '屏蔽'],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Game.png'
+    })
+  }
+
+  if (ruleOptions.porn) {
+    rules.push('GEOSITE,category-porn,学习资料')
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: '学习资料',
+      type: 'select',
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
+      url: 'https://www.pornhub.com',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Pornhub_1.png'
     })
   }
 
@@ -2194,5 +2194,6 @@ function main(config) {
   // 返回修改后的配置
   return config
 }
+
 
 
