@@ -2153,8 +2153,8 @@ function main(config) {
 
   if (ruleOptions.games) {
     rules.push(
-      'GEOSITE,category-games,外服游戏',
-      'GEOSITE,category-game-platforms-download,外服游戏'
+      'GEOSITE,category-game-platforms-download,外服游戏',
+      'GEOSITE,category-games-!cn,外服游戏'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -2217,6 +2217,3 @@ function main(config) {
   // 返回修改后的配置
   return config
 }
-
-
-
