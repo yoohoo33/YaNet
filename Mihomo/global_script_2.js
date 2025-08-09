@@ -2048,7 +2048,7 @@ function main(config) {
     rules.push(
       'DOMAIN-SUFFIX,google.cn,谷歌下载',
       'DOMAIN-SUFFIX,googleapis.cn,谷歌下载',
-      'GEOSITE,google@cn,谷歌下载/登录'
+      'GEOSITE,google@cn,谷歌下载'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -2204,4 +2204,5 @@ function main(config) {
   // 返回修改后的配置
   return config
 }
+
 
