@@ -2019,21 +2019,6 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.meta) {
-    rules.push(
-      'GEOIP,facebook,Meta服务',
-      'GEOSITE,meta,Meta服务',
-    )
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: 'Meta服务',
-      type: 'select',
-      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://www.meta.com/common/referer_frame.php',
-      icon: 'https://static.xx.fbcdn.net/rsrc.php/y5/r/m4nf26cLQxS.ico'
-    })
-  }
-
   if (ruleOptions.googlecn) {
     rules.push(
       'DOMAIN-SUFFIX,google.cn,Google下载',
@@ -2062,6 +2047,21 @@ function main(config) {
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'http://www.google.com/generate_204',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Google_Search.png'
+    })
+  }
+
+  if (ruleOptions.meta) {
+    rules.push(
+      'GEOIP,facebook,Meta服务',
+      'GEOSITE,meta,Meta服务',
+    )
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: 'Meta服务',
+      type: 'select',
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
+      url: 'https://www.meta.com/common/referer_frame.php',
+      icon: 'https://static.xx.fbcdn.net/rsrc.php/y5/r/m4nf26cLQxS.ico'
     })
   }
 
@@ -2194,3 +2194,4 @@ function main(config) {
   // 返回修改后的配置
   return config
 }
+
