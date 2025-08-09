@@ -17,13 +17,6 @@ const enable = true
  * false = 禁用
  */
 const ruleOptions = {
-  cloudflare: true, //科赋锐
-  github: true, //Github
-  amazon: false, //亚马逊
-  apple: true, //苹果服务
-  google: true, //谷歌服务
-  googlecn: true, //谷歌下载/登录
-  microsoft: true, //微软服务
   ai: true, //国外AI
   mihoyo: true, //miHoYo
   hoyolab: true, //miHoYo国际社区
@@ -34,8 +27,6 @@ const ruleOptions = {
   epicgames: true, //Epic Games商店
   spotifycdn: true, //Spotify播放
   spotify: true, //Spotify登录
-  youtube: false, //油管
-  twitch: false, //Twitch
   tiktok: true, //抖音国际
   douyin: true, //抖音
   biliintl: true, //哔哩哔哩番剧解锁
@@ -46,13 +37,20 @@ const ruleOptions = {
   netflix: true, //网飞
   disney: true, //迪士尼
   primevideo: true, //亚马逊prime video
-  twitter: true, //X
-  facebook: true, //Meta
   discord: true, //Discord
-  telegram: true, //TG
+  telegram: true, //Telegram
+  x: true, //推特
+  amazon: false, //亚马逊
+  cloudflare: true, //科赋锐
+  apple: true, //苹果服务
+  meta: true, //Meta
+  google: true, //谷歌服务
+  googlecn: true, //谷歌下载
+  microsoft: true, //微软服务
   speedtest: true, //网速测试
-  porn: true, //学习资料
+  dev: true, //开发者平台
   games: true, //游戏
+  porn: true, //学习资料
   japan: false, //日本网站
 }
 
@@ -1625,6 +1623,21 @@ function main(config) {
     })
   }
 
+  if (ruleOptions.dev) {
+    rules.push(
+      'GEOSITE,category-dev-cn,国内网站',
+      'GEOSITE,category-dev,开发者'
+      )
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: '开发者',
+      type: 'select',
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
+      url: 'https://github.com/robots.txt',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/GitHub.png'
+    })
+  }
+
   if (ruleOptions.ai) {
     rules.push(
       'GEOSITE,category-ai-!cn,国外AI',
@@ -1918,36 +1931,6 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.twitter) {
-    rules.push(
-      'GEOIP,twitter,Twitter',
-      'GEOSITE,x,Twitter'
-    )
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: 'Twitter',
-      type: 'select',
-      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://x.com/favicon.ico',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/X.png'
-    })
-  }
-
-  if (ruleOptions.facebook) {
-    rules.push(
-      'GEOIP,facebook,Facebook',
-      'GEOSITE,meta,Facebook',
-    )
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: 'Facebook',
-      type: 'select',
-      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://www.facebook.com/common/referer_frame.php',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Facebook.png'
-    })
-  }
-
   if (ruleOptions.discord) {
     rules.push('GEOSITE,discord,Discord')
     config['proxy-groups'].push({
@@ -1975,57 +1958,33 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.twitch) {
-    rules.push('GEOSITE,twitch,Twitch')
+  if (ruleOptions.x) {
+    rules.push(
+      'GEOIP,twitter,x',
+      'GEOSITE,x,X'
+    )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'Twitch',
+      name: 'X',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://www.twitch.tv',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Twitch.png'
-    })
-  }
-
-  if (ruleOptions.youtube) {
-    rules.push('GEOSITE,youtube,YouTube')
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: 'YouTube',
-      type: 'select',
-      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://www.youtube.com/s/desktop/494dd881/img/favicon.ico',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/YouTube.png'
+      url: 'https://x.com/favicon.ico',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/X.png'
     })
   }
 
   if (ruleOptions.amazon) {
     rules.push(
       'GEOSITE,amazon@cn,国内网站',
-      'GEOSITE,amazon,亚马逊'
+      'GEOSITE,amazon,Amazon'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: '亚马逊',
+      name: 'Amazon',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://aws-latency-test.com',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Amazon.png'
-    })
-  }
-
-  if (ruleOptions.apple) {
-    rules.push(
-      'GEOSITE,apple@cn,国内网站',
-      'GEOSITE,apple,苹果服务'
-    )
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: '苹果服务',
-      type: 'select',
-      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'http://www.apple.com/library/test/success.html',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Apple_2.png'
     })
   }
 
@@ -2045,27 +2004,45 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.github) {
-    rules.push('GEOSITE,github,Github')
+  if (ruleOptions.apple) {
+    rules.push(
+      'GEOSITE,apple@cn,国内网站',
+      'GEOSITE,apple,Apple服务'
+    )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'Github',
+      name: 'Apple服务',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://github.com/robots.txt',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/GitHub.png'
+      url: 'http://www.apple.com/library/test/success.html',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Apple_2.png'
+    })
+  }
+
+  if (ruleOptions.meta) {
+    rules.push(
+      'GEOIP,facebook,Meta服务',
+      'GEOSITE,meta,Meta服务',
+    )
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: 'Meta服务',
+      type: 'select',
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
+      url: 'https://www.meta.com/common/referer_frame.php',
+      icon: 'https://static.xx.fbcdn.net/rsrc.php/y5/r/m4nf26cLQxS.ico'
     })
   }
 
   if (ruleOptions.googlecn) {
     rules.push(
-      'DOMAIN-SUFFIX,google.cn,谷歌下载',
-      'DOMAIN-SUFFIX,googleapis.cn,谷歌下载',
-      'GEOSITE,google@cn,谷歌下载'
+      'DOMAIN-SUFFIX,google.cn,Google下载',
+      'DOMAIN-SUFFIX,googleapis.cn,Google下载',
+      'GEOSITE,google@cn,Google下载'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: '谷歌下载',
+      name: 'Google下载',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'http://www.gstatic.com/generate_204',
@@ -2075,12 +2052,12 @@ function main(config) {
 
   if (ruleOptions.google) {
     rules.push(
-      'GEOIP,google,谷歌服务',
-      'GEOSITE,google,谷歌服务'
+      'GEOIP,google,Google服务',
+      'GEOSITE,google,Google服务'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: '谷歌服务',
+      name: 'Google服务',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'http://www.google.com/generate_204',
@@ -2091,11 +2068,11 @@ function main(config) {
   if (ruleOptions.microsoft) {
     rules.push(
       'GEOSITE,microsoft@cn,国内网站',
-      'GEOSITE,microsoft,微软服务'
+      'GEOSITE,microsoft,Microsoft服务'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: '微软服务',
+      name: 'Microsoft服务',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'http://www.msftconnecttest.com/connecttest.txt',
