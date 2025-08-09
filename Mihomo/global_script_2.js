@@ -29,7 +29,7 @@ const ruleOptions = {
   spotify: true, //Spotify登录
   tiktok: true, //抖音国际
   douyin: true, //抖音
-  biliintl: true, //哔哩哔哩番剧解锁
+  biliintl: true, //哔哩番剧解锁
   bilibili: true, //哔哩哔哩
   bahamut: true, //巴哈姆特
   niconico: true, //niconico
@@ -42,11 +42,11 @@ const ruleOptions = {
   x: true, //推特
   amazon: false, //亚马逊
   cloudflare: true, //科赋锐
-  apple: true, //苹果服务
+  apple: true, //苹果
   meta: true, //Meta
-  google: true, //谷歌服务
+  google: true, //谷歌
   googlecn: true, //谷歌下载
-  microsoft: true, //微软服务
+  microsoft: true, //微软
   speedtest: true, //网速测试
   dev: true, //开发者平台
   games: true, //游戏
@@ -2007,11 +2007,11 @@ function main(config) {
   if (ruleOptions.apple) {
     rules.push(
       'GEOSITE,apple@cn,国内网站',
-      'GEOSITE,apple,Apple服务'
+      'GEOSITE,apple,Apple'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'Apple服务',
+      name: 'Apple',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'http://www.apple.com/library/test/success.html',
@@ -2021,13 +2021,13 @@ function main(config) {
 
   if (ruleOptions.googlecn) {
     rules.push(
-      'DOMAIN-SUFFIX,google.cn,Google下载',
-      'DOMAIN-SUFFIX,googleapis.cn,Google下载',
+      'DOMAIN-SUFFIX,google.cn,Google中国',
+      'DOMAIN-SUFFIX,googleapis.cn,Google中国',
       'GEOSITE,google@cn,Google下载'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'Google下载',
+      name: 'Google中国',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'http://www.gstatic.com/generate_204',
@@ -2037,12 +2037,12 @@ function main(config) {
 
   if (ruleOptions.google) {
     rules.push(
-      'GEOIP,google,Google服务',
-      'GEOSITE,google,Google服务'
+      'GEOIP,google,Google',
+      'GEOSITE,google,Google'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'Google服务',
+      name: 'Google',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'http://www.google.com/generate_204',
@@ -2052,12 +2052,12 @@ function main(config) {
 
   if (ruleOptions.meta) {
     rules.push(
-      'GEOIP,facebook,Meta服务',
-      'GEOSITE,meta,Meta服务',
+      'GEOIP,facebook,Meta',
+      'GEOSITE,meta,Meta',
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'Meta服务',
+      name: 'Meta',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://www.meta.com/common/referer_frame.php',
@@ -2068,37 +2068,15 @@ function main(config) {
   if (ruleOptions.microsoft) {
     rules.push(
       'GEOSITE,microsoft@cn,国内网站',
-      'GEOSITE,microsoft,Microsoft服务'
+      'GEOSITE,microsoft,Microsoft'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'Microsoft服务',
+      name: 'Microsoft',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'http://www.msftconnecttest.com/connecttest.txt',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Microsoft.png'
-    })
-  }
-
-  if (ruleOptions.japan) {
-    rules.push(
-      'RULE-SET,category-bank-jp,日本网站',
-      'GEOIP,jp,日本网站,no-resolve'
-    )
-    ruleProviders.set('category-bank-jp', {
-      ...ruleProviderCommon,
-      behavior: 'domain',
-      format: 'mrs',
-      url: 'https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-bank-jp.mrs',
-      path: './ruleset/MetaCubeX/category-bank-jp.mrs'
-    })
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: '日本网站',
-      type: 'select',
-      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://r.r10s.jp/com/img/home/logo/touch.png',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png'
     })
   }
 
@@ -2139,6 +2117,28 @@ function main(config) {
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://www.pornhub.com',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Pornhub_1.png'
+    })
+  }
+
+  if (ruleOptions.japan) {
+    rules.push(
+      'RULE-SET,category-bank-jp,日本网站',
+      'GEOIP,jp,日本网站,no-resolve'
+    )
+    ruleProviders.set('category-bank-jp', {
+      ...ruleProviderCommon,
+      behavior: 'domain',
+      format: 'mrs',
+      url: 'https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-bank-jp.mrs',
+      path: './ruleset/MetaCubeX/category-bank-jp.mrs'
+    })
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: '日本网站',
+      type: 'select',
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
+      url: 'https://r.r10s.jp/com/img/home/logo/touch.png',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png'
     })
   }
 
@@ -2194,6 +2194,7 @@ function main(config) {
   // 返回修改后的配置
   return config
 }
+
 
 
 
