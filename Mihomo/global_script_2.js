@@ -1960,7 +1960,7 @@ function main(config) {
 
   if (ruleOptions.x) {
     rules.push(
-      'GEOIP,twitter,x',
+      'GEOIP,twitter,X',
       'GEOSITE,x,X'
     )
     config['proxy-groups'].push({
@@ -2194,4 +2194,5 @@ function main(config) {
   // 返回修改后的配置
   return config
 }
+
 
