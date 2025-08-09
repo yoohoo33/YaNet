@@ -2090,7 +2090,7 @@ function main(config) {
       name: '国服游戏',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames, '屏蔽'],
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China_Map.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/StreamingCN.png'
     })
   }
 
@@ -2164,7 +2164,7 @@ function main(config) {
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       url: 'http://wifi.vivo.com.cn/generate_204',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/StreamingCN.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China.png'
     },
     {
       ...groupBaseOption,
@@ -2194,6 +2194,7 @@ function main(config) {
   // 返回修改后的配置
   return config
 }
+
 
 
 
