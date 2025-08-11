@@ -59,13 +59,19 @@ const ruleOptions = {
  * 如果有需要前置的自定义规则，可以自行修改
  */
 const rules = [
-  'GEOSITE,tracker,跟踪分析',
+  'DOMAIN-SUFFIX,dig.bdurl.net,抖音',
   'GEOSITE,category-ads-all,广告过滤',
-  'GEOSITE,bytedance@ads,广告过滤',
+  'GEOSITE,fqnovel@ads,广告过滤',
+  'DOMAIN-REGEX,^ads\d+-normal-hl\.zijieapi\.com$,广告过滤',
+  'DOMAIN-REGEX,^p\d+-ad-sign\.byteimg\.com$,广告过滤',
+  'DOMAIN-REGEX,^log\d+-applog-hl\.fqnovel\.com$,广告过滤',
+  'DOMAIN-REGEX,^rtlog\d+-applog-hl\.fqnovel\.com$,广告过滤',
   'DOMAIN-SUFFIX,store-api.mumu.163.com,广告过滤',
   'DOMAIN-SUFFIX,mumu.nie.netease.com,广告过滤',
+  'GEOSITE,tracker,跟踪分析',
   'DOMAIN-SUFFIX,ip.sb,默认节点',
   'DOMAIN-SUFFIX,ipapi.co,默认节点',
+  'DOMAIN-SUFFIX,ipapi.is,默认节点',
   'DOMAIN-SUFFIX,ipinfo.io,默认节点',
   'DOMAIN-SUFFIX,ipwho.is,默认节点',
   'RULE-SET,applications,下载软件',
@@ -1366,8 +1372,8 @@ const dnsConfig = {
    */
   'nameserver-policy': {
     'geosite:private': 'system',
-    'geosite:cn,steam@cn,category-games@cn,microsoft@cn,apple@cn': chinaDNS,
-    'domain:upos-hz-mirrorakam.akamaized.net,upos-sz-mirroraliov.bilivideo.com': chinaDNS
+    'geosite:cn,category-games@cn,category-game-platforms-download@cn,microsoft@cn,google@cn,apple@cn,bilibili': chinaDNS,
+    'domain-suffix:googleapis.cn,mirrorakam.akamaized.net,bilivideo.com': chinaDNS
   }
 }
 
@@ -1380,9 +1386,9 @@ const ruleProviderCommon = {
 
 // 代理组通用配置
 const groupBaseOption = {
-  interval: 300,
+  interval: 600,
   timeout: 3000,
-  url: 'http://cp.cloudflare.com/generate_204',
+  url: 'http://www.apple.com/library/test/success.html',
   lazy: true,
   'max-failed-times': 3,
   hidden: false
@@ -1503,10 +1509,8 @@ function main(config) {
   }
 
   config['geox-url'] = {
-    geoip:
-      'https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat',
-    geosite:
-      'https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat',
+    geoip: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat',
+    geosite: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat',
     mmdb: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb',
     asn: 'https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb'
   }
@@ -1731,7 +1735,7 @@ function main(config) {
       name: 'Steam下载/登录',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
-      url: 'https://steampipe.akamaized.net',
+      url: 'https://lv.queniujq.cn',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Steam.png'
     })
   }
@@ -1755,7 +1759,7 @@ function main(config) {
       name: 'EpicGames下载',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
-      url: 'https://store.epicgames.com',
+      url: 'https://epicgames-download1-1251447533.file.myqcloud.com',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Epic_Games.png'
     })
   }
@@ -1774,17 +1778,19 @@ function main(config) {
 
   if (ruleOptions.spotifycdn) {
     rules.push(
-      'DOMAIN-KEYWORD,spotifycdn,Spotify播放',
-      'DOMAIN-SUFFIX,pscdn.co,Spotify播放',
-      'DOMAIN-SUFFIX,scdn.co,Spotify播放',
-      'DOMAIN-SUFFIX,spotify-com.akamaized.net,Spotify播放'
+      'DOMAIN-SUFFIX,spotify.com,Spotify播放/登录',
+      'DOMAIN,audio-ak-spotify-com.akamaized.net,Spotify播放/登录',
+      'DOMAIN,audio4-ak-spotify-com.akamaized.net,Spotify播放/登录',
+      'DOMAIN,heads-ak-spotify-com.akamaized.net,Spotify播放/登录',
+      'DOMAIN,heads4-ak-spotify-com.akamaized.net,Spotify播放/登录',
+      'DOMAIN,cdn-spotify-experiments.conductrics.com,Spotify播放/登录'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'Spotify播放',
+      name: 'Spotify播放/登录',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
-      url: 'http://spclient.wg.spotify.com/signup/public/v1/account',
+      url: 'https://audio-ak-spotify-com.akamaized.net',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Spotify.png'
     })
   }
@@ -1796,7 +1802,7 @@ function main(config) {
       name: 'Spotify',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'http://spclient.wg.spotify.com/signup/public/v1/account',
+      url: 'https://open.spotify.com',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Spotify.png'
     })
   }
@@ -2090,6 +2096,7 @@ function main(config) {
       name: '国服游戏',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames, '屏蔽'],
+      url: 'https://store.steamchina.com',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/StreamingCN.png'
     })
   }
@@ -2104,6 +2111,7 @@ function main(config) {
       name: '外服游戏',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames, '屏蔽'],
+      url: 'https://store.steampowered.com',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Game.png'
     })
   }
@@ -2194,6 +2202,7 @@ function main(config) {
   // 返回修改后的配置
   return config
 }
+
 
 
 
