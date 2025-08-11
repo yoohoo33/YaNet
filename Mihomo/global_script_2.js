@@ -1622,7 +1622,7 @@ function main(config) {
       name: '网速测试',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://www.speedtest.net',
+      url: 'https://speedtest.net',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Speedtest.png'
     })
   }
@@ -1681,7 +1681,7 @@ function main(config) {
       name: 'HoYoverse社区/登录',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://www.hoyolab.com',
+      url: 'https://hoyolab.com',
       icon: 'https://fastcdn.hoyoverse.com/content-v2/plat/101581/77f36e14ec28939d7f77c4c57618c5f7_519912983958508131.jpeg'
     })
   }
@@ -1700,7 +1700,7 @@ function main(config) {
       name: 'HoYoverse',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://www.hoyoverse.com',
+      url: 'https://hoyoverse.com',
       icon: 'https://www.hoyoverse.com/favicon-256.ico'
     })
   }
@@ -1720,19 +1720,19 @@ function main(config) {
       name: 'miHoYo',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
-      url: 'https://www.mihoyo.com',
+      url: 'https://mihoyo.com',
       icon: 'https://webstatic.mihoyo.com/upload/event/2021/11/11/8494b1367813da0ce15b3277b1c37cb2_4388417983115824846.png'
     })
   }
 
   if (ruleOptions.steamcdn) {
     rules.push(
-      'GEOSITE,steam@cn,Steam下载/登录',
-      'IP-ASN,32590,Steam下载/登录'
+      'GEOSITE,steam@cn,Steam下载',
+      'IP-ASN,32590,Steam下载'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'Steam下载/登录',
+      name: 'Steam下载',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       url: 'https://lv.queniujq.cn',
@@ -1747,7 +1747,7 @@ function main(config) {
       name: 'Steam商店/社区',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://store.steampowered.com',
+      url: 'https://steamcommunity.com',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Steam.png'
     })
   }
@@ -1814,8 +1814,8 @@ function main(config) {
       name: 'Tiktok',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://www.tiktok.com',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/TikTok.png'
+      url: 'https://tiktok.com',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/TikTok_1.png'
     })
   }
 
@@ -1830,14 +1830,14 @@ function main(config) {
       name: '抖音',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
-      url: 'https://www.douyin.com',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/TikTok.png'
+      url: 'douyin.com',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/TikTok_2.png'
     })
   }
 
   if (ruleOptions.biliintl) {
     rules.push(
-      'GEOSITE,biliintl,番剧出差',
+      'GEOSITE,bilibili@!cn,番剧出差',
       'DOMAIN-SUFFIX,api.bilibili.com,番剧出差'
     )
     config['proxy-groups'].push({
@@ -1845,7 +1845,7 @@ function main(config) {
       name: '番剧出差',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://www.bilibili.tv',
+      url: 'https://bilibili.tv',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/bilibili_3.png'
     })
   }
@@ -1857,19 +1857,19 @@ function main(config) {
       name: '哔哩哔哩',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
-      url: 'https://www.bilibili.com',
+      url: 'https://bilibili.com',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/bilibili.png'
     })
   }
 
   if (ruleOptions.niconico) {
-    rules.push('GEOSITE,niconico,NicoNico')
+    rules.push('GEOSITE,niconico,ニコニコ動画')
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'NicoNico',
+      name: 'ニコニコ動画',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://www.nicovideo.jp',
+      url: 'https://nicovideo.jp',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/niconico_1.png'
     })
   }
@@ -1959,7 +1959,7 @@ function main(config) {
       name: 'Telegram',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'http://www.telegram.org/img/website_icon.svg',
+      url: 'http://telegram.org/img/website_icon.svg',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Telegram.png'
     })
   }
@@ -2123,7 +2123,7 @@ function main(config) {
       name: '学习资料',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://www.pornhub.com',
+      url: 'https://pornhub.com',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Pornhub_1.png'
     })
   }
@@ -2164,6 +2164,7 @@ function main(config) {
       name: 'GFW列表',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
+      url: 'http://www.google.com/generate_204',
       icon: 'https://cdn-icons-png.flaticon.com/128/14251/14251400.png'
     },
     {
@@ -2202,10 +2203,3 @@ function main(config) {
   // 返回修改后的配置
   return config
 }
-
-
-
-
-
-
-
