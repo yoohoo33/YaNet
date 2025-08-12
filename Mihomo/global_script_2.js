@@ -1606,8 +1606,8 @@ function main(config) {
   config.proxies.push({
   name: 'wg-cloudflare',
   type: 'wireguard',
-  ip: '172.16.0.2/32',
-  ipv6: '2606:4700:110:8729:84bb:5706:5d70:c008/128',
+  ip: '172.16.0.2',
+  ipv6: '2606:4700:110:8729:84bb:5706:5d70:c008',
   'private-key': 'iAhBiOhUazQYgbc1YU5kPXYWkXUfMSFd1eGa+5SxWVM=',
   peer: {
     server: 'engage.cloudflareclient.com',
@@ -2236,3 +2236,4 @@ function main(config) {
   // 返回修改后的配置
   return config
 }
+
