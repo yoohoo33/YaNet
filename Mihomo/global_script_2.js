@@ -59,13 +59,11 @@ const ruleOptions = {
  * 如果有需要前置的自定义规则，可以自行修改
  */
 const rules = [
-  'DOMAIN-SUFFIX,dig.bdurl.net,抖音',
   'GEOSITE,category-ads-all,广告过滤',
   'GEOSITE,fqnovel@ads,广告过滤',
-  'DOMAIN-REGEX,^ads\d+-normal-hl\.zijieapi\.com$,广告过滤',
-  'DOMAIN-REGEX,^p\d+-ad-sign\.byteimg\.com$,广告过滤',
-  'DOMAIN-REGEX,^log\d+-applog-hl\.fqnovel\.com$,广告过滤',
-  'DOMAIN-REGEX,^rtlog\d+-applog-hl\.fqnovel\.com$,广告过滤',
+  'DOMAIN-REGEX,ads[0-9]+-normal-[A-za-z]+\.zijieapi\.com,广告过滤',
+  'DOMAIN-REGEX,p[0-9]+-ad-sign\.byteimg\.com,广告过滤',
+  'DOMAIN-REGEX,(rt)?log[0-9]+-applog-[A-za-z]+\.fqnovel\.com,广告过滤',
   'DOMAIN-SUFFIX,store-api.mumu.163.com,广告过滤',
   'DOMAIN-SUFFIX,mumu.nie.netease.com,广告过滤',
   'GEOSITE,tracker,跟踪分析',
@@ -1666,19 +1664,19 @@ function main(config) {
 
   if (ruleOptions.hoyolab) {
     rules.push(
-      'DOMAIN-SUFFIX,hoyolab.com,HoYoverse社区/登录',
-      'DOMAIN-SUFFIX,hoyo.link,HoYoverse社区/登录',
-      'DOMAIN-SUFFIX,account.hoyoverse.com,HoYoverse社区/登录',
-      'DOMAIN-REGEX,dispatchos.*\.yuanshen\.com,HoYoverse社区/登录',
-      'DOMAIN-REGEX,os.*dispatch\.yuanshen\.com,HoYoverse社区/登录',
-      'DOMAIN-REGEX,globaldp.*\.starrails\.com,HoYoverse社区/登录',
-      'DOMAIN-REGEX,prod.*\.starrails\.com,HoYoverse社区/登录',
-      'DOMAIN-REGEX,globaldp.*\.zenlesszonezero\.com,HoYoverse社区/登录',
-      'DOMAIN-REGEX,prod.*\.zenlesszonezero\.com,HoYoverse社区/登录'
+      'DOMAIN-SUFFIX,hoyolab.com,HoYoLAB',
+      'DOMAIN-SUFFIX,hoyo.link,HoYoLAB',
+      'DOMAIN-SUFFIX,account.hoyoverse.com,HoYoLAB',
+      'DOMAIN-REGEX,dispatchos.*\.yuanshen\.com,HoYoLAB',
+      'DOMAIN-REGEX,os.*dispatch\.yuanshen\.com,HoYoLAB',
+      'DOMAIN-REGEX,globaldp.*\.starrails\.com,HoYoLAB',
+      'DOMAIN-REGEX,prod.*\.starrails\.com,HoYoLAB',
+      'DOMAIN-REGEX,globaldp.*\.zenlesszonezero\.com,HoYoLAB',
+      'DOMAIN-REGEX,prod.*\.zenlesszonezero\.com,HoYoLAB'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'HoYoverse社区/登录',
+      name: 'HoYoLAB',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://hoyolab.com',
@@ -1713,6 +1711,7 @@ function main(config) {
       'DOMAIN-REGEX,autopatch.*\.yuanshen\.com,下载软件',
       'DOMAIN-SUFFIX,autopatchcn.bhsr.com,下载软件',
       'DOMAIN-SUFFIX,autopatchcn.juequling.com,下载软件',
+      'DOMAIN-SUFFIX,bbs-api.miyoushe.com,HoYoLAB',
       'GEOSITE,mihoyo-cn,miHoYo'
     )
     config['proxy-groups'].push({
@@ -1838,7 +1837,6 @@ function main(config) {
   if (ruleOptions.biliintl) {
     rules.push(
       'GEOSITE,bilibili@!cn,番剧出差',
-      'DOMAIN-SUFFIX,api.bilibili.com,番剧出差'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -1851,7 +1849,11 @@ function main(config) {
   }
 
   if (ruleOptions.bilibili) {
-    rules.push('GEOSITE,bilibili,哔哩哔哩')
+    rules.push(
+      'DOMAIN-SUFFIX,api.bilibili.com,番剧出差',
+      'DOMAIN-SUFFIX,api.live.bilibili.com,番剧出差',
+      'DOMAIN-SUFFIX,app.bilibili.com,番剧出差',
+      'GEOSITE,bilibili,哔哩哔哩')
     config['proxy-groups'].push({
       ...groupBaseOption,
       name: '哔哩哔哩',
@@ -2074,6 +2076,7 @@ function main(config) {
   if (ruleOptions.microsoft) {
     rules.push(
       'GEOSITE,microsoft@cn,国内网站',
+      'GEOSITE,onedrive,GFW列表',
       'GEOSITE,microsoft,Microsoft'
     )
     config['proxy-groups'].push({
@@ -2203,3 +2206,4 @@ function main(config) {
   // 返回修改后的配置
   return config
 }
+
