@@ -1403,6 +1403,15 @@ ruleProviders.set('applications', {
 
 // 程序入口
 function main(config) {
+  const enableDialer = false
+    if (enableDialer) {
+      config.proxies.forEach(p => {
+        // 確保不給 wg-cloudflare 自身添加 dialer-proxy
+        if (p.name !== '链式代理', 'warp-cloudflare', '直连', '屏蔽', DIRECT, REJECT) {
+          p['dialer-proxy'] = '链式代理'
+        }
+      })
+    }
   const proxyCount = config?.proxies?.length ?? 0
   const proxyProviderCount =
     typeof config?.['proxy-providers'] === 'object'
@@ -1575,6 +1584,12 @@ function main(config) {
       type: 'select',
       proxies: [...proxyGroupsRegionNames, '直连', '屏蔽'],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Proxy.png'
+    },    {
+      ...groupBaseOption,
+      name: '链式代理',
+      type: 'select',
+      proxies: ['wg-cloudflare', '直连', ...proxyGroupsRegionNames],
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Airport.png'
     },
   ]
 
@@ -1587,6 +1602,21 @@ function main(config) {
   config.proxies.push({
     name: '屏蔽',
     type: 'reject'
+  })
+  config.proxies.push({
+  name: 'wg-cloudflare',
+  type: 'wireguard',
+  ip: '172.16.0.2/32',
+  ipv6: '2606:4700:110:8729:84bb:5706:5d70:c008/128',
+  'private-key': 'iAhBiOhUazQYgbc1YU5kPXYWkXUfMSFd1eGa+5SxWVM=',
+  peer: {
+    server: 'engage.cloudflareclient.com',
+    port: 2408,
+    'public-key': 'bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=',
+    'allowed-ips': ['0.0.0.0/0', '::/0'],
+  },
+  dns: ['1.1.1.1', '1.0.0.1', '2606:4700:4700::1111', '2606:4700:4700::1001'],
+  mtu: 1280,
   })
 
   config['proxy-groups'].push(
@@ -2206,4 +2236,3 @@ function main(config) {
   // 返回修改后的配置
   return config
 }
-
