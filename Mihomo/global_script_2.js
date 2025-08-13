@@ -1,7 +1,7 @@
 /***
  * Clash Verge Rev 全局扩展脚本（懒人配置）/ Mihomo Party 覆写脚本
  * URL: https://github.com/dahaha-365/YaNet/
- * 此fork在原版本的基础上作出修改
+ * 此fork在原版本的基础上作出修改，添加链式代理的功能和更多策略组
  */
 
 /**
@@ -10,8 +10,8 @@
  * false = 禁用
  */
 const enable = true
-//链式代理开关
-const enableDialer = false
+//链式代理的开关，开启后自动识别名称含关键词的节点作为落地节点
+const enableDialer = true
 /**
  * 分流规则配置，会自动生成对应的策略组
  * 设置的时候可遵循“最小，可用”原则，把自己不需要的规则全禁用掉，提高效率
@@ -19,38 +19,38 @@ const enableDialer = false
  * false = 禁用
  */
 const ruleOptions = {
+  dev: true, //开发者平台
+  speedtest: true, //网速测试
   ai: true, //国外AI
+  hoyolab: true, //miHoYo BBS海外
+  hoyoverse: true, //miHoYo海外
   mihoyo: true, //miHoYo
-  hoyolab: true, //miHoYo国际社区
-  hoyoverse: true, //miHoYo国际
-  steamcdn: true, //Steam下载/登录
+  steamcdn: true, //Steam下载
   steam: true, //Steam商店/社区
   epicgamescdn: true, //Epic Games下载
   epicgames: true, //Epic Games商店
   spotifycdn: true, //Spotify播放
-  spotify: true, //Spotify登录
-  tiktok: true, //抖音国际
-  douyin: true, //抖音
-  biliintl: true, //哔哩番剧解锁
+  spotify: true, //Spotify
+  tiktok: true, //字节跳动海外
+  douyin: true, //字节跳动
+  biliintl: true, //b站番剧解锁
   bilibili: true, //哔哩哔哩
   bahamut: true, //巴哈姆特
   niconico: true, //niconico
-  hulu: true, //Hulu
   netflix: true, //网飞
-  disney: true, //迪士尼
+  hulu: true, //Hulu
   primevideo: true, //亚马逊prime video
+  disney: true, //迪士尼
   discord: true, //Discord
   telegram: true, //Telegram
   x: true, //推特
-  amazon: true, //亚马逊
   cloudflare: true, //科赋锐
+  amazon: true, //亚马逊
   apple: true, //苹果
-  meta: true, //Meta
   google: true, //谷歌
   googlecn: true, //谷歌下载
+  meta: true, //Meta
   microsoft: true, //微软
-  speedtest: true, //网速测试
-  dev: true, //开发者平台
   games: true, //游戏
   porn: true, //学习资料
   japan: false, //日本网站
@@ -468,7 +468,7 @@ function main(config) {
     enable: true,
     'force-dns-mapping': true,
     'parse-pure-ip': false,
-    'override-destination': false,
+    'override-destination': true,
     sniff: {
       TLS: {
         ports: [443, 8443]
@@ -480,7 +480,6 @@ function main(config) {
         ports: [443, 8443]
       }
     },
-    'force-domain': [],
     'skip-src-address': [
       '127.0.0.0/8',
       '192.168.0.0/16',
@@ -497,10 +496,7 @@ function main(config) {
       '+.fbcdn.net',
       'fbcdn-a.akamaihd.net'
     ],
-    'skip-domain': [
-      'Mijia Cloud',
-      '+.oray.com'
-    ]
+    'skip-domain': ['Mijia Cloud', '+.oray.com'],
   }
 
   /**
@@ -574,15 +570,6 @@ function main(config) {
     proxyGroupsRegionNames.push('其他节点')
   }
 
-  if (enableDialer) {
-    config.proxies.forEach(p => {
-      // 確保不給落地节点自身添加 dialer-proxy
-      if (p.name !== 'Cloudflare Warp') {
-        p['dialer-proxy'] = '链式代理'
-      }
-    })
-  }
-
   config['proxy-groups'] = [
     {
       ...groupBaseOption,
@@ -590,15 +577,50 @@ function main(config) {
       type: 'select',
       proxies: [...proxyGroupsRegionNames, '直连', '屏蔽'],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Proxy.png'
-    },    {
-      //开启链式代理功能后，链式代理列表里选择直连就是不使用链式代理
-      ...groupBaseOption,
-      name: '链式代理',
-      type: 'select',
-      proxies: ['直连', 'Cloudflare Warp'],
-      icon: 'https://cdn.jsdelivr.net/gh/Lanlan13-14/Icon-for-webui/chain.png'
     }
   ]
+
+//链式代理功能
+if (enableDialer) {
+  // 定义需要被包含在“链式代理”组中的代理名称模式
+  const regexToInclude = /isp|warp|住宅|原生|静态|动态/i
+
+  // 创建一个新的变量，只包含匹配 regexToInclude 的代理
+  const filteredProxies = config.proxies.filter(p => regexToInclude.test(p.name))
+
+  // 筛选出所有符合条件的代理名称
+  const chainProxies = filteredProxies.map(p => p.name)
+
+  // 给所有不符合条件的代理添加 dialer-proxy
+  config.proxies.forEach(p => {
+    // 确保不给链式代理的落地节点自身添加 dialer-proxy
+    if (!regexToInclude.test(p.name)) {
+      p['dialer-proxy'] = '落地节点'
+    }
+  })
+
+  // 添加一个新的代理组
+  // 该代理组将动态包含所有符合 regexToInclude 模式的代理
+  config['proxy-groups'].push({
+    ...groupBaseOption,
+    name: '落地节点',
+    type: 'select',
+    proxies: ['直连', ...chainProxies],
+    icon: 'https://cdn.jsdelivr.net/gh/Lanlan13-14/Icon-for-webui/chain.png'
+  })
+
+  /***可按此处示例格式在下方添加落地节点
+   * config.proxies.push({
+   * name: '洞态住宅IP-下北沢野獣邸-霜ISP',
+   * type: 'http',
+   * server: 'homo.restaurant.vip',
+   * port: 14514
+   * username: 'senpai',
+   * password: '1919810',
+   * tls: true
+   * })
+   */
+}
 
   config.proxies = config?.proxies || []
   config.proxies.push({
@@ -609,22 +631,6 @@ function main(config) {
   config.proxies.push({
     name: '屏蔽',
     type: 'reject'
-  })
-  //链式代理前置节点信息
-  config.proxies.push({
-  name: 'Cloudflare Warp',
-  type: 'wireguard',
-  ip: '172.16.0.2',
-  ipv6: '2606:4700:110:8729:84bb:5706:5d70:c008',
-  'private-key': 'iAhBiOhUazQYgbc1YU5kPXYWkXUfMSFd1eGa+5SxWVM=',
-  peer: {
-    server: 'engage.cloudflareclient.com',
-    port: 2408,
-    'public-key': 'bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=',
-    'allowed-ips': ['0.0.0.0/0', '::/0'],
-  },
-  dns: ['1.1.1.1', '1.0.0.1', '2606:4700:4700::1111', '2606:4700:4700::1001'],
-  mtu: 1280,
   })
 
   config['proxy-groups'].push(
@@ -902,18 +908,6 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.niconico) {
-    rules.push('GEOSITE,niconico,ニコニコ動画')
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: 'ニコニコ動画',
-      type: 'select',
-      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://nicovideo.jp',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/niconico_1.png'
-    })
-  }
-
   if (ruleOptions.bahamut) {
     rules.push('GEOSITE,bahamut,巴哈姆特')
     config['proxy-groups'].push({
@@ -923,6 +917,18 @@ function main(config) {
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://ani.gamer.com.tw/ajax/getdeviceid.php',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Bahamut.png'
+    })
+  }
+
+  if (ruleOptions.niconico) {
+    rules.push('GEOSITE,niconico,ニコニコ動画')
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: 'ニコニコ動画',
+      type: 'select',
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
+      url: 'https://nicovideo.jp',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/niconico_1.png'
     })
   }
 
@@ -941,18 +947,6 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.primevideo) {
-    rules.push('GEOSITE,primevideo,Prime Video')
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: 'Prime Video',
-      type: 'select',
-      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'https://m.media-amazon.com/images/G/01/digital/video/web/logo-min-remaster.png',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Prime_Video.png'
-    })
-  }
-
   if (ruleOptions.hulu) {
     rules.push('GEOSITE,hulu,Hulu')
     config['proxy-groups'].push({
@@ -962,6 +956,18 @@ function main(config) {
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://auth.hulu.com/v4/web/password/authenticate',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hulu.png'
+    })
+  }
+
+  if (ruleOptions.primevideo) {
+    rules.push('GEOSITE,primevideo,Prime Video')
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: 'Prime Video',
+      type: 'select',
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
+      url: 'https://m.media-amazon.com/images/G/01/digital/video/web/logo-min-remaster.png',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Prime_Video.png'
     })
   }
 
@@ -1031,22 +1037,6 @@ function main(config) {
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://aws-latency-test.com',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Amazon.png'
-    })
-  }
-
-  if (ruleOptions.cloudflare) {
-    rules.push(
-      'GEOSITE,cloudflare@cn,国内网站',
-      'GEOSITE,cloudflare,Cloudflare',
-      'GEOIP,cloudflare,Cloudflare'
-    )
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: 'Cloudflare',
-      type: 'select',
-      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
-      url: 'http://cp.cloudflare.com/generate_204',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Cloudflare.png'
     })
   }
 
@@ -1206,7 +1196,26 @@ function main(config) {
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'http://www.google.com/generate_204',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Dinosaur.png'
-    },
+    }
+  )
+
+  if (ruleOptions.cloudflare) {
+    rules.push(
+      'GEOSITE,cloudflare@cn,国内网站',
+      'GEOSITE,cloudflare,Cloudflare',
+      'GEOIP,cloudflare,Cloudflare'
+    )
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: 'Cloudflare',
+      type: 'select',
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
+      url: 'http://cp.cloudflare.com/generate_204',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Cloudflare.png'
+    })
+  }
+
+  config['proxy-groups'].push(
     {
       ...groupBaseOption,
       name: '国内网站',
