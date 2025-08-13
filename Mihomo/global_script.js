@@ -44,6 +44,18 @@ const ruleOptions = {
 }
 
 /**
+ * 前置规则
+ * 如果有需要前置的自定义规则，可以自行修改
+ */
+const rules = [
+  'RULE-SET,applications,下载软件',
+  'PROCESS-NAME,SunloginClient,DIRECT',
+  'PROCESS-NAME,SunloginClient.exe,DIRECT',
+  'PROCESS-NAME,AnyDesk,DIRECT',
+  'PROCESS-NAME,AnyDesk.exe,DIRECT',
+]
+
+/**
  * 地区配置，通过regex匹配代理节点名称
  * regex会有一定概率误判，自己调整一下吧
  * excludeHighPercentage是排除高倍率节点的开关，只对地区分组有效
@@ -185,12 +197,6 @@ ruleProviders.set('applications', {
   path: './ruleset/DustinWin/applications.list',
 })
 
-const rules = [
-  'RULE-SET,applications,下载软件',
-  'PROCESS-NAME,SunloginClient,DIRECT',
-  'PROCESS-NAME,SunloginClient.exe,DIRECT',
-]
-
 // 程序入口
 function main(config) {
   const proxyCount = config?.proxies?.length ?? 0
@@ -251,8 +257,8 @@ function main(config) {
   config['sniffer'] = {
     enable: true,
     'force-dns-mapping': true,
-    'parse-pure-ip': true,
-    'override-destination': false,
+    'parse-pure-ip': false,
+    'override-destination': true,
     sniff: {
       TLS: {
         ports: [443, 8443],
@@ -264,7 +270,22 @@ function main(config) {
         ports: [443, 8443],
       },
     },
-    'force-domain': [],
+    'skip-src-address': [
+      '127.0.0.0/8',
+      '192.168.0.0/16',
+      '10.0.0.0/8',
+      '172.16.0.0/12',
+    ],
+    'force-domain': [
+      '+.google.com',
+      '+.googleapis.com',
+      '+.googleusercontent.com',
+      '+.youtube.com',
+      '+.facebook.com',
+      '+.messenger.com',
+      '+.fbcdn.net',
+      'fbcdn-a.akamaihd.net',
+    ],
     'skip-domain': ['Mijia Cloud', '+.oray.com'],
   }
 
@@ -588,6 +609,14 @@ function main(config) {
 
   if (ruleOptions.ads) {
     rules.push('GEOSITE,category-ads-all,广告过滤')
+    rules.push('RULE-SET,adblockmihomo,广告过滤')
+    ruleProviders.set('adblockmihomo', {
+      ...ruleProviderCommon,
+      behavior: 'domain',
+      format: 'mrs',
+      url: 'https://github.com/217heidai/adblockfilters/raw/refs/heads/main/rules/adblockmihomo.mrs',
+      path: './ruleset/adblockfilters/adblockmihomo.mrs',
+    })
     config['proxy-groups'].push({
       ...groupBaseOption,
       name: '广告过滤',
@@ -621,6 +650,18 @@ function main(config) {
     })
   }
 
+  if (ruleOptions.github) {
+    rules.push('GEOSITE,github,Github')
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: 'Github',
+      type: 'select',
+      proxies: ['默认节点', ...proxyGroupsRegionNames, '直连'],
+      url: 'https://github.com/robots.txt',
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/GitHub.png',
+    })
+  }
+
   if (ruleOptions.microsoft) {
     rules.push('GEOSITE,microsoft@cn,国内网站', 'GEOSITE,microsoft,微软服务')
     config['proxy-groups'].push({
@@ -630,18 +671,6 @@ function main(config) {
       proxies: ['默认节点', ...proxyGroupsRegionNames, '直连'],
       url: 'http://www.msftconnecttest.com/connecttest.txt',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Microsoft.png',
-    })
-  }
-
-  if (ruleOptions.microsoft) {
-    rules.push('GEOSITE,github,Github')
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: 'Github',
-      type: 'select',
-      proxies: ['默认节点', ...proxyGroupsRegionNames, '直连'],
-      url: 'https://github.com/robots.txt',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/GitHub.png',
     })
   }
 
