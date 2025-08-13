@@ -929,7 +929,7 @@ function main(config) {
   if (ruleOptions.netflix) {
     rules.push(
       'GEOSITE,netflix,NETFLIX',
-      'GEOIP,netflix,NETFLIX,no-resolve'
+      'GEOIP,netflix,NETFLIX'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -992,7 +992,7 @@ function main(config) {
   if (ruleOptions.telegram) {
     rules.push(
       'GEOSITE,telegram,Telegram',
-      'GEOIP,telegram,Telegram,no-resolve'
+      'GEOIP,telegram,Telegram'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -1007,7 +1007,7 @@ function main(config) {
   if (ruleOptions.x) {
     rules.push(
       'GEOSITE,x,X',
-      'GEOIP,twitter,X,no-resolve'
+      'GEOIP,twitter,X'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -1038,7 +1038,7 @@ function main(config) {
     rules.push(
       'GEOSITE,cloudflare@cn,国内网站',
       'GEOSITE,cloudflare,Cloudflare',
-      'GEOIP,cloudflare,Cloudflare,no-resolve'
+      'GEOIP,cloudflare,Cloudflare'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -1083,7 +1083,7 @@ function main(config) {
   if (ruleOptions.google) {
     rules.push(
       'GEOSITE,google,Google',
-      'GEOIP,google,Google,no-resolve'
+      'GEOIP,google,Google'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -1098,7 +1098,7 @@ function main(config) {
   if (ruleOptions.meta) {
     rules.push(
       'GEOSITE,meta,Meta',
-      'GEOIP,facebook,Meta,no-resolve'
+      'GEOIP,facebook,Meta'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
