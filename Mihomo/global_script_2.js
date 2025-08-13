@@ -9,7 +9,8 @@
  * false = 禁用
  */
 const enable = true
-
+//链式代理开关
+const enableDialer = false
 /**
  * 分流规则配置，会自动生成对应的策略组
  * 设置的时候可遵循“最小，可用”原则，把自己不需要的规则全禁用掉，提高效率
@@ -40,7 +41,7 @@ const ruleOptions = {
   discord: true, //Discord
   telegram: true, //Telegram
   x: true, //推特
-  amazon: false, //亚马逊
+  amazon: true, //亚马逊
   cloudflare: true, //科赋锐
   apple: true, //苹果
   meta: true, //Meta
@@ -91,1247 +92,1247 @@ const regionOptions = {
     {
       name: '🇦🇩安道尔',
       regex: /安道尔|🇦🇩|andorra/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇦🇪阿联酋',
       regex: /阿联酋|🇦🇪|emirates/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇦🇫阿富汗',
       regex: /阿富汗|🇦🇫|afghanistan/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇦🇬安提瓜和巴布达',
       regex: /安提瓜和巴布达|🇦🇬|antigua/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇦🇮安圭拉',
       regex: /安圭拉|🇦🇮|anguilla/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇦🇱阿尔巴尼亚',
       regex: /阿尔巴尼亚|🇦🇱|albania/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇦🇲亚美尼亚',
       regex: /亚美尼亚|🇦🇲|armenia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇦🇴安哥拉',
       regex: /安哥拉|🇦🇴|angola/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇦🇶南极洲',
       regex: /南极|🇦🇶|antarctica/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇦🇷阿根廷',
       regex: /阿根廷|🇦🇷|argentina/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇦🇸美属萨摩亚',
       regex: /美属萨摩亚|🇦🇸|a.+samoa/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇦🇹奥地利',
       regex: /奥地利|🇦🇹|austria/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇦🇺澳大利亚',
       regex: /澳大利亚|🇦🇺|australia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇦🇼阿鲁巴',
       regex: /阿鲁巴|🇦🇼|aruba/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇦🇽奥兰群岛',
       regex: /奥兰群岛|🇦🇽|aland islands/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇦🇿阿塞拜疆',
       regex: /阿塞拜疆|🇦🇿|azerbaijan/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇦波黑',
       regex: /波黑|🇧🇦|bosnia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇧巴巴多斯',
       regex: /巴巴多斯|🇧🇧|barbados/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇩孟加拉',
       regex: /孟加拉|🇧🇩|bangladesh/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇪比利时',
       regex: /比利时|🇧🇪|belgium/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇫布基纳法索',
       regex: /布基纳法索|🇧🇫|faso/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇬保加利亚',
       regex: /保加利亚|🇧🇬|bulgaria/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇭巴林',
       regex: /巴林|🇧🇭|bahrain/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇮布隆迪',
       regex: /布隆迪|🇧🇮|burundi/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇯贝宁',
       regex: /贝宁|🇧🇯|benin/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇱圣巴泰勒米',
       regex: /圣巴泰勒米|🇧🇱|barthelemy/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇲百慕大',
       regex: /百慕大|🇧🇲|bermuda/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇳文莱',
       regex: /文莱|🇧🇳|brunei/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇴玻利维亚',
       regex: /玻利维亚|🇧🇴|bolivia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇶博内尔',
       regex: /博内尔|🇧🇶|bonaire/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇷巴西',
       regex: /巴西|🇧🇷|brazil/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇸巴哈马',
       regex: /巴哈马|🇧🇸|bahamas/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇹不丹',
       regex: /不丹|🇧🇹|bhutan/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇻布韦岛',
       regex: /布韦岛|🇧🇻|bouvet/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇼博茨瓦纳',
       regex: /博茨瓦纳|🇧🇼|botswana/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇾白俄罗斯',
       regex: /白俄罗斯|🇧🇾|belarus/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇧🇿伯利兹',
       regex: /伯利兹|🇧🇿|belize/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇦加拿大',
       regex: /加拿大|🇨🇦|canada/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇨科科斯群岛',
       regex: /科科斯群岛|🇨🇨|cocos/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇩刚果（金）',
       regex: /刚果（金）|🇨🇩|congo.+k+/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇫中非',
       regex: /中非|🇨🇫|central african/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇬刚果（布）',
       regex: /刚果（布）|🇨🇬|congo.+b+/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇭瑞士',
       regex: /瑞士|🇨🇭|switzerland/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇮科特迪瓦',
       regex: /科特迪瓦|🇨🇮|cote/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇰库克群岛',
       regex: /库克群岛|🇨🇰|cook/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇱智利',
       regex: /智利|🇨🇱|chile/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇲喀麦隆',
       regex: /喀麦隆|🇨🇲|cameroon/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇳中国',
       regex: /中国|🇨🇳|china/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇴哥伦比亚',
       regex: /哥伦比亚|🇨🇴|colombia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇷哥斯达黎加',
       regex: /哥斯达黎加|🇨🇷|costa/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇺古巴',
       regex: /古巴|🇨🇺|cuba/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇻佛得角',
       regex: /佛得角|🇨🇻|verde/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇼库拉索',
       regex: /库拉索|🇨🇼|curacao/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇽圣诞岛',
       regex: /圣诞岛|🇨🇽|christmas/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇾塞浦路斯',
       regex: /塞浦路斯|🇨🇾|cyprus/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇨🇿捷克',
       regex: /捷克|🇨🇿|czech/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇩🇪德国',
       regex: /德国|🇩🇪|germany/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇩🇯吉布提',
       regex: /吉布提|🇩🇯|djibouti/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇩🇰丹麦',
       regex: /丹麦|🇩🇰|denmark/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇩🇲多米尼克',
       regex: /多米尼克|🇩🇲|dominica/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇩🇴多米尼加',
       regex: /多米尼加|🇩🇴|dominican/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇩🇿阿尔及利亚',
       regex: /阿尔及利亚|🇩🇿|algeria/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇪🇨厄瓜多尔',
       regex: /厄瓜多尔|🇪🇨|ecuador/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇪🇪爱沙尼亚',
       regex: /爱沙尼亚|🇪🇪|estonia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇪🇬埃及',
       regex: /埃及|🇪🇬|egypt/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇪🇭西撒哈拉',
       regex: /西撒哈拉|🇪🇭|sahara/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇪🇷厄立特里亚',
       regex: /厄立特里亚|🇪🇷|eritrea/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇪🇸西班牙',
       regex: /西班牙|🇪🇸|spain/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇪🇹埃塞俄比亚',
       regex: /埃塞俄比亚|🇪🇹|ethiopia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇫🇮芬兰',
       regex: /芬兰|🇫🇮|finland/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇫🇯斐济',
       regex: /斐济|🇫🇯|fiji/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇫🇰福克兰群岛',
       regex: /福克兰群岛|🇫🇰|falkland/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇫🇲密克罗尼西亚',
       regex: /密克罗尼西亚|🇫🇲|micronesia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇫🇴法罗群岛',
       regex: /法罗群岛|🇫🇴|faroe/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇫🇷法国',
       regex: /法国|🇫🇷|france/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇦加蓬',
       regex: /加蓬|🇬🇦|gabon/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇧英国',
       regex: /英国|🇬🇧|great britain|united kingdom/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇩格林纳达',
       regex: /格林纳达|🇬🇩|grenada/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇪格鲁吉亚',
       regex: /格鲁吉亚|🇬🇪|georgia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇫法属圭亚那',
       regex: /法属圭亚那|🇬🇫|f.+guiana/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇬根西岛',
       regex: /根西岛|🇬🇬|guernsey/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇭加纳',
       regex: /加纳|🇬🇭|ghana/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇮直布罗陀',
       regex: /直布罗陀|🇬🇮|gibraltar/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇱格陵兰',
       regex: /格陵兰|🇬🇱|greenland/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇲冈比亚',
       regex: /冈比亚|🇬🇲|gambia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇳几内亚',
       regex: /几内亚|🇬🇳|guinea/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇵瓜德罗普',
       regex: /瓜德罗普|🇬🇵|guadeloupe/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇶赤道几内亚',
       regex: /赤道几内亚|🇬🇶|equatorial/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇷希腊',
       regex: /希腊|🇬🇷|greece/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇸南乔治亚岛和南桑威奇群岛',
       regex: /南乔治亚岛和南桑威奇群岛|🇬🇸|sandwich/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇹危地马拉',
       regex: /危地马拉|🇬🇹|guatemala/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇺关岛',
       regex: /关岛|🇬🇺|guam/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇼几内亚比绍',
       regex: /几内亚比绍|🇬🇼|bissau/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇬🇾圭亚那',
       regex: /圭亚那|🇬🇾|guyana/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇭🇰香港',
       regex: /香港|🇭🇰|hong( )?kong/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇭🇲赫德岛和麦克唐纳群岛',
       regex: /赫德岛和麦克唐纳群岛|🇭🇲|heard/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇭🇳洪都拉斯',
       regex: /洪都拉斯|🇭🇳|honduras/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇭🇷克罗地亚',
       regex: /克罗地亚|🇭🇷|croatia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇭🇹海地',
       regex: /海地|🇭🇹|haiti/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇭🇺匈牙利',
       regex: /匈牙利|🇭🇺|hungary/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇮🇩印度尼西亚',
       regex: /印度尼西亚|🇮🇩|indonesia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇮🇪爱尔兰',
       regex: /爱尔兰|🇮🇪|ireland/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇮🇱以色列',
       regex: /以色列|🇮🇱|israel/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇮🇲马恩岛',
       regex: /马恩岛|🇮🇲|isle/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇮🇳印度',
       regex: /印度|🇮🇳|india/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇮🇴英属印度洋领地',
       regex: /英属印度洋领地|🇮🇴|b.+indian/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇮🇶伊拉克',
       regex: /伊拉克|🇮🇶|iraq/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇮🇷伊朗',
       regex: /伊朗|🇮🇷|iran/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇮🇸冰岛',
       regex: /冰岛|🇮🇸|iceland/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇮🇹意大利',
       regex: /意大利|🇮🇹|italy/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇯🇪泽西岛',
       regex: /泽西岛|🇯🇪|jersey/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇯🇲牙买加',
       regex: /牙买加|🇯🇲|jamaica/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇯🇴约旦',
       regex: /约旦|🇯🇴|jordan/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇯🇵日本',
       regex: /日本|🇯🇵|japan/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇰🇪肯尼亚',
       regex: /肯尼亚|🇰🇪|kenya/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇰🇬吉尔吉斯斯坦',
       regex: /吉尔吉斯斯坦|🇰🇬|kyrgyzstan/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇰🇭柬埔寨',
       regex: /柬埔寨|🇰🇭|cambodia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇰🇮基里巴斯',
       regex: /基里巴斯|🇰🇮|kiribati/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇰🇲科摩罗',
       regex: /科摩罗|🇰🇲|comoros/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇰🇳圣基茨和尼维斯',
       regex: /圣基茨和尼维斯|🇰🇳|kitts/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇰🇵朝鲜',
       regex: /朝鲜|🇰🇵|n.+korea/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇰🇷韩国',
       regex: /韩国|🇰🇷|korea/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇰🇼科威特',
       regex: /科威特|🇰🇼|kuwait/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇰🇾开曼群岛',
       regex: /开曼群岛|🇰🇾|cayman/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇰🇿哈萨克斯坦',
       regex: /哈萨克斯坦|🇰🇿|kazakhstan/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇱🇦老挝',
       regex: /老挝|🇱🇦|laos/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇱🇧黎巴嫩',
       regex: /黎巴嫩|🇱🇧|lebanon/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇱🇨圣卢西亚',
       regex: /圣卢西亚|🇱🇨|lucia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇱🇮列支敦士登',
       regex: /列支敦士登|🇱🇮|liechtenstein/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇱🇰斯里兰卡',
       regex: /斯里兰卡|🇱🇰|lanka/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇱🇷利比里亚',
       regex: /利比里亚|🇱🇷|liberia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇱🇸莱索托',
       regex: /莱索托|🇱🇸|lesotho/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇱🇹立陶宛',
       regex: /立陶宛|🇱🇹|lithuania/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇱🇺卢森堡',
       regex: /卢森堡|🇱🇺|luxembourg/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇱🇻拉脱维亚',
       regex: /拉脱维亚|🇱🇻|latvia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇱🇾利比亚',
       regex: /利比利亚|🇱🇾|libya/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇦摩洛哥',
       regex: /摩洛哥|🇲🇦|morocco/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇨摩纳哥',
       regex: /摩纳哥|🇲🇨|monaco/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇩摩尔多瓦',
       regex: /摩尔多瓦|🇲🇩|moldova/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇪黑山',
       regex: /黑山|🇲🇪|montenegro/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇫法属圣马丁',
       regex: /法属圣马丁|🇲🇫|saint martin/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇬马达加斯加',
       regex: /马达加斯加|🇲🇬|madagascar/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇭马绍尔群岛',
       regex: /马绍尔群岛|🇲🇭|marshall/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇰北马其顿',
       regex: /北马其顿|🇲🇰|n.+macedonia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇱马里',
       regex: /马里|🇲🇱|mali/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇲缅甸',
       regex: /缅甸|🇲🇲|myanmar/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇳蒙古',
       regex: /蒙古|🇲🇳|mongolia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇴澳门',
       regex: /澳门|🇲🇴|macao|macau/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇵北马里亚纳群岛',
       regex: /北马里亚纳群岛|🇲🇵|mariana/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇶马提尼克',
       regex: /马提尼克|🇲🇶|martinique/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇷毛里塔尼亚',
       regex: /毛里塔尼亚|🇲🇷|mauritania/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇸蒙特塞拉特',
       regex: /蒙特塞拉特|🇲🇸|montserrat/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇹马耳他',
       regex: /马耳他|🇲🇹|malta/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇺毛里求斯',
       regex: /毛里求斯|🇲🇺|mauritius/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇻马尔代夫',
       regex: /马尔代夫|🇲🇻|maldives/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇼马拉维',
       regex: /马拉维|🇲🇼|malawi/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇽墨西哥',
       regex: /墨西哥|🇲🇽|mexico/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇾马来西亚',
       regex: /马来西亚|🇲🇾|malaysia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇲🇿莫桑比克',
       regex: /莫桑比克|🇲🇿|mozambique/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇳🇦纳米比亚',
       regex: /纳米比亚|🇳🇦|namibia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇳🇨新喀里多尼亚',
       regex: /新喀里多尼亚|🇳🇨|n.+caledonia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇳🇪尼日尔',
       regex: /尼日尔|🇳🇪|niger/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇳🇫诺福克岛',
       regex: /诺福克岛|🇳🇫|norfolk/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇳🇬尼日利亚',
       regex: /尼日利亚|🇳🇬|nigeria/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇳🇮尼加拉瓜',
       regex: /尼加拉瓜|🇳🇮|nicaragua/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇳🇱荷兰',
       regex: /荷兰|🇳🇱|netherlands/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇳🇴挪威',
       regex: /挪威|🇳🇴|norway/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇳🇵尼泊尔',
       regex: /尼泊尔|🇳🇵|nepal/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇳🇷瑙鲁',
       regex: /瑙鲁|🇳🇷|nauru/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇳🇺纽埃',
       regex: /纽埃|🇳🇺|niue/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇳🇿新西兰',
       regex: /新西兰|🇳🇿|n.+zealand/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇴🇲阿曼',
       regex: /阿曼|🇴🇲|oman/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇵🇦巴拿马',
       regex: /巴拿马|🇵🇦|panama/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇵🇪秘鲁',
       regex: /秘鲁|🇵🇪|peru/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇵🇫法属波利尼西亚',
       regex: /法属波利尼西亚|🇵🇫|french polynesia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇵🇬巴布亚新几内亚',
       regex: /巴布亚新几内亚|🇵🇬|papua/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇵🇭菲律宾',
       regex: /菲律宾|🇵🇭|philippines/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇵🇰巴基斯坦',
       regex: /巴基斯坦|🇵🇰|pakistan/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇵🇱波兰',
       regex: /波兰|🇵🇱|poland/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇵🇲圣皮埃尔和密克隆',
       regex: /圣皮埃尔和密克隆|🇵🇲|pierre/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇵🇳皮特凯恩',
       regex: /皮特凯恩|🇵🇳|pitcairn/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇵🇷波多黎各',
       regex: /波多黎各|🇵🇷|puerto rico/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇵🇸巴勒斯坦',
       regex: /巴勒斯坦|🇵🇸|palestine/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇵🇹葡萄牙',
       regex: /葡萄牙|🇵🇹|portugal/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇵🇼帕劳',
       regex: /帕劳|🇵🇼|palau/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇵🇾巴拉圭',
       regex: /巴拉圭|🇵🇾|paraguay/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇶🇦卡塔尔',
       regex: /卡塔尔|🇶🇦|qatar/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇷🇪留尼汪',
       regex: /留尼汪|🇷🇪|reunion/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇷🇴罗马尼亚',
       regex: /罗马尼亚|🇷🇴|romania/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇷🇸塞尔维亚',
       regex: /塞尔维亚|🇷🇸|serbia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇷🇺俄罗斯',
       regex: /俄罗斯|🇷🇺|russia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇷🇼卢旺达',
       regex: /卢旺达|🇷🇼|rwanda/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇦沙特',
       regex: /沙特|🇸🇦|saudi arabia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇧所罗门群岛',
       regex: /所罗门群岛|🇸🇧|solomon/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇨塞舌尔',
       regex: /塞舌尔|🇸🇨|seychelles/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇩苏丹',
       regex: /苏丹|🇸🇩|sudan/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇪瑞典',
       regex: /瑞典|🇸🇪|sweden/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇬新加坡',
       regex: /新加坡|🇸🇬|singapore/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇭圣赫勒拿',
       regex: /圣赫勒拿|🇸🇭|helena/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇮斯洛文尼亚',
       regex: /斯洛文尼亚|🇸🇮|slovenia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇯斯瓦尔巴和扬马延',
       regex: /斯瓦尔巴和扬马延|🇸🇯|svalbard/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇰斯洛伐克',
       regex: /斯洛伐克|🇸🇰|slovakia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇱塞拉利昂',
       regex: /塞拉利昂|🇸🇱|sierra leone/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇲圣马力诺',
       regex: /圣马力诺|🇸🇲|san marino/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇳塞内加尔',
       regex: /塞内加尔|🇸🇳|senegal/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇴索马里',
       regex: /索马里|🇸🇴|somalia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇷苏里南',
       regex: /苏里南|🇸🇷|suriname/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇸南苏丹',
       regex: /南苏丹|🇸🇸|south sudan/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇹圣多美和普林西比',
       regex: /圣多美和普林西比|🇸🇹|sao tome/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇻萨尔瓦多',
       regex: /萨尔瓦多|🇸🇻|el salvador/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇽荷属圣马丁',
       regex: /荷属圣马丁|🇸🇽|sint maarten/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇾叙利亚',
       regex: /叙利亚|🇸🇾|syria/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇸🇿斯威士兰',
       regex: /斯威士兰|🇸🇿|eswatini/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇹🇨特克斯和凯科斯群岛',
       regex: /特克斯和凯科斯群岛|🇹🇨|turks/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇹🇩乍得',
       regex: /乍得|🇹🇩|chad/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇹🇫法属南部领地',
       regex: /法属南部领地|🇹🇫|french southern territories/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇹🇬多哥',
       regex: /多哥|🇹🇬|togo/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇹🇭泰国',
       regex: /泰国|🇹🇭|thailand/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇹🇯塔吉克斯坦',
       regex: /塔吉克斯坦|🇹🇯|tajikistan/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇹🇰托克劳',
       regex: /托克劳|🇹🇰|tokelau/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇹🇱东帝汶',
       regex: /东帝汶|🇹🇱|timor-leste/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇹🇲土库曼斯坦',
       regex: /土库曼斯坦|🇹🇲|turkmenistan/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇹🇳突尼斯',
       regex: /突尼斯|🇹🇳|tunisia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇹🇴汤加',
       regex: /汤加|🇹🇴|tonga/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇹🇷土耳其',
       regex: /土耳其|🇹🇷|turkey/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇹🇹特立尼达和多巴哥',
       regex: /特立尼达和多巴哥|🇹🇹|tobago/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇹🇻图瓦卢',
       regex: /图瓦卢|🇹🇻|tuvalu/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇹🇼台湾',
       regex: /台湾|🇹🇼|taiwan/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇹🇿坦桑尼亚',
       regex: /坦桑尼亚|🇹🇿|tanzania/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇺🇦乌克兰',
       regex: /乌克兰|🇺🇦|ukraine/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇺🇬乌干达',
       regex: /乌干达|🇺🇬|uganda/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇺🇲美国本土外小岛屿',
       regex: /美国本土外小岛屿|🇺🇲|us.+islands/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇺🇸美国',
       regex: /美国|🇺🇸|united states|america/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇺🇾乌拉圭',
       regex: /乌拉圭|🇺🇾|uruguay/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇺🇿乌兹别克斯坦',
       regex: /乌兹别克斯坦|🇺🇿|uzbekistan/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇻🇦梵蒂冈',
       regex: /梵蒂冈|🇻🇦|vatican/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇻🇨圣文森特和格林纳丁斯',
       regex: /圣文森特和格林纳丁斯|🇻🇨|vincent/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇻🇪委内瑞拉',
       regex: /委内瑞拉|🇻🇪|venezuela/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇻🇬英属维尔京群岛',
       regex: /英属维尔京群岛|🇻🇬|b.+virgin/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇻🇮美属维尔京群岛',
       regex: /美属维尔京群岛|🇻🇮|u.+virgin/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇻🇳越南',
       regex: /越南|🇻🇳|vietnam/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇻🇺瓦努阿图',
       regex: /瓦努阿图|🇻🇺|vanuatu/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇼🇫瓦利斯和富图纳',
       regex: /瓦利斯和富图纳|🇼🇫|wallis/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇼🇸萨摩亚',
       regex: /萨摩亚|🇼🇸|samoa/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇾🇪也门',
       regex: /也门|🇾🇪|yemen/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇾🇹马约特',
       regex: /马约特|🇾🇹|mayotte/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇿🇦南非',
       regex: /南非|🇿🇦|south africa/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇿🇲赞比亚',
       regex: /赞比亚|🇿🇲|zambia/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     },
     {
       name: '🇿🇼津巴布韦',
       regex: /津巴布韦|🇿🇼|zimbabwe/i,
-      ratioLimit: 2,
+      ratioLimit: 2
     }
   ]
 }
@@ -1403,11 +1404,10 @@ ruleProviders.set('applications', {
 
 // 程序入口
 function main(config) {
-  const enableDialer = false
     if (enableDialer) {
       config.proxies.forEach(p => {
-        // 確保不給 wg-cloudflare 自身添加 dialer-proxy
-        if (p.name !== '链式代理', 'warp-cloudflare', '直连', '屏蔽', DIRECT, REJECT) {
+        // 確保不給落地节点自身添加 dialer-proxy
+        if (p.name !== 'Cloudflare Warp', '直连', '屏蔽') {
           p['dialer-proxy'] = '链式代理'
         }
       })
@@ -1585,12 +1585,13 @@ function main(config) {
       proxies: [...proxyGroupsRegionNames, '直连', '屏蔽'],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Proxy.png'
     },    {
+      //开启链式代理功能后，链式代理列表里选择直连就是不使用链式代理
       ...groupBaseOption,
       name: '链式代理',
       type: 'select',
-      proxies: ['wg-cloudflare', '直连', ...proxyGroupsRegionNames],
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Airport.png'
-    },
+      proxies: ['直连', 'Cloudflare Warp'],
+      icon: 'https://cdn.jsdelivr.net/gh/Lanlan13-14/Icon-for-webui/chain.png'
+    }
   ]
 
   config.proxies = config?.proxies || []
@@ -1603,8 +1604,9 @@ function main(config) {
     name: '屏蔽',
     type: 'reject'
   })
+  //链式代理前置节点信息
   config.proxies.push({
-  name: 'wg-cloudflare',
+  name: 'Cloudflare Warp',
   type: 'wireguard',
   ip: '172.16.0.2',
   ipv6: '2606:4700:110:8729:84bb:5706:5d70:c008',
@@ -1920,8 +1922,8 @@ function main(config) {
 
   if (ruleOptions.netflix) {
     rules.push(
-      'GEOIP,netflix,NETFLIX',
-      'GEOSITE,netflix,NETFLIX'
+      'GEOSITE,netflix,NETFLIX',
+      'GEOIP,netflix,NETFLIX,no-resolve'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -1983,8 +1985,8 @@ function main(config) {
 
   if (ruleOptions.telegram) {
     rules.push(
-      'GEOIP,telegram,Telegram',
-      'GEOSITE,telegram,Telegram'
+      'GEOSITE,telegram,Telegram',
+      'GEOIP,telegram,Telegram,no-resolve'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -1998,8 +2000,8 @@ function main(config) {
 
   if (ruleOptions.x) {
     rules.push(
-      'GEOIP,twitter,X',
-      'GEOSITE,x,X'
+      'GEOSITE,x,X',
+      'GEOIP,twitter,X,no-resolve'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -2030,7 +2032,7 @@ function main(config) {
     rules.push(
       'GEOSITE,cloudflare@cn,国内网站',
       'GEOSITE,cloudflare,Cloudflare',
-      'GEOIP,cloudflare,Cloudflare'
+      'GEOIP,cloudflare,Cloudflare,no-resolve'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -2059,7 +2061,6 @@ function main(config) {
 
   if (ruleOptions.googlecn) {
     rules.push(
-      'DOMAIN-SUFFIX,google.cn,Google中国',
       'DOMAIN-SUFFIX,googleapis.cn,Google中国',
       'GEOSITE,google@cn,Google中国'
     )
@@ -2075,8 +2076,8 @@ function main(config) {
 
   if (ruleOptions.google) {
     rules.push(
-      'GEOIP,google,Google',
-      'GEOSITE,google,Google'
+      'GEOSITE,google,Google',
+      'GEOIP,google,Google,no-resolve'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -2090,8 +2091,8 @@ function main(config) {
 
   if (ruleOptions.meta) {
     rules.push(
-      'GEOIP,facebook,Meta',
       'GEOSITE,meta,Meta',
+      'GEOIP,facebook,Meta,no-resolve'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -2099,7 +2100,7 @@ function main(config) {
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://www.meta.com/common/referer_frame.php',
-      icon: 'https://static.xx.fbcdn.net/rsrc.php/y5/r/m4nf26cLQxS.ico'
+      icon: 'https://cdn.jsdelivr.net/gh/Lanlan13-14/Icon-for-webui/meta.png'
     })
   }
 
@@ -2198,7 +2199,7 @@ function main(config) {
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'http://www.google.com/generate_204',
-      icon: 'https://cdn-icons-png.flaticon.com/128/14251/14251400.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Dinosaur.png'
     },
     {
       ...groupBaseOption,
@@ -2213,7 +2214,7 @@ function main(config) {
       name: '漏网之鱼',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
-      icon: 'https://cdn-icons-png.flaticon.com/128/10507/10507711.png'
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png'
     }
   )
 
@@ -2236,4 +2237,3 @@ function main(config) {
   // 返回修改后的配置
   return config
 }
-
