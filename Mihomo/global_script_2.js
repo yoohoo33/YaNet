@@ -375,6 +375,8 @@ const dnsConfig = {
    * 由于默认dns是国外的了，只需要把国内ip和域名分流到国内dns
    */
   'nameserver-policy': {
+    // 优先级最高的规则放在最前面
+    ...(enableDialer && landProxyDomainsString) && { [`domain-suffix:${landProxyDomainsString}`]: foreignDNS },
     'geosite:private': 'system',
     'geosite:cn,category-games@cn,category-game-platforms-download@cn,microsoft@cn,google@cn,apple@cn,bilibili': chinaDNS,
     'domain-suffix:googleapis.cn,mirrorakam.akamaized.net,bilivideo.com': chinaDNS
@@ -582,22 +584,28 @@ function main(config) {
 
 //链式代理功能
 if (enableDialer) {
-  // 定义需要被包含在“链式代理”组中的代理名称模式
-  const regexToInclude = /isp|warp|住宅|原生|静态|动态/i
+// 定义需要被包含在“链式代理”组中的代理名称模式
+const regexToInclude = /isp|warp|住宅|原生|静态|动态/i
 
-  // 创建一个新的变量，只包含匹配 regexToInclude 的代理
-  const filteredProxies = config.proxies.filter(p => regexToInclude.test(p.name))
+// 提取所有符合条件的代理
+const filteredProxies = config.proxies.filter(p => regexToInclude.test(p.name))
 
-  // 筛选出所有符合条件的代理名称
-  const chainProxies = filteredProxies.map(p => p.name)
+// 提取符合条件的代理名称
+const chainProxies = filteredProxies.map(p => p.name)
 
-  // 给所有不符合条件的代理添加 dialer-proxy
-  config.proxies.forEach(p => {
-    // 确保不给链式代理的落地节点自身添加 dialer-proxy
-    if (!regexToInclude.test(p.name)) {
-      p['dialer-proxy'] = '落地节点'
-    }
-  })
+// 从 filteredProxies 中提取所有落地节点的 server 域名
+// 使用 Set 来自动去重
+const landProxyDomains = new Set(filteredProxies.map(p => p.server))
+
+// 将 Set 转换为字符串，以供 nameserver-policy 使用
+const landProxyDomainsString = [...landProxyDomains].join(',')
+
+// 给所有不符合条件的代理添加 dialer-proxy
+config.proxies.forEach(p => {
+  if (!regexToInclude.test(p.name)) {
+    p['dialer-proxy'] = '落地节点'
+  }
+})
 
   // 添加一个新的代理组
   // 该代理组将动态包含所有符合 regexToInclude 模式的代理
