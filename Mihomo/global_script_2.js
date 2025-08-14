@@ -10,8 +10,8 @@
  * false = 禁用
  */
 const enable = true
-//链式代理的开关，开启后自动识别名称含关键词的节点作为落地节点
-const enableDialer = true
+//链式代理的开关，开启后自动识别名称含关键词的节点作为落地节点，如果内核不支持proxy-providers则无效
+const enableDialer = false
 /**
  * 分流规则配置，会自动生成对应的策略组
  * 设置的时候可遵循“最小，可用”原则，把自己不需要的规则全禁用掉，提高效率
@@ -608,6 +608,7 @@ if (enableDialer) {
     proxies: ['直连', ...chainProxies],
     icon: 'https://cdn.jsdelivr.net/gh/Lanlan13-14/Icon-for-webui/chain.png'
   })
+}
 
   /***可按此处示例格式在下方添加落地节点
    * config.proxies.push({
@@ -620,7 +621,6 @@ if (enableDialer) {
    * tls: true
    * })
    */
-}
 
   config.proxies = config?.proxies || []
   config.proxies.push({
