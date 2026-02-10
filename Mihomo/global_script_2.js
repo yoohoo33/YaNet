@@ -82,7 +82,10 @@ const rules = [
   'PROCESS-NAME,SunloginClient.exe,DIRECT',
   'PROCESS-NAME,AnyDesk,DIRECT',
   'PROCESS-NAME,AnyDesk.exe,DIRECT',
-  'PROCESS-NAME,com.PigeonGames.Phigros,国际服'
+  'PROCESS-NAME,GameViewer,DIRECT',
+  'PROCESS-NAME,GameViewer.exe,DIRECT',
+  'PROCESS-NAME,GameViewerServer,DIRECT',
+  'PROCESS-NAME,GameViewerServer.exe,DIRECT'
 ]
 
 /**
@@ -1145,7 +1148,8 @@ if (enableDialer) {
   if (ruleOptions.games) {
     rules.push(
       'GEOSITE,category-game-platforms-download,国际服游戏',
-      'GEOSITE,category-games-!cn,国际服游戏'
+      'GEOSITE,category-games-!cn,国际服游戏',
+      'PROCESS-NAME,com.PigeonGames.Phigros,国际服游戏'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
@@ -1263,5 +1267,6 @@ if (enableDialer) {
   // 返回修改后的配置
   return config
 }
+
 
 
