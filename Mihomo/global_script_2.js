@@ -25,7 +25,7 @@ const ruleOptions = {
   hoyolab: true, //miHoYo BBS海外
   hoyoverse: true, //miHoYo海外
   mihoyo: true, //miHoYo
-  steamcdn: true, //Steam下载
+  steamcdn: true, //Steam下载/登录
   steam: true, //Steam商店/社区
   epicgamescdn: true, //Epic Games下载
   epicgames: true, //Epic Games商店
@@ -48,7 +48,7 @@ const ruleOptions = {
   amazon: true, //亚马逊
   apple: true, //苹果
   google: true, //谷歌
-  googlecn: true, //谷歌下载
+  googlecn: true, //谷歌中国
   meta: true, //Meta
   microsoft: true, //微软
   games: true, //
@@ -77,15 +77,16 @@ const rules = [
   'DOMAIN-SUFFIX,ipinfo.io,默认节点',
   'DOMAIN-SUFFIX,ipwho.is,默认节点',
   'DOMAIN-SUFFIX,myip.com,默认节点',
-  'RULE-SET,applications,下载软件',
-  'PROCESS-NAME,SunloginClient,DIRECT',
-  'PROCESS-NAME,SunloginClient.exe,DIRECT',
-  'PROCESS-NAME,AnyDesk,DIRECT',
-  'PROCESS-NAME,AnyDesk.exe,DIRECT',
-  'PROCESS-NAME,GameViewer,DIRECT',
-  'PROCESS-NAME,GameViewer.exe,DIRECT',
-  'PROCESS-NAME,GameViewerServer,DIRECT',
-  'PROCESS-NAME,GameViewerServer.exe,DIRECT'
+  'RULE-SET,applications,下载/远程',
+  'PROCESS-NAME,SunloginClient,下载/远程',
+  'PROCESS-NAME,SunloginClient.exe,下载/远程',
+  'PROCESS-NAME,AnyDesk,下载/远程',
+  'PROCESS-NAME,AnyDesk.exe,下载/远程',
+  'PROCESS-NAME,GameViewer,下载/远程',
+  'PROCESS-NAME,GameViewer.exe,下载/远程',
+  'PROCESS-NAME,GameViewerServer,下载/远程',
+  'PROCESS-NAME,GameViewerServer.exe,下载/远程',
+  'PROCESS-NAME,com.netease.uuremote,下载/远程'
 ]
 
 /**
@@ -657,7 +658,7 @@ if (enableDialer) {
     },
     {
       ...groupBaseOption,
-      name: '下载软件',
+      name: '下载/远程',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Download.png'
@@ -744,11 +745,11 @@ if (enableDialer) {
 
   if (ruleOptions.hoyoverse) {
     rules.push(
-      'DOMAIN-REGEX,.*hyp-api\.hoyoverse\.com,下载软件',
-      'DOMAIN-REGEX,.*downloader-api\.hoyoverse\.com,下载软件',
-      'DOMAIN-REGEX,autopatch.*\.honkaiimpact3\.com,下载软件',
-      'DOMAIN-SUFFIX,autopatchos.starrails.com,下载软件',
-      'DOMAIN-SUFFIX,autopatchos.zenlesszonezero.com,下载软件',
+      'DOMAIN-REGEX,.*hyp-api\.hoyoverse\.com,下载/远程',
+      'DOMAIN-REGEX,.*downloader-api\.hoyoverse\.com,下载/远程',
+      'DOMAIN-REGEX,autopatch.*\.honkaiimpact3\.com,下载/远程',
+      'DOMAIN-SUFFIX,autopatchos.starrails.com,下载/远程',
+      'DOMAIN-SUFFIX,autopatchos.zenlesszonezero.com,下载/远程',
       'GEOSITE,hoyoverse,HoYoverse'
     )
     config['proxy-groups'].push({
@@ -763,12 +764,12 @@ if (enableDialer) {
 
   if (ruleOptions.mihoyo) {
     rules.push(
-      'DOMAIN-REGEX,.*hyp-api\.mihoyo\.com,下载软件',
-      'DOMAIN-REGEX,.*downloader-api\.mihoyo\.com,下载软件',
-      'DOMAIN-REGEX,autopatch.*\.bh3\.com,下载软件',
-      'DOMAIN-REGEX,autopatch.*\.yuanshen\.com,下载软件',
-      'DOMAIN-SUFFIX,autopatchcn.bhsr.com,下载软件',
-      'DOMAIN-SUFFIX,autopatchcn.juequling.com,下载软件',
+      'DOMAIN-REGEX,.*hyp-api\.mihoyo\.com,下载/远程',
+      'DOMAIN-REGEX,.*downloader-api\.mihoyo\.com,下载/远程',
+      'DOMAIN-REGEX,autopatch.*\.bh3\.com,下载/远程',
+      'DOMAIN-REGEX,autopatch.*\.yuanshen\.com,下载/远程',
+      'DOMAIN-SUFFIX,autopatchcn.bhsr.com,下载/远程',
+      'DOMAIN-SUFFIX,autopatchcn.juequling.com,下载/远程',
       'DOMAIN-SUFFIX,bbs-api.miyoushe.com,HoYoLAB',
       'GEOSITE,mihoyo-cn,miHoYo'
     )
@@ -1243,7 +1244,7 @@ if (enableDialer) {
       ...groupBaseOption,
       name: '漏网之鱼',
       type: 'select',
-      proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png'
     }
   )
@@ -1267,6 +1268,3 @@ if (enableDialer) {
   // 返回修改后的配置
   return config
 }
-
-
-
