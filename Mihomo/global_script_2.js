@@ -198,7 +198,7 @@ const regionOptions = {
     {name: '🇮🇱以色列', regex: /以色列|🇮🇱|israel/i, ratioLimit: 2},
     {name: '🇮🇲马恩岛', regex: /马恩岛|🇮🇲|isle/i, ratioLimit: 2},
     {name: '🇮🇴英属印度洋领地', regex: /英属印度洋领地|🇮🇴|b.*indian ocean/i, ratioLimit: 2},
-    {name: '🇮🇳印度', regex: /🇮🇳|india/i, ratioLimit: 2},
+    {name: '🇮🇳印度', regex: /印度|🇮🇳|india/i, ratioLimit: 2},
     {name: '🇮🇶伊拉克', regex: /伊拉克|🇮🇶|iraq/i, ratioLimit: 2},
     {name: '🇮🇷伊朗', regex: /伊朗|🇮🇷|iran/i, ratioLimit: 2},
     {name: '🇮🇸冰岛', regex: /冰岛|🇮🇸|iceland/i, ratioLimit: 2},
@@ -616,7 +616,7 @@ if (enableDialer) {
 
   /***可按此处示例格式在下方添加落地节点
    * config.proxies.push({
-   * name: '洞态住宅IP-下北沢野獣邸-霜ISP',
+   * name: '洞态住宅IP-下北沢野獣邸-爽ISP',
    * type: 'http',
    * server: 'homo.restaurant.vip',
    * port: 14514
@@ -817,7 +817,7 @@ if (enableDialer) {
       ...groupBaseOption,
       name: 'EpicGames商店',
       type: 'select',
-      proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://store.epicgames.com',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Epic_Games.png'
     })
