@@ -658,6 +658,13 @@ if (enableDialer) {
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Download.png'
+    },
+    {
+      ...groupBaseOption,
+      name: 'ip隐身(仅限b站&抖音)',
+      type: 'select',
+      proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
+      icon: 'https://cdn.jsdelivr.net/gh/Lanlan13-14/Icon-for-webui/all.png'
     }
   )
 
@@ -836,7 +843,7 @@ if (enableDialer) {
       ...groupBaseOption,
       name: 'Spotify播放/登录',
       type: 'select',
-      proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
+      proxies: ['默认节点', '直连', ...proxyGroupsRegionNames],
       url: 'https://audio-ak-spotify-com.akamaized.net',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Spotify.png'
     })
@@ -868,8 +875,8 @@ if (enableDialer) {
 
   if (ruleOptions.douyin) {
     rules.push(
-      'DOMAIN-SUFFIX,www.douyin.com,Tiktok',
-      'DOMAIN-REGEX,api[0-9]+.*amemv\.com,Tiktok',
+      'DOMAIN-SUFFIX,www.douyin.com,ip隐身(仅限b站&抖音)',
+      'DOMAIN-REGEX,api[0-9]+.*amemv\.com,ip隐身(仅限b站&抖音)',
       'GEOSITE,bytedance,抖音'
     )
     config['proxy-groups'].push({
@@ -898,9 +905,9 @@ if (enableDialer) {
 
   if (ruleOptions.bilibili) {
     rules.push(
-      'DOMAIN-SUFFIX,api.bilibili.com,番剧出差',
-      'DOMAIN-SUFFIX,api.live.bilibili.com,番剧出差',
-      'DOMAIN-SUFFIX,app.bilibili.com,番剧出差',
+      'DOMAIN-SUFFIX,api.bilibili.com,ip隐身(仅限b站&抖音)',
+      'DOMAIN-SUFFIX,api.live.bilibili.com,ip隐身(仅限b站&抖音)',
+      'DOMAIN-SUFFIX,app.bilibili.com,ip隐身(仅限b站&抖音)',
       'GEOSITE,bilibili,哔哩哔哩')
     config['proxy-groups'].push({
       ...groupBaseOption,
