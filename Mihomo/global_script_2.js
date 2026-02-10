@@ -51,7 +51,7 @@ const ruleOptions = {
   googlecn: true, //谷歌下载
   meta: true, //Meta
   microsoft: true, //微软
-  games: true, //游戏
+  games: true, //
   porn: true, //学习资料
   japan: false, //日本网站
 }
@@ -82,7 +82,7 @@ const rules = [
   'PROCESS-NAME,SunloginClient.exe,DIRECT',
   'PROCESS-NAME,AnyDesk,DIRECT',
   'PROCESS-NAME,AnyDesk.exe,DIRECT',
-  'PROCESS-NAME,com.PigeonGames.Phigros,国际服游戏'
+  'PROCESS-NAME,com.PigeonGames.Phigros,国际服'
 ]
 
 /**
@@ -1129,12 +1129,12 @@ if (enableDialer) {
 
   if (ruleOptions.games) {
     rules.push(
-      'GEOSITE,category-game-platforms-download@cn,下载软件',
-      'GEOSITE,category-games@cn,国服游戏'
+      'GEOSITE,category-game-platforms-download@cn,大陆服游戏',
+      'GEOSITE,category-games@cn,大陆服游戏'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: '国服游戏',
+      name: '大陆服游戏',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames, '屏蔽'],
       url: 'https://store.steamchina.com',
@@ -1263,4 +1263,5 @@ if (enableDialer) {
   // 返回修改后的配置
   return config
 }
+
 
