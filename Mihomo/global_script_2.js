@@ -781,12 +781,12 @@ if (enableDialer) {
 
   if (ruleOptions.steamcdn) {
     rules.push(
-      'GEOSITE,steam@cn,Steam下载',
-      'IP-ASN,32590,Steam下载'
+      'GEOSITE,steam@cn,Steam下载/登录',
+      'IP-ASN,32590,Steam下载/登录'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: 'Steam下载',
+      name: 'Steam下载/登录',
       type: 'select',
       proxies: ['直连', '默认节点', ...proxyGroupsRegionNames],
       url: 'https://lv.queniujq.cn',
@@ -1263,3 +1263,4 @@ if (enableDialer) {
   // 返回修改后的配置
   return config
 }
+
