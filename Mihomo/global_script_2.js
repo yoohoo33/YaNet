@@ -37,10 +37,10 @@ const ruleOptions = {
   bilibili: true, //哔哩哔哩
   bahamut: true, //巴哈姆特
   niconico: true, //niconico
-  netflix: true, //网飞
-  hulu: true, //Hulu
-  primevideo: true, //亚马逊prime video
-  disney: true, //迪士尼
+  netflix: false, //网飞
+  hulu: false, //Hulu
+  primevideo: false, //亚马逊prime video
+  disney: false, //迪士尼
   discord: true, //Discord
   telegram: true, //Telegram
   x: true, //推特
@@ -63,22 +63,26 @@ const ruleOptions = {
 const rules = [
   'GEOSITE,category-ads-all,广告过滤',
   'GEOSITE,fqnovel@ads,广告过滤',
-  'DOMAIN-REGEX,ads[0-9]+-normal-[A-za-z]+\.zijieapi\.com,广告过滤',
+  'DOMAIN-REGEX,ads[0-9]+-normal-[A-Za-z]+\.zijieapi\.com,广告过滤',
   'DOMAIN-REGEX,p[0-9]+-ad-sign\.byteimg\.com,广告过滤',
-  'DOMAIN-REGEX,(rt)?log[0-9]+-applog-[A-za-z]+\.fqnovel\.com,广告过滤',
+  'DOMAIN-REGEX,(rt)?log[0-9]+-applog-[A-Za-z]+\.fqnovel\.com,广告过滤',
+  'DOMAIN-REGEX,candy.*\.adglare\.net,广告过滤',
   'DOMAIN-SUFFIX,store-api.mumu.163.com,广告过滤',
   'DOMAIN-SUFFIX,mumu.nie.netease.com,广告过滤',
   'GEOSITE,tracker,跟踪分析',
+  'DOMAIN-SUFFIX,ident.me,默认节点',
   'DOMAIN-SUFFIX,ip.sb,默认节点',
   'DOMAIN-SUFFIX,ipapi.co,默认节点',
   'DOMAIN-SUFFIX,ipapi.is,默认节点',
   'DOMAIN-SUFFIX,ipinfo.io,默认节点',
   'DOMAIN-SUFFIX,ipwho.is,默认节点',
+  'DOMAIN-SUFFIX,myip.com,默认节点',
   'RULE-SET,applications,下载软件',
   'PROCESS-NAME,SunloginClient,DIRECT',
   'PROCESS-NAME,SunloginClient.exe,DIRECT',
   'PROCESS-NAME,AnyDesk,DIRECT',
-  'PROCESS-NAME,AnyDesk.exe,DIRECT'
+  'PROCESS-NAME,AnyDesk.exe,DIRECT',
+  'PROCESS-NAME,com.PigeonGames.Phigros,国际服游戏'
 ]
 
 /**
@@ -194,7 +198,7 @@ const regionOptions = {
     {name: '🇮🇱以色列', regex: /以色列|🇮🇱|israel/i, ratioLimit: 2},
     {name: '🇮🇲马恩岛', regex: /马恩岛|🇮🇲|isle/i, ratioLimit: 2},
     {name: '🇮🇴英属印度洋领地', regex: /英属印度洋领地|🇮🇴|b.*indian ocean/i, ratioLimit: 2},
-    {name: '🇮🇳印度', regex: /印度|🇮🇳|india/i, ratioLimit: 2},
+    {name: '🇮🇳印度', regex: /🇮🇳|india/i, ratioLimit: 2},
     {name: '🇮🇶伊拉克', regex: /伊拉克|🇮🇶|iraq/i, ratioLimit: 2},
     {name: '🇮🇷伊朗', regex: /伊朗|🇮🇷|iran/i, ratioLimit: 2},
     {name: '🇮🇸冰岛', regex: /冰岛|🇮🇸|iceland/i, ratioLimit: 2},
@@ -327,8 +331,8 @@ const regionOptions = {
     {name: '🇻🇦梵蒂冈', regex: /梵蒂冈|🇻🇦|vatican/i, ratioLimit: 2},
     {name: '🇻🇨圣文森特和格林纳丁斯', regex: /圣文森特和格林纳丁斯|🇻🇨|vincent/i, ratioLimit: 2},
     {name: '🇻🇪委内瑞拉', regex: /委内瑞拉|🇻🇪|venezuela/i, ratioLimit: 2},
-    {name: '🇻🇬英属维尔京群岛', regex: /英属维尔京群岛|🇻🇬|british virgin/i, ratioLimit: 2},
-    {name: '🇻🇮美属维尔京群岛', regex: /美属维尔京群岛|🇻🇮|(american|us) virgin/i, ratioLimit: 2},
+    {name: '🇻🇬英属维京群岛', regex: /英属维京群岛|🇻🇬|british virgin/i, ratioLimit: 2},
+    {name: '🇻🇮美属维京群岛', regex: /美属维京群岛|🇻🇮|(american|us) virgin/i, ratioLimit: 2},
     {name: '🇻🇳越南', regex: /越南|🇻🇳|vietnam/i, ratioLimit: 2},
     {name: '🇻🇺瓦努阿图', regex: /瓦努阿图|🇻🇺|vanuatu/i, ratioLimit: 2},
     {name: '🇼🇫瓦利斯和富图纳', regex: /瓦利斯和富图纳|🇼🇫|wallis/i, ratioLimit: 2},
@@ -1133,12 +1137,12 @@ if (enableDialer) {
 
   if (ruleOptions.games) {
     rules.push(
-      'GEOSITE,category-game-platforms-download,外服游戏',
-      'GEOSITE,category-games-!cn,外服游戏'
+      'GEOSITE,category-game-platforms-download,国际服游戏',
+      'GEOSITE,category-games-!cn,国际服游戏'
     )
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: '外服游戏',
+      name: '国际服游戏',
       type: 'select',
       proxies: ['默认节点', '直连', ...proxyGroupsRegionNames, '屏蔽'],
       url: 'https://store.steampowered.com',
