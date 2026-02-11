@@ -86,7 +86,12 @@ const rules = [
   'PROCESS-NAME,GameViewer.exe,下载/远程',
   'PROCESS-NAME,GameViewerServer,下载/远程',
   'PROCESS-NAME,GameViewerServer.exe,下载/远程',
-  'PROCESS-NAME,com.netease.uuremote,下载/远程'
+  'PROCESS-NAME,com.netease.uuremote,下载/远程',
+  'PROCESS-NAME,StarDesk.exe,下载/远程',
+  'PROCESS-NAME,StarDesk.exe,下载/远程',
+  'PROCESS-NAME,StarDeskService,下载/远程',
+  'PROCESS-NAME,StarDeskService.exe,下载/远程',
+  'PROCESS-NAME,com.stardesk,下载/远程'
 ]
 
 /**
@@ -1268,3 +1273,4 @@ if (enableDialer) {
   // 返回修改后的配置
   return config
 }
+
