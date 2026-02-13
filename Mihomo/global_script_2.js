@@ -72,6 +72,7 @@ const rules = [
   'GEOSITE,tracker,跟踪分析',
   'DOMAIN-SUFFIX,ident.me,默认节点',
   'DOMAIN-SUFFIX,ip.sb,默认节点',
+  'DOMAIN-SUFFIX,ip-api.com,默认节点',
   'DOMAIN-SUFFIX,ipapi.co,默认节点',
   'DOMAIN-SUFFIX,ipapi.is,默认节点',
   'DOMAIN-SUFFIX,ipinfo.io,默认节点',
@@ -1273,4 +1274,5 @@ if (enableDialer) {
   // 返回修改后的配置
   return config
 }
+
 
